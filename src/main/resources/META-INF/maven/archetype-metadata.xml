@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+    name="rest-api-sql-datasource" xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>src/main/groovy</directory>
+            <includes>
+                <include>**/*.groovy</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.properties</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>src/test/groovy</directory>
+            <includes>
+                <include>**/*.groovy</include>
+            </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+            <directory>.settings</directory>
+            <includes>
+                <include>**/*.prefs</include>
+            </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory></directory>
+            <includes>
+                <include>.classpath</include>
+                <include>content.xml</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+    <requiredProperties>
+        <requiredProperty key="bonitaVersion">
+            <defaultValue>7.0.1</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="apiDisplayName">
+            <defaultValue>My Rest API extension</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="apiName">
+            <defaultValue>myRestExtApi</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="apiDesc">
+            <defaultValue>My Rest API extension description</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="httpVerb">
+            <defaultValue>GET</defaultValue>
+        </requiredProperty>
+         <requiredProperty key="pathTemplate">
+            <defaultValue>myRestApi</defaultValue>
+        </requiredProperty>
+        <requiredProperty key="permissionNames">
+            <defaultValue>myRestAPIPermission</defaultValue>
+        </requiredProperty>
+    </requiredProperties>
+</archetype-descriptor>
