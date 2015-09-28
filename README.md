@@ -3,7 +3,7 @@
 ##How to build the archetype
 
 ```
-git clone https://github.com/Bonitasoft-Community/rest-api-extension-archetype.git
+git clone https://github.com/bonitasoft/rest-api-extension-archetype.git
 cd rest-api-extension-archetype
 mvn clean install
 ```
