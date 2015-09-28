@@ -8,7 +8,7 @@ cd rest-api-extension-archetype
 mvn clean install
 ```
 
-###How to use the archetype
+##How to use the archetype
 
 ```
 mvn archetype:generate \
@@ -20,7 +20,7 @@ mvn archetype:generate \
 -Dversion=0.0.1-SNAPSHOT
 ```
 
-####Optionnal archetype parameters
+###Optionnal archetype parameters
 
 
 | Parameter         | Default value                     | Description                                                                            										   |
@@ -32,4 +32,5 @@ mvn archetype:generate \
 | -DhttpVerb        | GET                               | The http verb of your api extension 																							   |
 | -DpathTemplate    | myRestExtApi                      | URL path template. Resulting url: ../API/extension/myRestExtApi 																   |
 | -DpermissionNames | myRestAPIPermission               | Define permission list (comma separated value), specify permissions a user need to have in order access this REST API >extension |
+| -DurlParameters   | ! (none)                          | Define a list (comma separated value) of url parameters.                                                                         |
  
