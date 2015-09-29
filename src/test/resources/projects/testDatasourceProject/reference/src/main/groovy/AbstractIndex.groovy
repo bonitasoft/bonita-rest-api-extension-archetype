@@ -1,9 +1,3 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-#if( $urlParameters != "!"  )
-#set( $params = $urlParameters.split(",") )
-#end
 import groovy.json.JsonBuilder
 import org.bonitasoft.console.common.server.page.*
 import javax.servlet.http.HttpServletRequest
@@ -17,7 +11,7 @@ abstract class AbstractIndex implements RestApiController {
         logger.severe message
 
         apiResponseBuilder.withResponseStatus(HttpServletResponse.SC_BAD_REQUEST)
-        buildResponse apiResponseBuilder, """{"error" : "${symbol_dollar}message"}"""
+        buildResponse apiResponseBuilder, """{"error" : "$message"}"""
     }
 
     protected RestApiResponse buildResponse(RestApiResponseBuilder apiResponseBuilder, Serializable result) {
@@ -35,12 +29,14 @@ abstract class AbstractIndex implements RestApiController {
         props
     }
     
-#foreach ($urlParameter in $params)
-    protected String get$urlParameter.substring(0,1).toUpperCase()$urlParameter.substring(1)(HttpServletRequest request){
-        request.getParameter "$urlParameter"
+    protected String getUserId(HttpServletRequest request){
+        request.getParameter "userId"
     }
 
-#end
+    protected String getStartDate(HttpServletRequest request){
+        request.getParameter "startDate"
+    }
+
 
 }
 

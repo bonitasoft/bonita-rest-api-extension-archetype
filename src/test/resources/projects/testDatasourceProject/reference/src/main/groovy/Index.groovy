@@ -1,6 +1,3 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 import groovy.json.JsonBuilder
 import org.bonitasoft.console.common.server.page.*
 import javax.servlet.http.HttpServletRequest
