@@ -57,5 +57,8 @@
         <requiredProperty key="permissionNames">
             <defaultValue>myRestAPIPermission</defaultValue>
         </requiredProperty>
+        <requiredProperty key="urlParameters">
+            <defaultValue>!</defaultValue>
+        </requiredProperty>
     </requiredProperties>
 </archetype-descriptor>
