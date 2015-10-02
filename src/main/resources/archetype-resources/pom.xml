@@ -27,14 +27,26 @@
         <dependency>
             <groupId>org.bonitasoft.engine</groupId>
             <artifactId>bonita-client</artifactId>
-            <version>${bonita.version}</version>
+            <version>[${bonita.version},)</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.bonitasoft.console</groupId>
             <artifactId>console-server</artifactId>
-            <version>${bonita.version}</version>
+            <version>[${bonita.version},)</version>
             <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+         <dependency>
+            <groupId>org.bonitasoft.engine</groupId>
+            <artifactId>bonita-common</artifactId>
+            <version>[${bonita.version},)</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>1.8.6</version>
             <scope>provided</scope>
         </dependency>
 
