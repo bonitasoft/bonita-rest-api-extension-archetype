@@ -27,12 +27,6 @@
                 <include>**/*.txt</include>
             </includes>
         </fileSet>
-        <fileSet encoding="UTF-8">
-            <directory>.settings</directory>
-            <includes>
-                <include>**/*.prefs</include>
-            </includes>
-        </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
             <directory></directory>
             <includes>
