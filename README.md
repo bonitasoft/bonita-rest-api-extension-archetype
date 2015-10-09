@@ -5,7 +5,7 @@
 ```
 git clone https://github.com/bonitasoft/rest-api-extension-archetype.git
 cd rest-api-extension-archetype
-mvn clean install
+mvn clean install -DskipTests
 ```
 
 ##How to use the archetype
