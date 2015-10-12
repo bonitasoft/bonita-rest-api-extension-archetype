@@ -130,6 +130,7 @@
                         </goals>
                         <inherited>false</inherited>
                         <configuration>
+                            <finalName>${project.build.finalName}-${project.version}</finalName>
                             <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
                             <appendAssemblyId>false</appendAssemblyId>
                             <descriptors>
