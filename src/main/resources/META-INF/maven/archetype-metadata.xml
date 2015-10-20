@@ -60,5 +60,8 @@
         <requiredProperty key="urlParameters">
             <defaultValue>!</defaultValue>
         </requiredProperty>
+        <requiredProperty key="bdmPackage">
+            <defaultValue>!</defaultValue>
+        </requiredProperty>
     </requiredProperties>
 </archetype-descriptor>
