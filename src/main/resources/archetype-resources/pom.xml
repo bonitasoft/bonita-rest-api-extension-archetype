@@ -37,7 +37,7 @@
             <classifier>classes</classifier>
             <scope>provided</scope>
         </dependency>
-         <dependency>
+        <dependency>
             <groupId>org.bonitasoft.engine</groupId>
             <artifactId>bonita-common</artifactId>
             <version>[${bonita.version},)</version>
@@ -54,7 +54,35 @@
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
             <scope>provided</scope>
+        </dependency>#if( ${bdmPackage} != '!' )
+
+        <dependency>
+            <groupId>${bdmPackage}</groupId>
+            <artifactId>bdm-client</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>${bdmPackage}</groupId>
+            <artifactId>bdm-dao</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>#else
+        
+<!--    Uncomment to add BDM dependencies -->
+<!--    <dependency> -->
+<!--        <groupId>[bdm package goes here]</groupId> -->
+<!--        <artifactId>bdm-client</artifactId> -->
+<!--        <version>1.0.0</version> -->
+<!--        <scope>provided</scope> -->
+<!--    </dependency> -->
+<!--    <dependency> -->
+<!--        <groupId>[bdm package goes here]</groupId> -->
+<!--        <artifactId>bdm-dao</artifactId> -->
+<!--        <version>1.0.0</version> -->
+<!--        <scope>provided</scope> -->
+<!--    </dependency> -->#end
+
 
         <!-- test -->
         <dependency>
