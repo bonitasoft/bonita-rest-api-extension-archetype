@@ -1,31 +1,35 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
+#if( $urlParameters != "!"  )
+#set( $params = $urlParameters.split(",") )
+#end
 import groovy.json.JsonBuilder
-import org.bonitasoft.console.common.server.page.*
 import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
-import java.util.logging.Logger
+
+import org.bonitasoft.console.common.server.page.*
 
 class Index extends AbstractIndex implements RestApiController {
 
     RestApiResponse doHandle(HttpServletRequest request, PageResourceProvider pageResourceProvider, PageContext pageContext, RestApiResponseBuilder apiResponseBuilder, RestApiUtil restApiUtil) {
-      //Retrieve request parameters
-      //String paramValue = request.getParameter "paramName"
-      //if (paramValue == null) {
-      //      return buildErrorResponse(apiResponseBuilder, "the parameter paramName is missing",restApiUtil.logger)
-      //  }
-        
-      //Retrieve configuration parameters from property file
-      //Properties props = loadProperties "configuration.properties", pageResourceProvider  
-      //String propertyValue = props["propertyName"]
+#foreach ($urlParameter in $params)
+#set( $getter = "get"+$urlParameter.substring(0,1).toUpperCase()+$urlParameter.substring(1) )
+      //Retrieve $urlParameter parameter
+      def $urlParameter = $getter(request)
+      if ($urlParameter == null) {
+        return buildErrorResponse(apiResponseBuilder, "the parameter $urlParameter is missing",restApiUtil.logger)
+      }
+    
+#end
+      //You may retrieve configuration parameters from a property file
+      Properties props = loadProperties("configuration.properties", pageResourceProvider)
+      String hostName = props["hostName"]
         
       //execute business logic here
-
-       //Return the result
-       //return buildResponse(apiResponseBuilder, result)
+      def result = [ #foreach ($urlParameter in $params)"$urlParameter" : $urlParameter ,#end "hostName" : hostName ]
+    
+      //Return the result as a JSON representation
+      return buildResponse(apiResponseBuilder,new JsonBuilder(result).toPrettyString())
     }
 
-
 }
-
