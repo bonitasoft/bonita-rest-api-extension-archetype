@@ -5,6 +5,10 @@
     <artifactId>${artifactId}</artifactId>
     <version>${version}</version>
     <packaging>jar</packaging>
+    
+    <name>${apiDisplayName}</name>
+    <description>${apiDesc}</description>
+    
     <properties>
         <bonita.version>${bonitaVersion}</bonita.version>
         <groovy.version>2.4.3-01</groovy.version>

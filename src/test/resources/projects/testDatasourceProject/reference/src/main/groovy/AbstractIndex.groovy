@@ -1,11 +1,16 @@
-import groovy.json.JsonBuilder
-import org.bonitasoft.console.common.server.page.*
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
-import java.util.logging.Logger
+import java.io.Serializable;
+import java.util.Properties;
+import java.util.logging.Logger;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+    
+import org.bonitasoft.console.common.server.page.PageResourceProvider;
+import org.bonitasoft.console.common.server.page.RestApiController;
+import org.bonitasoft.console.common.server.page.RestApiResponse;
+import org.bonitasoft.console.common.server.page.RestApiResponseBuilder;
 
 abstract class AbstractIndex implements RestApiController {
-
 
     protected RestApiResponse buildErrorResponse(RestApiResponseBuilder apiResponseBuilder, String message, Logger logger ) {
         logger.severe message
@@ -37,6 +42,4 @@ abstract class AbstractIndex implements RestApiController {
         request.getParameter "startDate"
     }
 
-
 }
-

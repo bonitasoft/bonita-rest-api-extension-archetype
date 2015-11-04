@@ -5,6 +5,10 @@
     <artifactId>ds-rest-api</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    
+    <name>Datasource Rest API extension</name>
+    <description>A Rest API extension reading a datasource</description>
+    
     <properties>
         <bonita.version>7.0.1</bonita.version>
         <groovy.version>2.4.3-01</groovy.version>
