@@ -1,3 +1,5 @@
+package com.bonitasoft.archetype.test;
+
 import groovy.json.JsonBuilder
 import javax.servlet.http.HttpServletRequest
 

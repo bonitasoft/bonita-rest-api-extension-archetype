@@ -1,3 +1,5 @@
+package com.bonitasoft.archetype.test;
+
 import groovy.json.JsonSlurper
 
 import java.util.logging.Logger

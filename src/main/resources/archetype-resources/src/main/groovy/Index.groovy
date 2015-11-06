@@ -4,6 +4,8 @@
 #if( $urlParameters != "!"  )
 #set( $params = $urlParameters.split(",") )
 #end
+package $groupId;
+
 import groovy.json.JsonBuilder
 import javax.servlet.http.HttpServletRequest
 

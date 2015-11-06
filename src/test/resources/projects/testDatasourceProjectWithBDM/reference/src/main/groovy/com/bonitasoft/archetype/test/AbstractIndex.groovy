@@ -1,3 +1,5 @@
+package com.bonitasoft.archetype.test;
+
 import java.io.Serializable;
 import java.util.Properties;
 import java.util.logging.Logger;

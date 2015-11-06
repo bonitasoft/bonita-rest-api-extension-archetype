@@ -8,6 +8,8 @@
 #foreach($p in $params)
 #set( $nbParams = $nbParams+1)
 #end
+package $groupId;
+
 import groovy.json.JsonSlurper
 
 import java.util.logging.Logger

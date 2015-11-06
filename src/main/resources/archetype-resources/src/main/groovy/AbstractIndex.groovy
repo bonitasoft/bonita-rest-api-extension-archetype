@@ -4,6 +4,8 @@
 #if( $urlParameters != "!"  )
 #set( $params = $urlParameters.split(",") )
 #end
+package $groupId;
+
 import java.io.Serializable;
 import java.util.Properties;
 import java.util.logging.Logger;
