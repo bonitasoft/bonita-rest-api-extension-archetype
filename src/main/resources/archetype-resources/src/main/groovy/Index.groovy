@@ -23,11 +23,11 @@ class Index extends AbstractIndex implements RestApiController {
       }
     
 #end
-      //You may retrieve configuration parameters from a property file
+      //You can retrieve configuration parameters from a properties file
       Properties props = loadProperties("configuration.properties", pageResourceProvider)
       String hostName = props["hostName"]
         
-      //execute business logic here
+      //Execute business logic here
       def result = [ #foreach ($urlParameter in $params)"$urlParameter" : $urlParameter ,#end "hostName" : hostName ]
     
       //Return the result as a JSON representation
