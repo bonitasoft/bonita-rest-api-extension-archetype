@@ -20,11 +20,11 @@ class Index extends AbstractIndex implements RestApiController {
         return buildErrorResponse(apiResponseBuilder, "the parameter startDate is missing",restApiUtil.logger)
       }
     
-      //You may retrieve configuration parameters from a property file
+      //You can retrieve configuration parameters from a properties file
       Properties props = loadProperties("configuration.properties", pageResourceProvider)
       String hostName = props["hostName"]
         
-      //execute business logic here
+      //Execute business logic here
       def result = [ "userId" : userId ,"startDate" : startDate , "hostName" : hostName ]
     
       //Return the result as a JSON representation
