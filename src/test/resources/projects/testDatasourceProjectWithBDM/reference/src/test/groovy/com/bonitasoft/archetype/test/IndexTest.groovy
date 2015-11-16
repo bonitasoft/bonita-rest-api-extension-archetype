@@ -45,10 +45,9 @@ class IndexTest extends Specification {
 
     def "should return an error response if userId is not set"() {
         request.parameterNames >> (["userId", "startDate"] as Enumeration)
-        request.getParameter("startDate") >> "aValue2"
         request.getParameter("userId") >> null
+        request.getParameter("startDate") >> "aValue2"
         restApiUtil.logger >> logger
-        
 
         pageResourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
 
@@ -68,10 +67,9 @@ class IndexTest extends Specification {
 
     def "should return an error response if startDate is not set"() {
         request.parameterNames >> (["userId", "startDate"] as Enumeration)
-        request.getParameter("userId") >> "aValue1"
         request.getParameter("startDate") >> null
+        request.getParameter("userId") >> "aValue1"
         restApiUtil.logger >> logger
-        
 
         pageResourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
 
