@@ -56,11 +56,10 @@ returnedJson.hostName == "bonitasoft.com"
 #foreach($urlParameter in $params)
     def "should return an error response if $urlParameter is not set"() {
         request.parameterNames >> ([#foreach($urlParameter in $params)"$urlParameter"#if( $velocityCount != $nbParams), #end#end] as Enumeration)
-        #foreach($p in $params)#if($p != $urlParameter)request.getParameter("$p") >> "aValue$velocityCount"#end#end
-
         request.getParameter("$urlParameter") >> null
-        restApiUtil.logger >> logger
-        
+        #foreach($p in $params)#if($p != $urlParameter)request.getParameter("$p") >> "aValue$velocityCount"
+        #end#end
+restApiUtil.logger >> logger
 
         pageResourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
 
