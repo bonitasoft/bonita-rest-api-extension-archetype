@@ -47,7 +47,8 @@ class Index implements RestApiController {
     }
     
     /**
-     * Build an HTTP response
+     * Build an HTTP response.
+     * 
      * @param  responseBuilder the Rest API response builder
      * @param  httpStatus the status of the response
      * @param  body the response body
@@ -62,7 +63,9 @@ class Index implements RestApiController {
     }
     
     /**
-     * Build a response with content-range data in the HTTP header
+     * Returns a paged result like Bonita BPM REST APIs.
+     * Build a response with content-range data in the HTTP header.
+     * 
      * @param  responseBuilder the Rest API response builder
      * @param  body the response body
      * @param  p the page index
