@@ -16,22 +16,19 @@ import java.util.logging.Logger
 
 import javax.servlet.http.HttpServletRequest
 
-import org.bonitasoft.console.common.server.page.PageContext
-import org.bonitasoft.console.common.server.page.PageResourceProvider
-import org.bonitasoft.console.common.server.page.RestApiResponse
-import org.bonitasoft.console.common.server.page.RestApiResponseBuilder
-import org.bonitasoft.console.common.server.page.RestApiUtil
+import org.bonitasoft.web.extension.rest.RestAPIContext;
+import org.bonitasoft.web.extension.ResourceProvider
+import org.bonitasoft.web.extension.rest.RestApiResponse
+import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
 
 import spock.lang.Specification
     
 class IndexTest extends Specification {
 
     def request = Mock(HttpServletRequest)
-    def pageResourceProvider = Mock(PageResourceProvider)
-    def pageContext = Mock(PageContext)
-    def apiResponseBuilder = new RestApiResponseBuilder()
-    def restApiUtil = Mock(RestApiUtil)
-    def logger = Mock(Logger)
+    def resourceProvider = Mock(ResourceProvider)
+    def context = Mock(RestAPIContext)
+    def responseBuilder = new RestApiResponseBuilder()
 
     def index = Spy(Index)
 
@@ -40,13 +37,14 @@ class IndexTest extends Specification {
         #foreach($urlParameter in $params)request.getParameter("$urlParameter") >> "aValue$velocityCount"
         #end
 
-        pageResourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
+        context.resourceProvider >> resourceProvider
+        resourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
 
         when:
-        index.doHandle(request, pageResourceProvider, pageContext, apiResponseBuilder, restApiUtil)
+        index.doHandle(request, responseBuilder, context)
 
         then:
-        def returnedJson = new JsonSlurper().parseText(apiResponseBuilder.build().response)
+        def returnedJson = new JsonSlurper().parseText(responseBuilder.build().response)
         //Assertions
         #foreach($urlParameter in $params)returnedJson.$urlParameter == "aValue$velocityCount"
         #end
@@ -59,18 +57,15 @@ returnedJson.hostName == "bonitasoft.com"
         request.getParameter("$urlParameter") >> null
         #foreach($p in $params)#if($p != $urlParameter)request.getParameter("$p") >> "aValue$velocityCount"
         #end#end
-restApiUtil.logger >> logger
 
-        pageResourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
+        context.resourceProvider >> resourceProvider
+        resourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
 
         when:
-        index.doHandle(request, pageResourceProvider, pageContext, apiResponseBuilder, restApiUtil)
+        index.doHandle(request, responseBuilder, context)
 
-        then:
-        //Verify
-        1 * logger.severe("the parameter $urlParameter is missing")
-        
-        RestApiResponse restApiResponse = apiResponseBuilder.build()
+        then:  
+        RestApiResponse restApiResponse = responseBuilder.build()
         def returnedJson = new JsonSlurper().parseText(restApiResponse.response)
         //Assertions
         restApiResponse.httpStatus == 400

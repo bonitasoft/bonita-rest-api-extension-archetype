@@ -5,33 +5,55 @@
 #set( $params = $urlParameters.split(",") )
 #end
 package $groupId;
+    
+import java.io.Serializable;
 
 import groovy.json.JsonBuilder
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
-import org.bonitasoft.console.common.server.page.*
+import org.bonitasoft.web.extension.ResourceProvider;
+import org.bonitasoft.web.extension.rest.RestAPIContext;
+import org.bonitasoft.web.extension.rest.RestApiResponseBuilder;
+import org.bonitasoft.web.extension.rest.RestApiResponse;
+import org.bonitasoft.web.extension.rest.RestApiController;
 
-class Index extends AbstractIndex implements RestApiController {
-
-    RestApiResponse doHandle(HttpServletRequest request, PageResourceProvider pageResourceProvider, PageContext pageContext, RestApiResponseBuilder apiResponseBuilder, RestApiUtil restApiUtil) {
+class Index implements RestApiController {
+    
+    RestApiResponse doHandle(HttpServletRequest request, RestApiResponseBuilder responseBuilder, RestAPIContext context) {
 #foreach ($urlParameter in $params)
-#set( $getter = "get"+$urlParameter.substring(0,1).toUpperCase()+$urlParameter.substring(1) )
       //Retrieve $urlParameter parameter
-      def $urlParameter = $getter(request)
+      def $urlParameter = request.getParameter "$urlParameter"
       if ($urlParameter == null) {
-        return buildErrorResponse(apiResponseBuilder, "the parameter $urlParameter is missing",restApiUtil.logger)
+        return buildResponse(responseBuilder, HttpServletResponse.SC_BAD_REQUEST,"""{"error" : "the parameter $urlParameter is missing"}""")
       }
     
 #end
       //You can retrieve configuration parameters from a properties file
-      Properties props = loadProperties("configuration.properties", pageResourceProvider)
+      Properties props = loadProperties("configuration.properties", context.resourceProvider)
       String hostName = props["hostName"]
         
       //Execute business logic here
       def result = [ #foreach ($urlParameter in $params)"$urlParameter" : $urlParameter ,#end "hostName" : hostName ]
     
       //Return the result as a JSON representation
-      return buildResponse(apiResponseBuilder,new JsonBuilder(result).toPrettyString())
+      return buildResponse(responseBuilder, HttpServletResponse.SC_OK, new JsonBuilder(result).toPrettyString())
+    }
+    
+    protected buildResponse(RestApiResponseBuilder responseBuilder, int httpStatus, Serializable body) {
+        return responseBuilder.with {
+            withResponseStatus(httpStatus)
+            withResponse(body)
+            build()
+        }
+    }
+    
+    protected Properties loadProperties(String fileName, ResourceProvider resourceProvider) {
+        Properties props = new Properties()
+        resourceProvider.getResourceAsStream(fileName).withStream {
+            InputStream s -> props.load s
+        }
+        props
     }
 
 }
