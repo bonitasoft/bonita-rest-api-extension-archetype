@@ -67,7 +67,7 @@ class Index implements RestApiController {
      * @param  total the total number of results
      * @return a RestAPIResponse
      */
-    RestApiResponse buildResponseWithPagination(RestApiResponseBuilder responseBuilder, Serializable body, int p, int c, int total) {
+    RestApiResponse buildResponseWithPagination(RestApiResponseBuilder responseBuilder, Serializable body, int p, int c, long total) {
         return responseBuilder.with {
             withAdditionalHeader(HttpHeaders.CONTENT_RANGE,"$p-$c/$total");
             withResponse(body)
