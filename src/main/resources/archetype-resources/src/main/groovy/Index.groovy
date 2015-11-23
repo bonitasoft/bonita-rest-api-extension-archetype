@@ -8,6 +8,7 @@ package $groupId;
     
 import java.io.Serializable;
 
+import org.apache.http.HttpHeaders;
 import groovy.json.JsonBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,7 +45,14 @@ class Index implements RestApiController {
       return buildResponse(responseBuilder, HttpServletResponse.SC_OK, new JsonBuilder(result).toPrettyString())
     }
     
-    protected buildResponse(RestApiResponseBuilder responseBuilder, int httpStatus, Serializable body) {
+    /**
+     * Build an HTTP response
+     * @param  responseBuilder the Rest API response builder
+     * @param  httpStatus the status of the response
+     * @param  body the response body
+     * @return a RestAPIResponse
+     */
+    RestApiResponse buildResponse(RestApiResponseBuilder responseBuilder, int httpStatus, Serializable body) {
         return responseBuilder.with {
             withResponseStatus(httpStatus)
             withResponse(body)
@@ -52,7 +60,27 @@ class Index implements RestApiController {
         }
     }
     
-    protected Properties loadProperties(String fileName, ResourceProvider resourceProvider) {
+    /**
+     * Build a response with content-range data in the HTTP header for pagination
+     * @param  responseBuilder the Rest API response builder
+     * @param  body the response body
+     * @param  page the page index
+     * @param  perPage the number of result per page
+     * @param  total the total number of results
+     * @return a RestAPIResponse
+     */
+    RestApiResponse buildResponseWithPagination(RestApiResponseBuilder responseBuilder, Serializable body, int page, int perPage, int total) {
+        return responseBuilder.with {
+            withAdditionalHeader(HttpHeaders.CONTENT_RANGE,"$page-$perPage/$total");
+            withResponse(body)
+            build()
+        }
+    }
+    
+    /**
+     * Load a property file into a java.util.Properties
+     */
+    Properties loadProperties(String fileName, ResourceProvider resourceProvider) {
         Properties props = new Properties()
         resourceProvider.getResourceAsStream(fileName).withStream {
             InputStream s -> props.load s
