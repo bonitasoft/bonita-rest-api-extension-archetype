@@ -8,17 +8,21 @@ package $groupId;
     
 import java.io.Serializable;
 
-import groovy.json.JsonBuilder
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+import groovy.json.JsonBuilder;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.bonitasoft.web.extension.ResourceProvider;
 import org.bonitasoft.web.extension.rest.RestAPIContext;
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder;
 import org.bonitasoft.web.extension.rest.RestApiResponse;
 import org.bonitasoft.web.extension.rest.RestApiController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class Index implements RestApiController {
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(Index.class)
     
     RestApiResponse doHandle(HttpServletRequest request, RestApiResponseBuilder responseBuilder, RestAPIContext context) {
 #foreach ($urlParameter in $params)
