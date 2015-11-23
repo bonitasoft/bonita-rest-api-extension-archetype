@@ -64,14 +64,14 @@ class Index implements RestApiController {
      * Build a response with content-range data in the HTTP header for pagination
      * @param  responseBuilder the Rest API response builder
      * @param  body the response body
-     * @param  page the page index
-     * @param  perPage the number of result per page
+     * @param  p the page index
+     * @param  c the number of result per page
      * @param  total the total number of results
      * @return a RestAPIResponse
      */
-    RestApiResponse buildResponseWithPagination(RestApiResponseBuilder responseBuilder, Serializable body, int page, int perPage, int total) {
+    RestApiResponse buildResponseWithPagination(RestApiResponseBuilder responseBuilder, Serializable body, int p, int c, int total) {
         return responseBuilder.with {
-            withAdditionalHeader(HttpHeaders.CONTENT_RANGE,"$page-$perPage/$total");
+            withAdditionalHeader(HttpHeaders.CONTENT_RANGE,"$p-$c/$total");
             withResponse(body)
             build()
         }
