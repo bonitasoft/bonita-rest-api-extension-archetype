@@ -25,6 +25,7 @@ class Index implements RestApiController {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(Index.class)
     
+    @Override
     RestApiResponse doHandle(HttpServletRequest request, RestApiResponseBuilder responseBuilder, RestAPIContext context) {
 #foreach ($urlParameter in $params)
       //Retrieve $urlParameter parameter
@@ -61,7 +62,7 @@ class Index implements RestApiController {
     }
     
     /**
-     * Build a response with content-range data in the HTTP header for pagination
+     * Build a response with content-range data in the HTTP header
      * @param  responseBuilder the Rest API response builder
      * @param  body the response body
      * @param  p the page index
@@ -69,7 +70,7 @@ class Index implements RestApiController {
      * @param  total the total number of results
      * @return a RestAPIResponse
      */
-    RestApiResponse buildResponseWithPagination(RestApiResponseBuilder responseBuilder, Serializable body, int p, int c, long total) {
+    RestApiResponse buildPagedResponse(RestApiResponseBuilder responseBuilder, Serializable body, int p, int c, long total) {
         return responseBuilder.with {
             withAdditionalHeader(HttpHeaders.CONTENT_RANGE,"$p-$c/$total");
             withResponse(body)
