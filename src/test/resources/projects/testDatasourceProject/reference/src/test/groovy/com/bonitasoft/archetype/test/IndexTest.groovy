@@ -6,7 +6,7 @@ import java.util.logging.Logger
 
 import javax.servlet.http.HttpServletRequest
 
-import org.bonitasoft.web.extension.rest.RestAPIContext;
+import com.bonitasoft.web.extension.rest.RestAPIContext;
 import org.bonitasoft.web.extension.ResourceProvider
 import org.bonitasoft.web.extension.rest.RestApiResponse
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder

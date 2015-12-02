@@ -23,20 +23,20 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.bonitasoft.engine</groupId>
-            <artifactId>bonita-client</artifactId>
+            <groupId>com.bonitasoft.engine</groupId>
+            <artifactId>bonita-client-sp</artifactId>
             <version>[${bonita.version},)</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.bonitasoft.web</groupId>
-            <artifactId>bonita-web-extensions</artifactId>
+            <groupId>com.bonitasoft.web</groupId>
+            <artifactId>bonita-web-extensions-sp</artifactId>
             <version>[${bonita.version},)</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.bonitasoft.engine</groupId>
-            <artifactId>bonita-common</artifactId>
+            <groupId>com.bonitasoft.engine</groupId>
+            <artifactId>bonita-common-sp</artifactId>
             <version>[${bonita.version},)</version>
             <scope>provided</scope>
         </dependency>
