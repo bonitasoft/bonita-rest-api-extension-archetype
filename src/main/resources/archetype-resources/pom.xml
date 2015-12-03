@@ -29,12 +29,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.bonitasoft.web</groupId>
-            <artifactId>bonita-web-extensions</artifactId>
-            <version>[${bonita.version},)</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions-sp</artifactId>
             <version>[${bonita.version},)</version>
@@ -50,18 +44,6 @@
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>2.4.4</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>
-            <version>4.2.4</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
