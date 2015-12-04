@@ -22,7 +22,7 @@ class IndexTest extends Specification {
 
     def index = Spy(Index)
 
-    def "should return a json representation as result"() {
+    def "should_return_a_json_representation_as_result"() {
         request.parameterNames >> (["userId", "startDate"] as Enumeration)
         request.getParameter("userId") >> "aValue1"
         request.getParameter("startDate") >> "aValue2"
@@ -41,7 +41,7 @@ class IndexTest extends Specification {
         returnedJson.hostName == "bonitasoft.com"
     }
 
-    def "should return an error response if userId is not set"() {
+    def "should_return_an_error_response_if_userId_is_not_set"() {
         request.parameterNames >> (["userId", "startDate"] as Enumeration)
         request.getParameter("userId") >> null
         request.getParameter("startDate") >> "aValue2"
@@ -60,7 +60,7 @@ class IndexTest extends Specification {
         returnedJson.error == "the parameter userId is missing"
     }
 
-    def "should return an error response if startDate is not set"() {
+    def "should_return_an_error_response_if_startDate_is_not_set"() {
         request.parameterNames >> (["userId", "startDate"] as Enumeration)
         request.getParameter("startDate") >> null
         request.getParameter("userId") >> "aValue1"

@@ -32,7 +32,7 @@ class IndexTest extends Specification {
 
     def index = Spy(Index)
 
-    def "should return a json representation as result"() {
+    def "should_return_a_json_representation_as_result"() {
         request.parameterNames >> ([#foreach($urlParameter in $params)"$urlParameter"#if( $velocityCount != $nbParams), #end#end] as Enumeration)
         #foreach($urlParameter in $params)request.getParameter("$urlParameter") >> "aValue$velocityCount"
         #end
@@ -52,7 +52,7 @@ returnedJson.hostName == "bonitasoft.com"
     }
 
 #foreach($urlParameter in $params)
-    def "should return an error response if $urlParameter is not set"() {
+    def "should_return_an_error_response_if_${urlParameter}_is_not_set"() {
         request.parameterNames >> ([#foreach($urlParameter in $params)"$urlParameter"#if( $velocityCount != $nbParams), #end#end] as Enumeration)
         request.getParameter("$urlParameter") >> null
         #foreach($p in $params)#if($p != $urlParameter)request.getParameter("$p") >> "aValue$velocityCount"
