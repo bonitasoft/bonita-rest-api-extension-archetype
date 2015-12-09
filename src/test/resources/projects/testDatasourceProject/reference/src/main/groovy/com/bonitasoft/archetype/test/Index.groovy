@@ -21,6 +21,9 @@ class Index implements RestApiController {
 
     @Override
     RestApiResponse doHandle(HttpServletRequest request, RestApiResponseBuilder responseBuilder, RestAPIContext context) {
+        //To retrieve query parameters use the request.getParameter(..) method.
+        //Be carefull, parameter values are always returned as String values
+
         //Retrieve userId parameter
         def userId = request.getParameter "userId"
         if (userId == null) {
@@ -33,14 +36,24 @@ class Index implements RestApiController {
             return buildResponse(responseBuilder, HttpServletResponse.SC_BAD_REQUEST,"""{"error" : "the parameter startDate is missing"}""")
         }
 
-        //You can retrieve configuration parameters from a properties file
+        //Here is an example of how you can retrieve configuration parameters from a properties file
         Properties props = loadProperties("configuration.properties", context.resourceProvider)
-        String hostName = props["hostName"]
+        String paramValue = props["myParameterKey"]
 
-        //Execute business logic here
-        def result = [ "userId" : userId ,"startDate" : startDate , "hostName" : hostName ]
+        /* 
+         * Execute business logic here
+         * 
+         * 
+         * Your code goes here
+         * 
+         * 
+         */
+        
+        //Prepare the result
+        def result = [ "userId" : userId ,"startDate" : startDate , "myParameterKey" : paramValue ]
 
-        //Return the result as a JSON representation
+        //Send the result as a JSON representation
+        //You may use buildPagedResponse if your result is multiple
         return buildResponse(responseBuilder, HttpServletResponse.SC_OK, new JsonBuilder(result).toPrettyString())
     }
 

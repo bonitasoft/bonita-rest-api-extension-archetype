@@ -12,66 +12,75 @@ package $groupId;
 
 import groovy.json.JsonSlurper
 
-import java.util.logging.Logger
-
 import javax.servlet.http.HttpServletRequest
 
-import com.bonitasoft.web.extension.rest.RestAPIContext
 import org.bonitasoft.web.extension.ResourceProvider
-import org.bonitasoft.web.extension.rest.RestApiResponse
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
 
 import spock.lang.Specification
 
+import com.bonitasoft.web.extension.rest.RestAPIContext
+
+/**
+ * @see http://spockframework.github.io/spock/docs/1.0/index.html
+ */
 class IndexTest extends Specification {
 
-    def request = Mock(HttpServletRequest)
+    //Declare mocks here
+    //Mocks are used to simulate external dependencies behavior
+    def httpRequest = Mock(HttpServletRequest)
     def resourceProvider = Mock(ResourceProvider)
     def context = Mock(RestAPIContext)
-    def responseBuilder = new RestApiResponseBuilder()
 
-    def index = Spy(Index)
+    /**
+     * You can configure mocks before each tests in the setup method
+     */
+    def setup(){
+        //Simulate access to configuration.properties resource
+        context.resourceProvider >> resourceProvider
+        resourceProvider.getResourceAsStream("configuration.properties") >> IndexTest.class.classLoader.getResourceAsStream("testConfiguration.properties")
+    }
 
-    def "should return a json representation as result"() {
-        request.parameterNames >> ([#foreach($urlParameter in $params)"$urlParameter"#if( $velocityCount != $nbParams), #end#end] as Enumeration)
+    def "should_return_a_json_representation_as_result"() {
+        given: "a RestAPIController"
+        def index = new Index()
+        #if( $nbParams != 0 )//Simulate a request with a value for each parameter
+#end
 #foreach($urlParameter in $params)
-        request.getParameter("$urlParameter") >> "aValue$velocityCount"
+        httpRequest.getParameter("$urlParameter") >> "aValue$velocityCount"
 #end
 
-        context.resourceProvider >> resourceProvider
-        resourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
+        when: "Invoking the REST API"
+        def apiResponse = index.doHandle(httpRequest, new RestApiResponseBuilder(), context)
 
-        when:
-        index.doHandle(request, responseBuilder, context)
-
-        then:
-        def returnedJson = new JsonSlurper().parseText(responseBuilder.build().response)
-        //Assertions
-        #foreach($urlParameter in $params)returnedJson.$urlParameter == "aValue$velocityCount"
+        then: "A JSON representation is returned in response body"
+        def jsonResponse = new JsonSlurper().parseText(apiResponse.response)
+        //Validate returned response
+        apiResponse.httpStatus == 200
+        #foreach($urlParameter in $params)jsonResponse.$urlParameter == "aValue$velocityCount"
         #end
-returnedJson.hostName == "bonitasoft.com"
+jsonResponse.myParameterKey == "testValue"
     }
 
 #foreach($urlParameter in $params)
-    def "should return an error response if $urlParameter is not set"() {
-        request.parameterNames >> ([#foreach($urlParameter in $params)"$urlParameter"#if( $velocityCount != $nbParams), #end#end] as Enumeration)
-        request.getParameter("$urlParameter") >> null
+    def "should_return_an_error_response_if_${urlParameter}_is_not_set"() {
+        given: "a request without $urlParameter"
+        def index = new Index()
+        httpRequest.getParameter("$urlParameter") >> null
+        #if( $nbParams != 0 )//Other parameters return a valid value
+#end
 #foreach($p in $params)#if($p != $urlParameter)
-        request.getParameter("$p") >> "aValue$velocityCount"
+        httpRequest.getParameter("$p") >> "aValue$velocityCount"
 #end#end
 
-        context.resourceProvider >> resourceProvider
-        resourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
+        when: "Invoking the REST API"
+        def apiResponse = index.doHandle(httpRequest, new RestApiResponseBuilder(), context)
 
-        when:
-        index.doHandle(request, responseBuilder, context)
-
-        then:
-        RestApiResponse restApiResponse = responseBuilder.build()
-        def returnedJson = new JsonSlurper().parseText(restApiResponse.response)
-        //Assertions
-        restApiResponse.httpStatus == 400
-        returnedJson.error == "the parameter $urlParameter is missing"
+        then: "A JSON response is returned with a HTTP Bad Request Status (400) and an error message in body"
+        def jsonResponse = new JsonSlurper().parseText(apiResponse.response)
+        //Validate returned response
+        apiResponse.httpStatus == 400
+        jsonResponse.error == "the parameter $urlParameter is missing"
     }
 
 #end}

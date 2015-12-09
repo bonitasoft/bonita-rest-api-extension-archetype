@@ -27,6 +27,9 @@ class Index implements RestApiController {
 
     @Override
     RestApiResponse doHandle(HttpServletRequest request, RestApiResponseBuilder responseBuilder, RestAPIContext context) {
+        //To retrieve query parameters use the request.getParameter(..) method.
+        //Be carefull, parameter values are always returned as String values
+
 #foreach ($urlParameter in $params)
         //Retrieve $urlParameter parameter
         def $urlParameter = request.getParameter "$urlParameter"
@@ -35,14 +38,24 @@ class Index implements RestApiController {
         }
 
 #end
-        //You can retrieve configuration parameters from a properties file
+        //Here is an example of how you can retrieve configuration parameters from a properties file
         Properties props = loadProperties("configuration.properties", context.resourceProvider)
-        String hostName = props["hostName"]
+        String paramValue = props["myParameterKey"]
 
-        //Execute business logic here
-        def result = [ #foreach ($urlParameter in $params)"$urlParameter" : $urlParameter ,#end "hostName" : hostName ]
+        /* 
+         * Execute business logic here
+         * 
+         * 
+         * Your code goes here
+         * 
+         * 
+         */
+        
+        //Prepare the result
+        def result = [ #foreach ($urlParameter in $params)"$urlParameter" : $urlParameter ,#end "myParameterKey" : paramValue ]
 
-        //Return the result as a JSON representation
+        //Send the result as a JSON representation
+        //You may use buildPagedResponse if your result is multiple
         return buildResponse(responseBuilder, HttpServletResponse.SC_OK, new JsonBuilder(result).toPrettyString())
     }
 
