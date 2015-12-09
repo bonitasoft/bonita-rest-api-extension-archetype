@@ -16,13 +16,13 @@ import java.util.logging.Logger
 
 import javax.servlet.http.HttpServletRequest
 
-import com.bonitasoft.web.extension.rest.RestAPIContext;
+import com.bonitasoft.web.extension.rest.RestAPIContext
 import org.bonitasoft.web.extension.ResourceProvider
 import org.bonitasoft.web.extension.rest.RestApiResponse
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
 
 import spock.lang.Specification
-    
+
 class IndexTest extends Specification {
 
     def request = Mock(HttpServletRequest)
@@ -34,8 +34,9 @@ class IndexTest extends Specification {
 
     def "should return a json representation as result"() {
         request.parameterNames >> ([#foreach($urlParameter in $params)"$urlParameter"#if( $velocityCount != $nbParams), #end#end] as Enumeration)
-        #foreach($urlParameter in $params)request.getParameter("$urlParameter") >> "aValue$velocityCount"
-        #end
+#foreach($urlParameter in $params)
+        request.getParameter("$urlParameter") >> "aValue$velocityCount"
+#end
 
         context.resourceProvider >> resourceProvider
         resourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
@@ -55,8 +56,9 @@ returnedJson.hostName == "bonitasoft.com"
     def "should return an error response if $urlParameter is not set"() {
         request.parameterNames >> ([#foreach($urlParameter in $params)"$urlParameter"#if( $velocityCount != $nbParams), #end#end] as Enumeration)
         request.getParameter("$urlParameter") >> null
-        #foreach($p in $params)#if($p != $urlParameter)request.getParameter("$p") >> "aValue$velocityCount"
-        #end#end
+#foreach($p in $params)#if($p != $urlParameter)
+        request.getParameter("$p") >> "aValue$velocityCount"
+#end#end
 
         context.resourceProvider >> resourceProvider
         resourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
@@ -64,7 +66,7 @@ returnedJson.hostName == "bonitasoft.com"
         when:
         index.doHandle(request, responseBuilder, context)
 
-        then:  
+        then:
         RestApiResponse restApiResponse = responseBuilder.build()
         def returnedJson = new JsonSlurper().parseText(restApiResponse.response)
         //Assertions

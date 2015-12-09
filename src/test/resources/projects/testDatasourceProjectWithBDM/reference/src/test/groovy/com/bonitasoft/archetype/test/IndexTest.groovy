@@ -6,13 +6,13 @@ import java.util.logging.Logger
 
 import javax.servlet.http.HttpServletRequest
 
-import com.bonitasoft.web.extension.rest.RestAPIContext;
+import com.bonitasoft.web.extension.rest.RestAPIContext
 import org.bonitasoft.web.extension.ResourceProvider
 import org.bonitasoft.web.extension.rest.RestApiResponse
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
 
 import spock.lang.Specification
-    
+
 class IndexTest extends Specification {
 
     def request = Mock(HttpServletRequest)
@@ -26,7 +26,7 @@ class IndexTest extends Specification {
         request.parameterNames >> (["userId", "startDate"] as Enumeration)
         request.getParameter("userId") >> "aValue1"
         request.getParameter("startDate") >> "aValue2"
-        
+
         context.resourceProvider >> resourceProvider
         resourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
 
@@ -45,14 +45,14 @@ class IndexTest extends Specification {
         request.parameterNames >> (["userId", "startDate"] as Enumeration)
         request.getParameter("userId") >> null
         request.getParameter("startDate") >> "aValue2"
-        
+
         context.resourceProvider >> resourceProvider
         resourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
 
         when:
         index.doHandle(request, responseBuilder, context)
 
-        then:  
+        then:
         RestApiResponse restApiResponse = responseBuilder.build()
         def returnedJson = new JsonSlurper().parseText(restApiResponse.response)
         //Assertions
@@ -64,14 +64,14 @@ class IndexTest extends Specification {
         request.parameterNames >> (["userId", "startDate"] as Enumeration)
         request.getParameter("startDate") >> null
         request.getParameter("userId") >> "aValue1"
-        
+
         context.resourceProvider >> resourceProvider
         resourceProvider.getResourceAsStream("configuration.properties") >> index.class.classLoader.getResourceAsStream("configuration.properties")
 
         when:
         index.doHandle(request, responseBuilder, context)
 
-        then:  
+        then:
         RestApiResponse restApiResponse = responseBuilder.build()
         def returnedJson = new JsonSlurper().parseText(restApiResponse.response)
         //Assertions
