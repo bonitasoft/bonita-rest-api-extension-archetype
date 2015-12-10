@@ -4,7 +4,6 @@
     <groupId>${groupId}</groupId>
     <artifactId>${artifactId}</artifactId>
     <version>${version}</version>
-    <packaging>jar</packaging>
     
     <name>${apiDisplayName}</name>
     <description>${apiDesc}</description>
