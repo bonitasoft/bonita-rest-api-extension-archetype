@@ -27,18 +27,19 @@ class Index implements RestApiController {
 
     @Override
     RestApiResponse doHandle(HttpServletRequest request, RestApiResponseBuilder responseBuilder, RestAPIContext context) {
-        //To retrieve query parameters use the request.getParameter(..) method.
-        //Be carefull, parameter values are always returned as String values
+        // To retrieve query parameters use the request.getParameter(..) method.
+        // Be careful, parameter values are always returned as String values
 
 #foreach ($urlParameter in $params)
-        //Retrieve $urlParameter parameter
+        // Retrieve $urlParameter parameter
         def $urlParameter = request.getParameter "$urlParameter"
         if ($urlParameter == null) {
             return buildResponse(responseBuilder, HttpServletResponse.SC_BAD_REQUEST,"""{"error" : "the parameter $urlParameter is missing"}""")
         }
 
 #end
-        //Here is an example of how you can retrieve configuration parameters from a properties file
+        // Here is an example of how you can retrieve configuration parameters from a properties file
+        // It is safe to remove this if no configuration is required
         Properties props = loadProperties("configuration.properties", context.resourceProvider)
         String paramValue = props["myParameterKey"]
 
@@ -51,11 +52,11 @@ class Index implements RestApiController {
          * 
          */
         
-        //Prepare the result
+        // Prepare the result
         def result = [ #foreach ($urlParameter in $params)"$urlParameter" : $urlParameter ,#end "myParameterKey" : paramValue ]
 
-        //Send the result as a JSON representation
-        //You may use buildPagedResponse if your result is multiple
+        // Send the result as a JSON representation
+        // You may use buildPagedResponse if your result is multiple
         return buildResponse(responseBuilder, HttpServletResponse.SC_OK, new JsonBuilder(result).toPrettyString())
     }
 
