@@ -9,7 +9,7 @@
     <description>A Rest API extension reading a datasource</description>
     
     <properties>
-        <bonita.version>7.2.0-SNAPSHOT</bonita.version>
+        <bonita.version>7.2.0</bonita.version>
         <groovy.version>2.4.3-01</groovy.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
