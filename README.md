@@ -1,7 +1,7 @@
 #rest-api-extension-archetype
 
 ##Disclaimer
-* Use a JRE/JDK 1.7
+* Use a JRE/JDK 1.8
 * In BonitaBPM <= 7.1.x only the Index.groovy file can be loaded, please merge AbstractIndex.groovy into Index.groovy if needed. 
 
 ##How to build the archetype
