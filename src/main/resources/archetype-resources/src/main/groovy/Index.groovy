@@ -78,7 +78,7 @@ class Index implements RestApiController {
 
     /**
      * Returns a paged result like Bonita BPM REST APIs.
-     * Build a response with content-range data in the HTTP header.
+     * Build a response with a content-range.
      *
      * @param  responseBuilder the Rest API response builder
      * @param  body the response body
@@ -89,7 +89,7 @@ class Index implements RestApiController {
      */
     RestApiResponse buildPagedResponse(RestApiResponseBuilder responseBuilder, Serializable body, int p, int c, long total) {
         return responseBuilder.with {
-            withAdditionalHeader(HttpHeaders.CONTENT_RANGE,"$p-$c/$total");
+            withContentRange(p,c,total)
             withResponse(body)
             build()
         }
