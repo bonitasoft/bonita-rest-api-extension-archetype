@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.bonitasoft.web</groupId>
     <artifactId>rest-api-extension-archetype</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.7-SNAPSHOT</version>
     <name>Rest API extension archetype</name>
 
     <properties>
@@ -57,7 +57,7 @@
         <developerConnection>scm:git:git@github.com:bonitasoft/rest-api-extension-archetype.git</developerConnection>
         <connection>scm:git:git@github.com:bonitasoft/rest-api-extension-archetype.git</connection>
         <url>https://github.com/bonitasoft/rest-api-extension-archetype</url>
-        <tag>1.0.6</tag>
+        <tag>HEAD</tag>
     </scm>
 
 </project>
