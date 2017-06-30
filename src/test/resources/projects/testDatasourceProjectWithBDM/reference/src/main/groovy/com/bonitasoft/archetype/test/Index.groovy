@@ -49,11 +49,6 @@ class Index implements RestApiController {
          * 
          * 
          */
-
-        // NB : when loading a BDM object with fields in lazy loading, it is advised to either write custom queries
-        // in JPQL to retrieve the  fields or to call DAO methods specifically retrieving those fields rather than those
-        // loading the parent object, if high performance is required.
-        
         // Prepare the result
         def result = [ "userId" : userId ,"startDate" : startDate , "myParameterKey" : paramValue ]
 
