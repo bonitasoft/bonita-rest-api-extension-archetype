@@ -49,13 +49,12 @@ class Index implements RestApiController {
          * 
          * 
          */
-        
         // Prepare the result
         def result = [ "userId" : userId ,"startDate" : startDate , "myParameterKey" : paramValue ]
 
         // Send the result as a JSON representation
         // You may use buildPagedResponse if your result is multiple
-        return buildResponse(responseBuilder, HttpServletResponse.SC_OK, new JsonBuilder(result).toPrettyString())
+        return buildResponse(responseBuilder, HttpServletResponse.SC_OK, new JsonBuilder(result).toString())
     }
 
     /**
