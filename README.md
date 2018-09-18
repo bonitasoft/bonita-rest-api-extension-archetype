@@ -1,10 +1,10 @@
-#rest-api-extension-archetype
+# rest-api-extension-archetype
 
-##Disclaimer
+## Disclaimer
 * Use a JRE/JDK 1.8
 * In BonitaBPM <= 7.1.x only the Index.groovy file can be loaded, please merge AbstractIndex.groovy into Index.groovy if needed. 
 
-##How to build the archetype
+## How to build the archetype
 
 ```
 git clone https://github.com/bonitasoft/rest-api-extension-archetype.git
@@ -12,7 +12,7 @@ cd rest-api-extension-archetype
 mvn clean install -DskipTests
 ```
 
-##How to use the archetype
+## How to use the archetype
 
 ```
 mvn archetype:generate \
@@ -24,7 +24,7 @@ mvn archetype:generate \
 -Dversion=0.0.1-SNAPSHOT
 ```
 
-###Optionnal archetype parameters
+### Optionnal archetype parameters
 
 
 | Parameter         | Default value                     | Description                                                                            										   |
