@@ -10,14 +10,14 @@
 	<fileSets>
 		<fileSet>
 			<directory>${symbol_dollar}{project.basedir}/src/main/groovy</directory>
-			<outputDirectory>/</outputDirectory>
+			<outputDirectory/>
 			<includes>
 				<include>**/*</include>
 			</includes>
 		</fileSet>
 		<fileSet>
 			<directory>${symbol_dollar}{project.basedir}/src/main/resources</directory>
-			<outputDirectory>/</outputDirectory>
+			<outputDirectory/>
 			<includes>
 				<include>**/*</include>
 			</includes>
@@ -30,7 +30,7 @@
             </includes>
              <useProjectArtifact>false</useProjectArtifact>
             <scope>runtime</scope>
-            <outputDirectory>/lib</outputDirectory>
+            <outputDirectory>lib</outputDirectory>
         </dependencySet>
     </dependencySets>
 </assembly>
