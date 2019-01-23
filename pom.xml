@@ -26,7 +26,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-archetype-plugin</artifactId>
-                    <version>2.4</version>
+                    <version>3.0.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -56,10 +56,10 @@
     </build>
 
     <scm>
-        <developerConnection>scm:git:git@github.com:bonitasoft/rest-api-extension-archetype.git</developerConnection>
-        <connection>scm:git:git@github.com:bonitasoft/rest-api-extension-archetype.git</connection>
-        <url>https://github.com/bonitasoft/rest-api-extension-archetype</url>
-        <tag>HEAD</tag>
+    	<developerConnection>scm:git:https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/bonitasoft/rest-api-extension-archetype.git</developerConnection>
+		<connection>scm:git:https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/bonitasoft/rest-api-extension-archetype.git</connection>
+		<url>https://github.com/bonitasoft/rest-api-extension-archetype</url>
+		<tag>HEAD</tag>
     </scm>
 
 </project>
