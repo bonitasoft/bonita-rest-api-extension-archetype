@@ -9,7 +9,7 @@
     <description>A Rest API extension reading a datasource</description>
     
     <properties>
-        <bonita.version>7.8.0</bonita.version>
+        <bonita.version>7.9.4</bonita.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -48,15 +48,15 @@
         </dependency>
 <!--    Uncomment to add BDM dependencies -->
 <!--    <dependency> -->
-<!--        <groupId>[bdm package goes here]</groupId> -->
+<!--        <groupId>[bdm groupId goes here]</groupId> -->
 <!--        <artifactId>bdm-client</artifactId> -->
-<!--        <version>1.0.0</version> -->
+<!--        <version>[bdm version goes here]</version> -->
 <!--        <scope>provided</scope> -->
 <!--    </dependency> -->
 <!--    <dependency> -->
-<!--        <groupId>[bdm package goes here]</groupId> -->
+<!--        <groupId>[bdm groupId goes here]</groupId> -->
 <!--        <artifactId>bdm-dao</artifactId> -->
-<!--        <version>1.0.0</version> -->
+<!--        <version>[bdm version goes here]</version> -->
 <!--        <scope>provided</scope> -->
 <!--    </dependency> -->
 

@@ -37,7 +37,7 @@
     </fileSets>
     <requiredProperties>
         <requiredProperty key="bonitaVersion">
-            <defaultValue>7.0.1</defaultValue>
+            <defaultValue>7.10.0</defaultValue>
         </requiredProperty>
         <requiredProperty key="apiDisplayName">
             <defaultValue>My Rest API extension</defaultValue>
@@ -60,7 +60,10 @@
         <requiredProperty key="urlParameters">
             <defaultValue>!</defaultValue>
         </requiredProperty>
-        <requiredProperty key="bdmPackage">
+        <requiredProperty key="bdmGroupId">
+            <defaultValue>!</defaultValue>
+        </requiredProperty>
+         <requiredProperty key="bdmVersion">
             <defaultValue>!</defaultValue>
         </requiredProperty>
     </requiredProperties>

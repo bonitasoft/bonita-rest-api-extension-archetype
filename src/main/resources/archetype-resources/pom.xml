@@ -45,32 +45,32 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.6.1</version>
             <scope>provided</scope>
-        </dependency>#if( ${bdmPackage} != '!' )
+        </dependency>#if( ${bdmGroupId} != '!' )
 
         <dependency>
-            <groupId>${bdmPackage}</groupId>
+            <groupId>${bdmGroupId}</groupId>
             <artifactId>bdm-client</artifactId>
-            <version>1.0.0</version>
+            <version>${bdmVersion}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>${bdmPackage}</groupId>
+            <groupId>${bdmGroupId}</groupId>
             <artifactId>bdm-dao</artifactId>
-            <version>1.0.0</version>
+            <version>${bdmVersion}</version>
             <scope>provided</scope>
         </dependency>#else
 
 <!--    Uncomment to add BDM dependencies -->
 <!--    <dependency> -->
-<!--        <groupId>[bdm package goes here]</groupId> -->
+<!--        <groupId>[bdm groupId goes here]</groupId> -->
 <!--        <artifactId>bdm-client</artifactId> -->
-<!--        <version>1.0.0</version> -->
+<!--        <version>[bdm version goes here]</version> -->
 <!--        <scope>provided</scope> -->
 <!--    </dependency> -->
 <!--    <dependency> -->
-<!--        <groupId>[bdm package goes here]</groupId> -->
+<!--        <groupId>[bdm groupId goes here]</groupId> -->
 <!--        <artifactId>bdm-dao</artifactId> -->
-<!--        <version>1.0.0</version> -->
+<!--        <version>[bdm version goes here]</version> -->
 <!--        <scope>provided</scope> -->
 <!--    </dependency> -->#end
 
