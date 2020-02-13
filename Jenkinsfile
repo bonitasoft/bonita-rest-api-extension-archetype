@@ -7,7 +7,7 @@ timestamps {
 
             stage('Build') {
                 try {
-                    if(env.BRANCH_NAME.equals('master')){
+                    if(isBaseBranch()){
                       sh "./mvnw -B clean deploy -Djvm=${env.JAVA_HOME_11}/bin/java -DaltDeploymentRepository=${env.ALT_DEPLOYMENT_REPOSITORY_SNAPSHOTS}"  
                     }else{
                        sh "./mvnw -B clean verify -Djvm=${env.JAVA_HOME_11}/bin/java"
@@ -18,4 +18,8 @@ timestamps {
             }
         }
     }
+}
+def isBaseBranch() {
+    def currentBranch = env.BRANCH_NAME
+    currentBranch == 'master' || currentBranch == 'dev' || currentBranch?.startsWith('release-')
 }
