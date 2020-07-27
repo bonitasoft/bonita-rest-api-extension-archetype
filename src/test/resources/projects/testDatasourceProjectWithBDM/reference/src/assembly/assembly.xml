@@ -5,11 +5,12 @@
     <id>all</id>
     <formats>
         <format>zip</format>
+        <!--<format>dir</format>-->
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
     <fileSets>
         <fileSet>
-            <directory>{basedir}/src/main/resources</directory>
+            <directory>src/main/resources</directory>
             <outputDirectory/>
             <includes>
                 <include>**/*</include>

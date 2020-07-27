@@ -2,11 +2,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>${groupId}</groupId>
-    <artifactId>${artifactId}</artifactId>
-    <version>${version}</version>
-    <name>${apiDisplayName}</name>
-    <description>${apiDesc}</description>
+    <groupId>com.company.bonitasoft</groupId>
+    <artifactId>ds-rest-api</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Datasource Rest API extension</name>
+    <description>A Rest API extension reading a datasource</description>
     <packaging>jar</packaging>
 
     <properties>
@@ -17,7 +17,7 @@
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
         <!-- Bonita -->
-        <bonita.engine.version>${bonitaVersion}</bonita.engine.version>
+        <bonita.engine.version>7.10.0</bonita.engine.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <lombok.version>1.18.12</lombok.version>
 
@@ -39,24 +39,14 @@
 
     <dependencies>
         <!-- Bonita -->
-        #if( ${sp} == 'false' )
-
-        <dependency>
-            <groupId>org.bonitasoft.web</groupId>
-            <artifactId>bonita-web-extensions</artifactId>
-            <version>${bonita.engine.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        #else
-
+        
         <dependency>
             <groupId>com.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions-sp</artifactId>
             <version>${bonita.engine.version}</version>
             <scope>provided</scope>
         </dependency>
-        #end
-
+        
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
