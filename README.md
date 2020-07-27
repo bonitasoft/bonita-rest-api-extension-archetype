@@ -30,6 +30,9 @@ mvn archetype:generate \
 | Parameter         | Default value                     | Description                                                                            										   |
 | ------------------|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | -DbonitaVersion   | 7.0.1                             | You can choose the version of the dependent bonita artifacts. Minimum version is 7.0.1.										   |
+| -Dsp              | false                             | If set to true, project will use Bonita subscription dependencies.                    										   |
+| -Dlanguage        | groovy                            | You can choose between groovy, java or kotlin.                                        										   |
+| -Dwrapper         | true                              | If set to true, project will setup a [maven wrapper](https://github.com/takari/maven-wrapper)                                    |
 | -DapiName         | myRestExtApi                      | Set the name of your api extension. You must enter an url friendly name without blanks. 									       |
 | -DapiDisplayName  | My Rest API extension             | A display name for your api extension (displayed in the portal for the administrator) 										   |
 | -DapiDesc         | My Rest API extension description | A short description of the purpose of your api extension (displayed in the portal for the administrator) 						   |

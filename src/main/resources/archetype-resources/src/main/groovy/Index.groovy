@@ -18,8 +18,14 @@ import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+#if( ${sp} == 'false' )
+import org.bonitasoft.web.extension.rest.RestAPIContext
+import org.bonitasoft.web.extension.rest.RestApiController
+#else
 import com.bonitasoft.web.extension.rest.RestAPIContext
 import com.bonitasoft.web.extension.rest.RestApiController
+#end
+
 
 class Index implements RestApiController {
 

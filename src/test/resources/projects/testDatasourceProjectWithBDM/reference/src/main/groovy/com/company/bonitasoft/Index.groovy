@@ -1,4 +1,4 @@
-package com.bonitasoft.archetype.test;
+package com.company.bonitasoft;
 
 import groovy.json.JsonBuilder
 
@@ -12,8 +12,9 @@ import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-import com.bonitasoft.web.extension.rest.RestAPIContext
-import com.bonitasoft.web.extension.rest.RestApiController
+import org.bonitasoft.web.extension.rest.RestAPIContext
+import org.bonitasoft.web.extension.rest.RestApiController
+
 
 class Index implements RestApiController {
 
