@@ -4,7 +4,7 @@
 #if( $urlParameters != "!"  )
 #set( $params = $urlParameters.split(",") )
 #end
-package ${groupId}.exception;
+package ${package}.exception;
 
 public class ValidationException extends RuntimeException {
     public ValidationException(String message) {

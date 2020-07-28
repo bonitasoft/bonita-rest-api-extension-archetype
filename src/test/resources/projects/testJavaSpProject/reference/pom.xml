@@ -97,7 +97,7 @@
     </dependencies>
 
     <build>
-        <defaultGoal>package</defaultGoal>
+        <defaultGoal>verify</defaultGoal>
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>

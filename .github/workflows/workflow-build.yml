@@ -65,14 +65,14 @@ jobs:
         run: >-
             mvn -B -ntp archetype:generate
             -DarchetypeGroupId=org.bonitasoft.archetypes
-            -DarchetypeArtifactId=bonita-connector-archetype
+            -DarchetypeArtifactId=rest-api-extension-archetype
             -DarchetypeVersion=${{needs.build.outputs.app_version}}
-            -DgroupId=org.bonita.test.connector
-            -DartifactId=test-connector-java
+            -DgroupId=org.bonita.test.apiext
+            -DartifactId=test-apiext-java
             -Dversion=1.0.0-SNAPSHOT
-            -Dpackage=org.bonita.test.connector
+            -Dpackage=org.bonita.test.api
             -DbonitaVersion=7.10.0
-            -DclassName=JavaTestConnector
+            -Dsp=false
             -Dlanguage=java
       - name: Build and test generated project
         shell: bash

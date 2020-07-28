@@ -1,7 +1,7 @@
-package com.company.bonitasoft;
+package com.company.bonitasoft.api;
 
-import com.company.bonitasoft.dto.Result;
-import com.company.bonitasoft.exception.ValidationException;
+import com.company.bonitasoft.api.dto.Result;
+import com.company.bonitasoft.api.exception.ValidationException;
 
 import lombok.extern.slf4j.Slf4j;
 import javax.servlet.http.HttpServletRequest;

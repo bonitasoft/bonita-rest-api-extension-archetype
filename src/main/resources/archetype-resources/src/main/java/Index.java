@@ -4,10 +4,10 @@
 #if( $urlParameters != "!"  )
 #set( $params = $urlParameters.split(",") )
 #end
-package $groupId;
+package ${package};
 
-import com.company.bonitasoft.dto.Result;
-import com.company.bonitasoft.exception.ValidationException;
+import ${package}.dto.Result;
+import ${package}.exception.ValidationException;
 
 import lombok.extern.slf4j.Slf4j;
 import javax.servlet.http.HttpServletRequest;

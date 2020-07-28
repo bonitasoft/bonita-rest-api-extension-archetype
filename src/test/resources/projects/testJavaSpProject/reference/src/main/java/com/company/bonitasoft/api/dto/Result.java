@@ -1,10 +1,4 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-#if( $urlParameters != "!"  )
-#set( $params = $urlParameters.split(",") )
-#end
-package ${package}.dto;
+package com.company.bonitasoft.api.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
@@ -15,9 +9,8 @@ import lombok.Value;
 @Builder(builderClassName = "ResultBuilder")
 @JsonDeserialize(builder = Result.ResultBuilder.class)
 public class Result {
-#foreach($urlParameter in $params)
-    private final String $urlParameter;
-#end
+    private final String userId;
+    private final String startDate;
     private final String myParameterKey;
 
     @JsonPOJOBuilder(withPrefix = "")

@@ -4,7 +4,7 @@
 #if( $urlParameters != "!"  )
 #set( $params = $urlParameters.split(",") )
 #end
-package ${groupId};
+package ${package};
 
 #if( ${sp} == 'false' )
 import org.bonitasoft.web.extension.rest.RestAPIContext;
@@ -13,9 +13,9 @@ import org.bonitasoft.web.extension.rest.RestApiController;
 import com.bonitasoft.web.extension.rest.RestAPIContext;
 import com.bonitasoft.web.extension.rest.RestApiController;
 #end
-import ${groupId}.dto.Error;
-import ${groupId}.dto.Result;
-import ${groupId}.exception.ValidationException;
+import ${package}.dto.Error;
+import ${package}.dto.Result;
+import ${package}.exception.ValidationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

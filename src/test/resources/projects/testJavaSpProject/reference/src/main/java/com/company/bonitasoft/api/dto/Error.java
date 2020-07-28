@@ -1,10 +1,4 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-#if( $urlParameters != "!"  )
-#set( $params = $urlParameters.split(",") )
-#end
-package ${package}.dto;
+package com.company.bonitasoft.api.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;

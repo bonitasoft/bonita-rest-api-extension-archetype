@@ -1,10 +1,10 @@
-package com.company.bonitasoft;
+package com.company.bonitasoft.api;
 
 import com.bonitasoft.web.extension.rest.RestAPIContext;
 import com.bonitasoft.web.extension.rest.RestApiController;
-import com.company.bonitasoft.dto.Error;
-import com.company.bonitasoft.dto.Result;
-import com.company.bonitasoft.exception.ValidationException;
+import com.company.bonitasoft.api.dto.Error;
+import com.company.bonitasoft.api.dto.Result;
+import com.company.bonitasoft.api.exception.ValidationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

@@ -8,16 +8,16 @@
 #foreach($p in $params)
 #set( $nbParams = $nbParams+1)
 #end
-package ${groupId};
+package ${package};
 
 #if( ${sp} == 'false' )
 import org.bonitasoft.web.extension.rest.RestAPIContext;
 #else
 import com.bonitasoft.web.extension.rest.RestAPIContext;
 #end
-import ${groupId}.dto.Error;
-import ${groupId}.dto.Result;
-import ${groupId}.exception.ValidationException;
+import ${package}.dto.Error;
+import ${package}.dto.Result;
+import ${package}.exception.ValidationException;
 import org.bonitasoft.web.extension.ResourceProvider;
 import org.bonitasoft.web.extension.rest.RestApiResponse;
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder;
@@ -43,33 +43,40 @@ class IndexTest {
 
     // Declare mocks here
     // Mocks are used to simulate external dependencies behavior
-    @Mock
-    HttpServletRequest httpRequest;
     @Mock(lenient = true)
-    ResourceProvider resourceProvider;
+    private HttpServletRequest httpRequest;
     @Mock(lenient = true)
-    RestAPIContext context;
+    private ResourceProvider resourceProvider;
+    @Mock(lenient = true)
+    private RestAPIContext context;
 
-    Index indexController;
+    // The controller to test
+    private Index index;
 
     /**
      * You can configure mocks before each tests in the setup method
      */
     @BeforeEach
     void setUp() throws FileNotFoundException {
-        indexController = new Index();
+        // Create a new instance under test
+        index = new Index();
+
         // Simulate access to configuration.properties resource
         when(context.getResourceProvider()).thenReturn(resourceProvider);
-        when(resourceProvider.getResourceAsStream("configuration.properties")).thenReturn(IndexTest.class.getResourceAsStream("testConfiguration.properties"));
+        when(resourceProvider.getResourceAsStream("configuration.properties"))
+                .thenReturn(IndexTest.class.getResourceAsStream("/testConfiguration.properties"));
     }
 
+#if($nbParams > 0 )
     @Test
     void should_throw_exception_if_mandatory_input_is_missing() {
         assertThrows(ValidationException.class, () ->
-                indexController.validateInputParameters(httpRequest)
+                index.validateInputParameters(httpRequest)
         );
     }
+#end
 
+    @Test
     void should_get_result_when_params_ok() {
 
         // Given
@@ -79,7 +86,7 @@ class IndexTest {
         String paramValue = "testValue";
 
         // When
-        Result result = indexController.execute(#foreach($urlParameter in $params)$urlParameter,#end paramValue);
+        Result result = index.execute(#foreach($urlParameter in $params)$urlParameter,#end paramValue);
 
         // Then
 #foreach($urlParameter in $params)
@@ -88,6 +95,7 @@ class IndexTest {
         assertThat(result.getMyParameterKey()).isEqualTo(paramValue);
     }
 
+    @Test
     void should_return_a_json_representation_as_result() throws IOException {
         // Given "a RestAPIController"
 
@@ -97,10 +105,10 @@ class IndexTest {
 #end
 
         // When "Invoking the REST API"
-        RestApiResponse apiResponse = indexController.doHandle(httpRequest, new RestApiResponseBuilder(), context);
+        RestApiResponse apiResponse = index.doHandle(httpRequest, new RestApiResponseBuilder(), context);
 
         // Then "A JSON representation is returned in response body"
-        Result jsonResponse = indexController.getMapper().readValue((String) apiResponse.getResponse(), Result.class);
+        Result jsonResponse = index.getMapper().readValue((String) apiResponse.getResponse(), Result.class);
 
         // Validate returned response
         assertThat(apiResponse.getHttpStatus()).isEqualTo(200);
@@ -108,6 +116,7 @@ class IndexTest {
     }
 
 #foreach($urlParameter in $params)
+    @Test
     void should_return_an_error_response_if_${urlParameter}_is_not_set() throws IOException {
         // Given "a request without $urlParameter"
         when(httpRequest.getParameter("$urlParameter")).thenReturn(null);
@@ -116,11 +125,10 @@ class IndexTest {
 #end#end
 
         // When "Invoking the REST API"
-        RestApiResponse apiResponse = indexController.doHandle(httpRequest, new RestApiResponseBuilder(), context);
-        indexController.doHandle(httpRequest, new RestApiResponseBuilder(), context);
+        RestApiResponse apiResponse = index.doHandle(httpRequest, new RestApiResponseBuilder(), context);
 
         // Then "A JSON response is returned with a HTTP Bad Request Status (400) and an error message in body"
-        Error jsonResponse = indexController.getMapper().readValue((String) apiResponse.getResponse(), Error.class);
+        Error jsonResponse = index.getMapper().readValue((String) apiResponse.getResponse(), Error.class);
         // Validate returned response
         assertThat(apiResponse.getHttpStatus()).isEqualTo(400);
         assertThat(jsonResponse.getMessage()).isEqualTo("the parameter ${urlParameter} is missing");
