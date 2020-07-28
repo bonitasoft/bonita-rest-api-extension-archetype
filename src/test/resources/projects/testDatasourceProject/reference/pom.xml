@@ -18,6 +18,7 @@
 
         <!-- Bonita -->
         <bonita.engine.version>7.10.0</bonita.engine.version>
+        <slf4j-api.version>1.7.25</slf4j-api.version>
         <groovy-all.version>2.4.16</groovy-all.version>
 
         <!-- Test -->
@@ -36,7 +37,6 @@
     </properties>
 
     <dependencies>
-        
         <!-- Bonita -->
         <dependency>
             <groupId>org.bonitasoft.web</groupId>
@@ -45,7 +45,7 @@
             <scope>provided</scope>
         </dependency>
 
-        
+
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
@@ -55,7 +55,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.6.1</version>
+            <version>${slf4j-api.version}</version>
             <scope>provided</scope>
         </dependency>
 

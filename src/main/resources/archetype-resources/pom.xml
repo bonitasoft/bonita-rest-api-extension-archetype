@@ -39,23 +39,21 @@
 
     <dependencies>
         <!-- Bonita -->
-        #if( ${sp} == 'false' )
-
+#if( ${sp} == 'false' )
         <dependency>
             <groupId>org.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions</artifactId>
             <version>${bonita.engine.version}</version>
             <scope>provided</scope>
         </dependency>
-        #else
-
+#else
         <dependency>
             <groupId>com.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions-sp</artifactId>
             <version>${bonita.engine.version}</version>
             <scope>provided</scope>
         </dependency>
-        #end
+#end
 
         <dependency>
             <groupId>org.slf4j</groupId>

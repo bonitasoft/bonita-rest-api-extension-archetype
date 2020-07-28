@@ -18,6 +18,7 @@
 
         <!-- Bonita -->
         <bonita.engine.version>${bonitaVersion}</bonita.engine.version>
+        <slf4j-api.version>1.7.25</slf4j-api.version>
         <groovy-all.version>2.4.16</groovy-all.version>
 
         <!-- Test -->
@@ -36,9 +37,8 @@
     </properties>
 
     <dependencies>
-        #if( ${sp} == 'false' )
-
         <!-- Bonita -->
+#if( ${sp} == 'false' )
         <dependency>
             <groupId>org.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions</artifactId>
@@ -46,16 +46,14 @@
             <scope>provided</scope>
         </dependency>
 
-        #else
-
-        <!-- Bonita -->
+#else
         <dependency>
             <groupId>com.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions-sp</artifactId>
             <version>${bonita.engine.version}</version>
             <scope>provided</scope>
         </dependency>
-        #end
+#end
 
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
@@ -66,7 +64,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.6.1</version>
+            <version>${slf4j-api.version}</version>
             <scope>provided</scope>
         </dependency>
 

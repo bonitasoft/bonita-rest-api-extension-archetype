@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -12,6 +13,7 @@
     <properties>
         <!-- Maven -->
         <java.version>1.8</java.version>
+        <kotlin.version>1.3.70</kotlin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
@@ -19,13 +21,12 @@
         <!-- Bonita -->
         <bonita.engine.version>7.10.0</bonita.engine.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
-        <lombok.version>1.18.12</lombok.version>
 
         <!-- Tests -->
         <junit-jupiter-engine.version>5.6.2</junit-jupiter-engine.version>
         <junit-platform-runner.version>1.6.2</junit-platform-runner.version>
         <assertj-core.version>3.16.1</assertj-core.version>
-        <mockito-core.version>3.3.3</mockito-core.version>
+        <mockk.version>1.10.0</mockk.version>
         <logback-classic.version>1.2.3</logback-classic.version>
 
         <!-- Maven plugins -->
@@ -38,10 +39,11 @@
     </properties>
 
     <dependencies>
+
         <!-- Bonita -->
         <dependency>
-            <groupId>com.bonitasoft.web</groupId>
-            <artifactId>bonita-web-extensions-sp</artifactId>
+            <groupId>org.bonitasoft.web</groupId>
+            <artifactId>bonita-web-extensions</artifactId>
             <version>${bonita.engine.version}</version>
             <scope>provided</scope>
         </dependency>
@@ -53,12 +55,16 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- misc -->
+        <!-- Kotlin -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+            <version>${kotlin.version}</version>
         </dependency>
 
         <!-- Tests -->
@@ -81,9 +87,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-junit-jupiter</artifactId>
-            <version>${mockito-core.version}</version>
+            <groupId>io.mockk</groupId>
+            <artifactId>mockk</artifactId>
+            <version>${mockk.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -97,7 +103,28 @@
 
     <build>
         <defaultGoal>verify</defaultGoal>
+        <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>${maven-assembly-plugin.version}</version>
@@ -123,13 +150,6 @@
                     <forkCount>1</forkCount>
                     <reuseForks>true</reuseForks>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.junit.platform</groupId>
-                        <artifactId>junit-platform-runner</artifactId>
-                        <version>${junit-platform-runner.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>

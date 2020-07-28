@@ -60,6 +60,12 @@
         <fileSet filtered="true" packaged="true">
             <directory>src/test/java</directory>
         </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/main/kotlin</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/test/kotlin</directory>
+        </fileSet>
         <fileSet filtered="true">
             <directory>src/main/resources</directory>
         </fileSet>
