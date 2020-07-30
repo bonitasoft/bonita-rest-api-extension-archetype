@@ -75,10 +75,10 @@
         <fileSet>
             <directory>src/assembly</directory>
         </fileSet>
-        <fileSet>
+        <fileSet filtered="false">
             <directory/>
             <includes>
-                <include>README.md</include>
+                <include>logo.png</include>
             </includes>
         </fileSet>
         <fileSet filtered="true">
@@ -86,7 +86,8 @@
             <includes>
                 <include>groovy-pom.xml</include>
                 <include>kotlin-pom.xml</include>
-                <include>assembly.xml</include>
+                <include>pom.xml</include>
+                <include>README.md</include>
             </includes>
         </fileSet>
     </fileSets>
