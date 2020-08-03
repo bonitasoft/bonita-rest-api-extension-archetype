@@ -60,7 +60,6 @@
         </dependency>
 
         <!-- Bonita BDM -->
-        
         <!--    Uncomment to add BDM dependencies -->
         <!--    <dependency> -->
         <!--        <groupId>[bdm groupId goes here]</groupId> -->
@@ -74,7 +73,7 @@
         <!--        <version>[bdm version goes here]</version> -->
         <!--        <scope>provided</scope> -->
         <!--    </dependency> -->
-        
+
         <!-- Test -->
         <dependency>
             <groupId>org.spockframework</groupId>

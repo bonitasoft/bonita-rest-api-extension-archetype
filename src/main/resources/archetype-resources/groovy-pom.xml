@@ -69,7 +69,7 @@
         </dependency>
 
         <!-- Bonita BDM -->
-        #if( ${bdmGroupId} != '!' )
+#if( ${bdmGroupId} != '!' )
         <dependency>
             <groupId>${bdmGroupId}</groupId>
             <artifactId>bdm-client</artifactId>
@@ -82,8 +82,7 @@
             <version>${bdmVersion}</version>
             <scope>provided</scope>
         </dependency>
-        #else
-
+#else
         <!--    Uncomment to add BDM dependencies -->
         <!--    <dependency> -->
         <!--        <groupId>[bdm groupId goes here]</groupId> -->
@@ -97,7 +96,7 @@
         <!--        <version>[bdm version goes here]</version> -->
         <!--        <scope>provided</scope> -->
         <!--    </dependency> -->
-        #end
+#end
 
         <!-- Test -->
         <dependency>

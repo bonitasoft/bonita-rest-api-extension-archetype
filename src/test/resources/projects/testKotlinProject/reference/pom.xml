@@ -48,6 +48,21 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Bonita BDM -->
+        <!--    Uncomment to add BDM dependencies -->
+        <!--    <dependency> -->
+        <!--        <groupId>[bdm groupId goes here]</groupId> -->
+        <!--        <artifactId>bdm-client</artifactId> -->
+        <!--        <version>[bdm version goes here]</version> -->
+        <!--        <scope>provided</scope> -->
+        <!--    </dependency> -->
+        <!--    <dependency> -->
+        <!--        <groupId>[bdm groupId goes here]</groupId> -->
+        <!--        <artifactId>bdm-dao</artifactId> -->
+        <!--        <version>[bdm version goes here]</version> -->
+        <!--        <scope>provided</scope> -->
+        <!--    </dependency> -->
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>

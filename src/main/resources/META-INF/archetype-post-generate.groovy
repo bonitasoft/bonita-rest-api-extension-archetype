@@ -18,6 +18,7 @@ if (language == "groovy") {
     logger.warning("Language '$language' isn't supported. Only 'java' , 'kotlin' and 'groovy' are supported.")
     prepareJavaProject(logger, projectPath)
 }
+
 if(installWrapper) {
     installMavenWrapper(logger, projectPath)
 }
