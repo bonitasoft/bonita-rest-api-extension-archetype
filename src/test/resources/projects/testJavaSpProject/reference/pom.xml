@@ -19,6 +19,7 @@
         <!-- Bonita -->
         <bonita.engine.version>7.10.0</bonita.engine.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
+        <jackson.version>2.9.10</jackson.version>
         <lombok.version>1.18.12</lombok.version>
 
         <!-- Tests -->
@@ -66,6 +67,11 @@
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j-api.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <!-- misc -->

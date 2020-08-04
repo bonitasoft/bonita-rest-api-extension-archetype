@@ -19,6 +19,7 @@ import ${package}.exception.ValidationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
 import org.bonitasoft.web.extension.ResourceProvider;
 import org.bonitasoft.web.extension.rest.RestApiResponse;
@@ -44,8 +45,8 @@ public abstract class AbstractIndex implements RestApiController {
 #end
 
     private final ObjectMapper mapper = new ObjectMapper()
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            .findAndRegisterModules();
+            .registerModule(new JavaTimeModule())
+            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
     public ObjectMapper getMapper() {
         return mapper;

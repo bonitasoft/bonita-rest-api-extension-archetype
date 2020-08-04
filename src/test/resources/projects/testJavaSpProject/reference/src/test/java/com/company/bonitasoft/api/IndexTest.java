@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.servlet.http.HttpServletRequest;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -75,6 +76,7 @@ class IndexTest {
         assertThat(result.getUserId()).isEqualTo(userId);
         assertThat(result.getStartDate()).isEqualTo(startDate);
         assertThat(result.getMyParameterKey()).isEqualTo(paramValue);
+        assertThat(result.getCurrentDate()).isEqualTo(LocalDate.now());
     }
 
     @Test
