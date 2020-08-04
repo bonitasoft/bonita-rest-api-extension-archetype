@@ -4,7 +4,7 @@
 #if( $urlParameters != "!"  )
 #set( $params = $urlParameters.split(",") )
 #end
-package $groupId;
+package $package;
 
 import groovy.json.JsonBuilder
 

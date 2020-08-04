@@ -8,7 +8,7 @@
 #foreach($p in $params)
 #set( $nbParams = $nbParams+1)
 #end
-package $groupId;
+package $package;
 
 import groovy.json.JsonSlurper
 
