@@ -5,31 +5,24 @@
         xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
         name="bonitasoft-rest-api-extension-archetype">
     <requiredProperties>
-        <requiredProperty key="bonitaVersion">
-            <defaultValue>7.10.0</defaultValue>
-        </requiredProperty>
+        <requiredProperty key="bonitaVersion"/>
         <requiredProperty key="sp">
             <defaultValue>false</defaultValue>
         </requiredProperty>
         <requiredProperty key="language">
             <validationRegex>^java$|^groovy$|^kotlin$</validationRegex>
-            <defaultValue>groovy</defaultValue>
-        </requiredProperty>
-        <requiredProperty key="apiDisplayName">
-            <defaultValue>My Rest API extension</defaultValue>
         </requiredProperty>
         <requiredProperty key="apiName">
-            <defaultValue>myRestExtApi</defaultValue>
+            <validationRegex>^[a-zA-Z][a-zA-Z_-]+$</validationRegex>
         </requiredProperty>
+        <requiredProperty key="apiDisplayName"/>
         <requiredProperty key="apiDesc">
             <defaultValue>My Rest API extension description</defaultValue>
         </requiredProperty>
         <requiredProperty key="httpVerb">
-            <defaultValue>GET</defaultValue>
+            <validationRegex>^GET$|^POST$|^PUT$|^PATCH$|^DELETE$|^HEAD$|^OPTIONS$|^TRACE$</validationRegex>
         </requiredProperty>
-        <requiredProperty key="pathTemplate">
-            <defaultValue>myRestApi</defaultValue>
-        </requiredProperty>
+        <requiredProperty key="pathTemplate"/>
         <requiredProperty key="permissionNames">
             <defaultValue>myRestAPIPermission</defaultValue>
         </requiredProperty>
@@ -46,7 +39,6 @@
             <defaultValue>true</defaultValue>
         </requiredProperty>
     </requiredProperties>
-    <!--CONNECTOR-->
     <fileSets>
         <fileSet filtered="true" packaged="true">
             <directory>src/main/groovy</directory>
@@ -88,5 +80,4 @@
             </includes>
         </fileSet>
     </fileSets>
-    <!--CONNECTOR END-->
 </archetype-descriptor>

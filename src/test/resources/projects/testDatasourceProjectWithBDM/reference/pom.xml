@@ -60,7 +60,7 @@
         </dependency>
 
         <!-- Bonita BDM -->
-                <dependency>
+        <dependency>
             <groupId>com.company.model</groupId>
             <artifactId>bdm-client</artifactId>
             <version>1.0.0-SNAPSHOT</version>
@@ -72,7 +72,7 @@
             <version>1.0.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        
+
         <!-- Test -->
         <dependency>
             <groupId>org.spockframework</groupId>
