@@ -19,6 +19,7 @@ import org.bonitasoft.web.extension.rest.RestAPIContext
 #else
 import com.bonitasoft.web.extension.rest.RestAPIContext
 #end
+import java.time.LocalDate
 
 class IndexTest {
 
@@ -61,6 +62,7 @@ class IndexTest {
         assertThat(jsonResponse["$urlParameter"]).isEqualTo("aValue$velocityCount")
 #end
         assertThat(jsonResponse["myParameterKey"]).isEqualTo("testValue")
+        assertThat(jsonResponse["currentDate"]).isEqualTo(LocalDate.now().toString())
     }
 
 #foreach($urlParameter in $params)

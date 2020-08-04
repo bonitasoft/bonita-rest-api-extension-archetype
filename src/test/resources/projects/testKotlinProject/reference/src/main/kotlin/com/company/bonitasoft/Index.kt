@@ -1,5 +1,6 @@
 package com.company.bonitasoft
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import org.bonitasoft.web.extension.ResourceProvider
@@ -9,16 +10,18 @@ import org.bonitasoft.web.extension.rest.RestApiController
 
 import org.bonitasoft.web.extension.rest.RestApiResponse
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
-import java.util.*
+import java.time.LocalDate
+import java.util.Properties
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST
 import javax.servlet.http.HttpServletResponse.SC_OK
+
 /**
  * Controller class
  */
 open class Index : RestApiController {
 
-    var mapper: ObjectMapper = ObjectMapper().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS).findAndRegisterModules()
+    var mapper: ObjectMapper = ObjectMapper().registerModule(JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
         private set
 
     override fun doHandle(request: HttpServletRequest, responseBuilder: RestApiResponseBuilder, context: RestAPIContext): RestApiResponse {
@@ -46,7 +49,7 @@ open class Index : RestApiController {
          *
          */
         // Prepare the result
-        val result = mapOf("userId" to userId, "startDate" to startDate,  "myParameterKey" to paramValue)
+        val result = mapOf("userId" to userId, "startDate" to startDate,  "myParameterKey" to paramValue, "currentDate" to LocalDate.now())
 
         // Send the result as a JSON representation
         // You may use buildPagedResponse if your result is multiple

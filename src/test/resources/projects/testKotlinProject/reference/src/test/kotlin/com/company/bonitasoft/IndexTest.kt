@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest
 import org.bonitasoft.web.extension.ResourceProvider
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
 import org.bonitasoft.web.extension.rest.RestAPIContext
+import java.time.LocalDate
 
 class IndexTest {
 
@@ -48,6 +49,7 @@ class IndexTest {
         assertThat(jsonResponse["userId"]).isEqualTo("aValue1")
         assertThat(jsonResponse["startDate"]).isEqualTo("aValue2")
         assertThat(jsonResponse["myParameterKey"]).isEqualTo("testValue")
+        assertThat(jsonResponse["currentDate"]).isEqualTo(LocalDate.now().toString())
     }
 
     @Test
