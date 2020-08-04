@@ -10,6 +10,8 @@ import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
 import spock.lang.Specification
 import org.bonitasoft.web.extension.rest.RestAPIContext
 
+import java.time.LocalDate;
+
 /**
  * @see http://spockframework.github.io/spock/docs/1.0/index.html
  */
@@ -47,6 +49,7 @@ class IndexTest extends Specification {
         jsonResponse.userId == "aValue1"
         jsonResponse.startDate == "aValue2"
         jsonResponse.myParameterKey == "testValue"
+        jsonResponse.currentDate == LocalDate.now().toString()
     }
 
     def should_return_an_error_response_if_userId_is_not_set() {

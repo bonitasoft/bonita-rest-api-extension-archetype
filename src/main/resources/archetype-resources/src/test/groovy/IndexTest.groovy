@@ -24,6 +24,8 @@ import org.bonitasoft.web.extension.rest.RestAPIContext
 import com.bonitasoft.web.extension.rest.RestAPIContext
 #end
 
+import java.time.LocalDate;
+
 /**
  * @see http://spockframework.github.io/spock/docs/1.0/index.html
  */
@@ -60,9 +62,10 @@ class IndexTest extends Specification {
         def jsonResponse = new JsonSlurper().parseText(apiResponse.response)
         // Validate returned response
         apiResponse.httpStatus == 200
-        #foreach($urlParameter in $params)jsonResponse.$urlParameter == "aValue$velocityCount"
-        #end
-jsonResponse.myParameterKey == "testValue"
+#foreach($urlParameter in $params)        jsonResponse.$urlParameter == "aValue$velocityCount"
+#end
+        jsonResponse.myParameterKey == "testValue"
+        jsonResponse.currentDate == LocalDate.now().toString()
     }
 
 #foreach($urlParameter in $params)

@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory
 import org.bonitasoft.web.extension.rest.RestAPIContext
 import org.bonitasoft.web.extension.rest.RestApiController
 
+import java.time.LocalDate
 
 class Index implements RestApiController {
 
@@ -51,7 +52,7 @@ class Index implements RestApiController {
          * 
          */
         // Prepare the result
-        def result = [ "userId" : userId ,"startDate" : startDate , "myParameterKey" : paramValue ]
+        def result = [ "userId" : userId ,"startDate" : startDate , "myParameterKey" : paramValue, "currentDate" : LocalDate.now().toString() ]
 
         // Send the result as a JSON representation
         // You may use buildPagedResponse if your result is multiple
