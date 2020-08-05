@@ -4,7 +4,7 @@
 #if( $urlParameters != "!"  )
 #set( $params = $urlParameters.split(",") )
 #end
-package $groupId;
+package $package;
 
 import groovy.json.JsonBuilder
 
@@ -18,8 +18,15 @@ import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+#if( ${sp} == 'false' )
+import org.bonitasoft.web.extension.rest.RestAPIContext
+import org.bonitasoft.web.extension.rest.RestApiController
+#else
 import com.bonitasoft.web.extension.rest.RestAPIContext
 import com.bonitasoft.web.extension.rest.RestApiController
+#end
+
+import java.time.LocalDate
 
 class Index implements RestApiController {
 
@@ -52,7 +59,7 @@ class Index implements RestApiController {
          * 
          */
         // Prepare the result
-        def result = [ #foreach ($urlParameter in $params)"$urlParameter" : $urlParameter ,#end "myParameterKey" : paramValue ]
+        def result = [ #foreach ($urlParameter in $params)"$urlParameter" : $urlParameter ,#end "myParameterKey" : paramValue, "currentDate" : LocalDate.now().toString() ]
 
         // Send the result as a JSON representation
         // You may use buildPagedResponse if your result is multiple

@@ -1,59 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archetype-descriptor
-    xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
-    name="rest-api-sql-datasource" xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <fileSets>
-        <fileSet filtered="true" packaged="true" encoding="UTF-8">
-            <directory>src/main/groovy</directory>
-            <includes>
-                <include>**/*.groovy</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>src/main/resources</directory>
-            <includes>
-                <include>**/*.properties</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" packaged="true" encoding="UTF-8">
-            <directory>src/test/groovy</directory>
-            <includes>
-                <include>**/*.groovy</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory>src/test/resources</directory>
-            <includes>
-                <include>**/*.properties</include>
-                <include>**/*.txt</include>
-            </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-            <directory></directory>
-            <includes>
-                <include>content.xml</include>
-            </includes>
-        </fileSet>
-    </fileSets>
+        xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
+        name="bonitasoft-rest-api-extension-archetype">
     <requiredProperties>
-        <requiredProperty key="bonitaVersion">
-            <defaultValue>7.10.0</defaultValue>
+        <requiredProperty key="bonitaVersion"/>
+        <requiredProperty key="sp">
+            <defaultValue>false</defaultValue>
         </requiredProperty>
-        <requiredProperty key="apiDisplayName">
-            <defaultValue>My Rest API extension</defaultValue>
+        <requiredProperty key="language">
+            <validationRegex>^java$|^groovy$|^kotlin$</validationRegex>
         </requiredProperty>
         <requiredProperty key="apiName">
-            <defaultValue>myRestExtApi</defaultValue>
+            <validationRegex>^[a-zA-Z][a-zA-Z_-]+$</validationRegex>
         </requiredProperty>
+        <requiredProperty key="apiDisplayName"/>
         <requiredProperty key="apiDesc">
             <defaultValue>My Rest API extension description</defaultValue>
         </requiredProperty>
         <requiredProperty key="httpVerb">
-            <defaultValue>GET</defaultValue>
+            <validationRegex>^GET$|^POST$|^PUT$|^PATCH$|^DELETE$|^HEAD$|^OPTIONS$|^TRACE$</validationRegex>
         </requiredProperty>
-        <requiredProperty key="pathTemplate">
-            <defaultValue>myRestApi</defaultValue>
-        </requiredProperty>
+        <requiredProperty key="pathTemplate"/>
         <requiredProperty key="permissionNames">
             <defaultValue>myRestAPIPermission</defaultValue>
         </requiredProperty>
@@ -63,8 +32,52 @@
         <requiredProperty key="bdmGroupId">
             <defaultValue>!</defaultValue>
         </requiredProperty>
-         <requiredProperty key="bdmVersion">
+        <requiredProperty key="bdmVersion">
             <defaultValue>!</defaultValue>
         </requiredProperty>
+        <requiredProperty key="wrapper">
+            <defaultValue>true</defaultValue>
+        </requiredProperty>
     </requiredProperties>
+    <fileSets>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/main/groovy</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/test/groovy</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/main/java</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/test/java</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/main/kotlin</directory>
+        </fileSet>
+        <fileSet filtered="true" packaged="true">
+            <directory>src/test/kotlin</directory>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>src/main/resources</directory>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory>src/test/resources</directory>
+        </fileSet>
+        <fileSet>
+            <directory>src/assembly</directory>
+        </fileSet>
+        <fileSet>
+            <directory>doc/</directory>
+        </fileSet>
+        <fileSet filtered="true">
+            <directory/>
+            <includes>
+                <include>groovy-pom.xml</include>
+                <include>kotlin-pom.xml</include>
+                <include>pom.xml</include>
+                <include>README.adoc</include>
+            </includes>
+        </fileSet>
+    </fileSets>
 </archetype-descriptor>

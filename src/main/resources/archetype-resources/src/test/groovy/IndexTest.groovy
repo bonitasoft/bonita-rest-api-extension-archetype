@@ -8,7 +8,7 @@
 #foreach($p in $params)
 #set( $nbParams = $nbParams+1)
 #end
-package $groupId;
+package $package;
 
 import groovy.json.JsonSlurper
 
@@ -18,8 +18,13 @@ import org.bonitasoft.web.extension.ResourceProvider
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
 
 import spock.lang.Specification
-
+#if( ${sp} == 'false' )
+import org.bonitasoft.web.extension.rest.RestAPIContext
+#else
 import com.bonitasoft.web.extension.rest.RestAPIContext
+#end
+
+import java.time.LocalDate;
 
 /**
  * @see http://spockframework.github.io/spock/docs/1.0/index.html
@@ -57,9 +62,10 @@ class IndexTest extends Specification {
         def jsonResponse = new JsonSlurper().parseText(apiResponse.response)
         // Validate returned response
         apiResponse.httpStatus == 200
-        #foreach($urlParameter in $params)jsonResponse.$urlParameter == "aValue$velocityCount"
-        #end
-jsonResponse.myParameterKey == "testValue"
+#foreach($urlParameter in $params)        jsonResponse.$urlParameter == "aValue$velocityCount"
+#end
+        jsonResponse.myParameterKey == "testValue"
+        jsonResponse.currentDate == LocalDate.now().toString()
     }
 
 #foreach($urlParameter in $params)
