@@ -11,7 +11,7 @@
 :linkcss: false
 :imagesdir: ./doc/images
 
-image::bonita_logo_be_efficient.png[your logo here]
+image::yourlogo.png[your logo here]
 
 = Datasource Rest API extension
 A Rest API extension reading a datasource
