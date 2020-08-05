@@ -51,6 +51,12 @@ Prerequisite:
 - a java (jdk8 or higher)
 - maven (optional if you choosed to use https://github.com/takari/maven-wrapper[maven wrapper script] as archetype option)
 
+#if($language=="java")
+WARNING: The generated java skeleton use https://projectlombok.org/features/all[lombok project] to reduce boilerplate code. This project use annotation processing to generate bytecode at compile time.
+You should then, either https://projectlombok.org/setup/overview[install lombok plugin
+in your IDE] for smooth integration or replace lombok dependency and code by standard java code.
+
+#end
 === Building
 
 _**TODO**_: If your project needs some additional steps for the developer to build the
