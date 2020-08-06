@@ -18,7 +18,6 @@ mvn clean install -DskipTests
 mvn archetype:generate \
 -DarchetypeGroupId=org.bonitasoft.archetypes \
 -DarchetypeArtifactId=rest-api-extension-archetype \
--DarchetypeVersion=1.0.0-SNAPSHOT \
 -DgroupId=org.company.api \
 -DartifactId=myRestApi \
 -Dversion=0.0.1-SNAPSHOT
