@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/bonitasoft/rest-api-extension-archetype/workflows/Build/badge.svg)](https://github.com/bonitasoft/rest-api-extension-archetype/actions?query=workflow%3ABuild)
+
 # rest-api-extension-archetype
 
 ## Disclaimer
