@@ -75,6 +75,10 @@ jobs:
             -DbonitaVersion=7.10.0
             -Dsp=false
             -Dlanguage=${{ matrix.language }}
+            -DapiName=${{ matrix.language }}-api
+            -DapiDisplayName="My ${{ matrix.language }} API"
+            -DhttpVerb=GET
+            -DpathTemplate=${{ matrix.language }}-api
       - name: Build and test generated project
         shell: bash
         run: mvn -B -ntp verify -f test-apiext-${{ matrix.language }}/pom.xml
