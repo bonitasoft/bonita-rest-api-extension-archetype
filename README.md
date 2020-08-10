@@ -1,4 +1,7 @@
 [![Actions Status](https://github.com/bonitasoft/rest-api-extension-archetype/workflows/Build/badge.svg)](https://github.com/bonitasoft/rest-api-extension-archetype/actions?query=workflow%3ABuild)
+[![GitHub release](https://img.shields.io/github/v/release/bonitasoft/rest-api-extension-archetype?color=blue&label=Release&include_prereleases)](https://github.com/bonitasoft/rest-api-extension-archetype/releases)
+[![Maven Central](https://img.shields.io/maven-central/v/org.bonitasoft.archetypes/rest-api-extension-archetype.svg?label=Maven%20Central&color=orange)](https://search.maven.org/search?q=g:%22org.bonitasoft.archetypes%22%20AND%20a:%22rest-api-extension-archetype%22)
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-yellow.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
 # rest-api-extension-archetype
 
