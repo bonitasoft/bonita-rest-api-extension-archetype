@@ -29,7 +29,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: latest-snapshot
-        path: target/rest-api-extension-archetype-*
+        path: target/bonita-rest-api-extension-archetype-*
     - name: Upload archetype pom for tests
       uses: actions/upload-artifact@v2
       with:
@@ -60,13 +60,13 @@ jobs:
         run: ls -R
       - name: Install latest archetype in local repo
         shell: bash
-        run: mvn -B -ntp install:install-file -Dfile=rest-api-extension-archetype-${{needs.build.outputs.app_version}}.jar -DpomFile=pom.xml && rm pom.xml
+        run: mvn -B -ntp install:install-file -Dfile=bonita-rest-api-extension-archetype-${{needs.build.outputs.app_version}}.jar -DpomFile=pom.xml && rm pom.xml
       - name: Generate project and build it
         shell: bash
         run: >-
             mvn -B -ntp archetype:generate
             -DarchetypeGroupId=org.bonitasoft.archetypes
-            -DarchetypeArtifactId=rest-api-extension-archetype
+            -DarchetypeArtifactId=bonita-rest-api-extension-archetype
             -DarchetypeVersion=${{needs.build.outputs.app_version}}
             -DgroupId=org.bonita.test.apiext
             -DartifactId=test-apiext-${{ matrix.language }}

@@ -1,9 +1,9 @@
-[![Actions Status](https://github.com/bonitasoft/rest-api-extension-archetype/workflows/Build/badge.svg)](https://github.com/bonitasoft/rest-api-extension-archetype/actions?query=workflow%3ABuild)
-[![GitHub release](https://img.shields.io/github/v/release/bonitasoft/rest-api-extension-archetype?color=blue&label=Release&include_prereleases)](https://github.com/bonitasoft/rest-api-extension-archetype/releases)
-[![Maven Central](https://img.shields.io/maven-central/v/org.bonitasoft.archetypes/rest-api-extension-archetype.svg?label=Maven%20Central&color=orange)](https://search.maven.org/search?q=g:%22org.bonitasoft.archetypes%22%20AND%20a:%22rest-api-extension-archetype%22)
+[![Actions Status](https://github.com/bonitasoft/bonita-rest-api-extension-archetype/workflows/Build/badge.svg)](https://github.com/bonitasoft/bonita-rest-api-extension-archetype/actions?query=workflow%3ABuild)
+[![GitHub release](https://img.shields.io/github/v/release/bonitasoft/bonita-rest-api-extension-archetype?color=blue&label=Release&include_prereleases)](https://github.com/bonitasoft/bonita-rest-api-extension-archetype/releases)
+[![Maven Central](https://img.shields.io/maven-central/v/org.bonitasoft.archetypes/bonita-rest-api-extension-archetype.svg?label=Maven%20Central&color=orange)](https://search.maven.org/search?q=g:%22org.bonitasoft.archetypes%22%20AND%20a:%22bonita-rest-api-extension-archetype%22)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-yellow.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-# rest-api-extension-archetype
+# bonita-rest-api-extension-archetype
 
 ## Disclaimer
 * Use a JRE/JDK 1.8
@@ -12,8 +12,8 @@
 ## How to build the archetype
 
 ```
-git clone https://github.com/bonitasoft/rest-api-extension-archetype.git
-cd rest-api-extension-archetype
+git clone https://github.com/bonitasoft/bonita-rest-api-extension-archetype.git
+cd bonita-rest-api-extension-archetype
 ./mvnw clean install
 ```
 
@@ -22,7 +22,7 @@ cd rest-api-extension-archetype
 ```
 mvn archetype:generate \
 -DarchetypeGroupId=org.bonitasoft.archetypes \
--DarchetypeArtifactId=rest-api-extension-archetype \
+-DarchetypeArtifactId=bonita-rest-api-extension-archetype \
 -DgroupId=org.company.api \
 -DartifactId=myRestApi \
 -Dversion=0.0.1-SNAPSHOT
