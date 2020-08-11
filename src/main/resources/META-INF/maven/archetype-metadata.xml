@@ -5,7 +5,9 @@
         xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
         name="bonitasoft-rest-api-extension-archetype">
     <requiredProperties>
-        <requiredProperty key="bonitaVersion"/>
+        <requiredProperty key="bonitaVersion">
+            <validationRegex>^(((\d+)\.(\d+)\.(\d+)(?:-(\w+(?:\.\w+)*))?)(?:\+(\w+(?:\.\w+)*))?)$</validationRegex>
+        </requiredProperty>
         <requiredProperty key="sp">
             <defaultValue>false</defaultValue>
         </requiredProperty>

@@ -21,29 +21,35 @@ cd bonita-rest-api-extension-archetype
 
 ```
 mvn archetype:generate \
--DarchetypeGroupId=org.bonitasoft.archetypes \
--DarchetypeArtifactId=bonita-rest-api-extension-archetype \
--DgroupId=org.company.api \
--DartifactId=myRestApi \
--Dversion=0.0.1-SNAPSHOT
+    -DarchetypeGroupId=org.bonitasoft.archetypes \
+    -DarchetypeArtifactId=bonita-rest-api-extension-archetype \
+    -DgroupId=org.company.api \
+    -DartifactId=my-rest-api \
+    -Dversion=0.0.1-SNAPSHOT \
+    -Dlanguage=java \
+    -DbonitaVersion=7.10.0 \
+    -DapiName=my-rest-api \
+    -DpathTemplate=my-rest-api \
+    -DapiDisplayName="My REST API" \
+    -DhttpVerb=POST
 ```
 
 ### Optionnal archetype parameters
 
 
-| Parameter         | Default value                     | Description                                                                            										   |
-| ------------------|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| -DbonitaVersion   | (none)                            | You can choose the version of the dependent bonita artifacts. Minimum version is 7.0.1.										   |
-| -Dsp              | false                             | If set to true, project will use Bonita subscription dependencies.                    										   |
-| -Dlanguage        | (none)                            | You can choose between groovy, java or kotlin.                                        										   |
-| -Dwrapper         | true                              | If set to true, project will setup a [maven wrapper](https://github.com/takari/maven-wrapper)                                    |
-| -DapiName         | (none)                            | Set the name of your api extension. You must enter an url friendly name without blanks. 									       |
-| -DapiDisplayName  | (none)                            | A display name for your api extension (displayed in the portal for the administrator) 										   |
-| -DapiDesc         | My Rest API extension description | A short description of the purpose of your api extension (displayed in the portal for the administrator) 						   |
-| -DhttpVerb        | (none)                            | The http verb of your api extension 																							   |
-| -DpathTemplate    | (none)                            | URL path template. Resulting url: ../API/extension/myRestExtApi 																   |
-| -DpermissionNames | myRestAPIPermission               | Define permission list (comma separated value), specify permissions a user need to have in order access this REST API >extension |
-| -DurlParameters   | ! (none)                          | Define a list (comma separated value) of url parameters.                                                                         |
-| -DbdmGroupId      | ! (none)                          | Define a BDM groupId name to enable BDM dependencies                                                                             |
-| -DbdmVersion      | ! (none)                          | Define a BDM version name to enable BDM dependencies                                                                             |
+| Parameter         | Required | Default value                     | Description                                                                            										   |
+| ------------------|-------|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| -DbonitaVersion   | __true__  |                                   | You can choose the version of the dependent bonita artifacts. __Minimum version is 7.0.1.__   								   |
+| -Dsp              | false | false                             | If set to true, project will use Bonita subscription dependencies. __This implies you have made bonita subscription artifacts available for maven (in your local repository or enterprise repository)__ |
+| -Dlanguage        | __true__  |                                   | You can choose between `groovy`, `java` or `kotlin`.                                        										   |
+| -Dwrapper         | false | true                              | If set to true, project will setup a [maven wrapper](https://github.com/takari/maven-wrapper)                                    |
+| -DapiName         | __true__  |                                   | Set the name of your api extension. You must enter an url friendly name without blanks. 									       |
+| -DapiDisplayName  | __true__  |                                   | A display name for your api extension (displayed in the portal for the administrator) 										   |
+| -DapiDesc         | false | My Rest API extension description | A short description of the purpose of your api extension (displayed in the portal for the administrator) 						   |
+| -DhttpVerb        | __true__  |                                   | The http verb of your api extension 																							   |
+| -DpathTemplate    | __true__  |                                   | URL path template. Resulting url: ../API/extension/myRestExtApi 																   |
+| -DpermissionNames | false | myRestAPIPermission               | Define permission list (comma separated value), specify permissions a user need to have in order access this REST API extension  |
+| -DurlParameters   | false | !                                 | Define a list (comma separated value) of url parameters.                                                                         |
+| -DbdmGroupId      | false | !                                 | Define a BDM groupId name to enable BDM dependencies                                                                             |
+| -DbdmVersion      | false | !                                 | Define a BDM version name to enable BDM dependencies                                                                             |
  
