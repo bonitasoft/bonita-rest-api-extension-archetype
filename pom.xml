@@ -70,6 +70,8 @@
                 <artifactId>maven-archetype-plugin</artifactId>
                 <configuration>
                     <ignoreEOLStyle>true</ignoreEOLStyle>
+                    <!-- build.log files fail build on windows-->
+                    <noLog>true</noLog>
                 </configuration>
                 <executions>
                     <execution>
