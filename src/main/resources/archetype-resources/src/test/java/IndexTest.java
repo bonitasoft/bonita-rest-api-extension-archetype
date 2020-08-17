@@ -84,16 +84,15 @@ class IndexTest {
 #foreach ($urlParameter in $params)
         String $urlParameter = "aValue$velocityCount";
 #end
-        String paramValue = "testValue";
 
         // When
-        Result result = index.execute(#foreach($urlParameter in $params)$urlParameter,#end paramValue);
+        Result result = index.execute(context#foreach($urlParameter in $params), $urlParameter#end);
 
         // Then
 #foreach($urlParameter in $params)
         assertThat(result.get${urlParameter.substring(0,1).toUpperCase()}${urlParameter.substring(1)}()).isEqualTo($urlParameter);
 #end
-        assertThat(result.getMyParameterKey()).isEqualTo(paramValue);
+        assertThat(result.getMyParameterKey()).isEqualTo("testValue");
         assertThat(result.getCurrentDate()).isEqualTo(LocalDate.now());
     }
 

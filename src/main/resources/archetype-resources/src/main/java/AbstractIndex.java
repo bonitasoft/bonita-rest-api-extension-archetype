@@ -20,7 +20,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.bonitasoft.web.extension.ResourceProvider;
 import org.bonitasoft.web.extension.rest.RestApiResponse;
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder;
@@ -35,9 +36,9 @@ import static javax.servlet.http.HttpServletResponse.SC_OK;
 /**
  * Parent Controller class to hide technical parts
  */
-@Slf4j
 public abstract class AbstractIndex implements RestApiController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Index.class.getName());
 
     public static final String MY_PARAMETER_KEY = "myParameterKey";
 #foreach ($urlParameter in $params)
@@ -59,27 +60,22 @@ public abstract class AbstractIndex implements RestApiController {
         try {
             validateInputParameters(request);
         } catch (ValidationException e) {
-            log.error("Request for this REST API extenstion is not valid", e);
+            LOGGER.error("Request for this REST API extenstion is not valid", e);
             return jsonResponse(responseBuilder, SC_BAD_REQUEST, Error.builder().message(e.getMessage()).build());
         }
 #foreach ($urlParameter in $params)
         String $urlParameter = request.getParameter(PARAM_${urlParameter.toUpperCase()});
 #end
 
-        // Here is an example of how you can retrieve configuration parameters from a properties file
-        // It is safe to remove this if no configuration is required
-        Properties props = loadProperties("configuration.properties", context.getResourceProvider());
-        String paramValue = props.getProperty(MY_PARAMETER_KEY);
-
         // Execute business logic
-        Result result = execute(#foreach ($urlParameter in $params)$urlParameter,#end paramValue);
+        Result result = execute(context#foreach ($urlParameter in $params), $urlParameter#end);
 
         // Send the result as a JSON representation
         // You may use pagedJsonResponse if your result is multiple
         return jsonResponse(responseBuilder, SC_OK, result);
     }
 
-    protected abstract Result execute(#foreach ($urlParameter in $params)String $urlParameter,#end String paramValue);
+    protected abstract Result execute(RestAPIContext context#foreach ($urlParameter in $params), String $urlParameter#end);
 
     protected abstract void validateInputParameters(HttpServletRequest request);
 
@@ -129,7 +125,7 @@ public abstract class AbstractIndex implements RestApiController {
     /**
      * Load a property file into a java.util.Properties
      */
-    private Properties loadProperties(String fileName, ResourceProvider resourceProvider) {
+    protected Properties loadProperties(String fileName, ResourceProvider resourceProvider) {
         try {
             Properties props = new Properties();
             props.load(resourceProvider.getResourceAsStream(fileName));

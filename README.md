@@ -28,10 +28,11 @@ mvn archetype:generate \
     -Dversion=0.0.1-SNAPSHOT \
     -Dlanguage=java \
     -DbonitaVersion=7.10.0 \
-    -DapiName=my-rest-api \
+    -DapiName=myRestApi \
     -DpathTemplate=my-rest-api \
     -DapiDisplayName="My REST API" \
-    -DhttpVerb=POST
+    -DurlParameters=p,c \
+    -DhttpVerb=GET
 ```
 
 ### Optionnal archetype parameters
