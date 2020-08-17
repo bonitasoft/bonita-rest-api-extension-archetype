@@ -60,7 +60,7 @@ public abstract class AbstractIndex implements RestApiController {
         try {
             validateInputParameters(request);
         } catch (ValidationException e) {
-            LOGGER.error("Request for this REST API extenstion is not valid", e);
+            LOGGER.error("Request for this REST API extension is not valid", e);
             return jsonResponse(responseBuilder, SC_BAD_REQUEST, Error.builder().message(e.getMessage()).build());
         }
 #foreach ($urlParameter in $params)
