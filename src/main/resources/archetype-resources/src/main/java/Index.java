@@ -9,16 +9,24 @@ package ${package};
 import ${package}.dto.Result;
 import ${package}.exception.ValidationException;
 
-import lombok.extern.slf4j.Slf4j;
+#if( ${sp} == 'false' )
+import org.bonitasoft.web.extension.rest.RestAPIContext;
+#else
+import com.bonitasoft.web.extension.rest.RestAPIContext;
+#end
+import java.util.Properties;
 import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static java.lang.String.format;
 
 /**
  * Controller class
  */
-@Slf4j
 public class Index extends AbstractIndex {
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(Index.class.getName());
 
     /**
      * Ensure request is valid
@@ -43,16 +51,21 @@ public class Index extends AbstractIndex {
     /**
      * Execute business logic
      *
+     * @param context
 #foreach ($urlParameter in $params)
      * @param $urlParameter
 #end
-     * @param paramValue
      * @return Result
      */
     @Override
-    protected Result execute(#foreach($urlParameter in $params)String $urlParameter, #end String paramValue) {
+    protected Result execute(RestAPIContext context#foreach ($urlParameter in $params), String $urlParameter#end) {
 
-        log.debug("Execute rest api call with params: #foreach($urlParameter in $params){}, #end {}", #foreach($urlParameter in $params) $urlParameter, #end paramValue);
+        // Here is an example of how you can retrieve configuration parameters from a properties file
+        // It is safe to remove this if no configuration is required
+        Properties props = loadProperties("configuration.properties", context.getResourceProvider());
+        String paramValue = props.getProperty(MY_PARAMETER_KEY);
+
+        LOGGER.debug(String.format("Execute rest api call with params:  #foreach($urlParameter in $params)%s, #end%s", #foreach($urlParameter in $params) $urlParameter, #end paramValue));
 
         /*
          * TODO: Execute business logic here, your code goes here

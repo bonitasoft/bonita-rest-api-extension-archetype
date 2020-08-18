@@ -67,15 +67,14 @@ class IndexTest {
         // Given
         String userId = "aValue1";
         String startDate = "aValue2";
-        String paramValue = "testValue";
 
         // When
-        Result result = index.execute(userId,startDate, paramValue);
+        Result result = index.execute(context, userId, startDate);
 
         // Then
         assertThat(result.getUserId()).isEqualTo(userId);
         assertThat(result.getStartDate()).isEqualTo(startDate);
-        assertThat(result.getMyParameterKey()).isEqualTo(paramValue);
+        assertThat(result.getMyParameterKey()).isEqualTo("testValue");
         assertThat(result.getCurrentDate()).isEqualTo(LocalDate.now());
     }
 

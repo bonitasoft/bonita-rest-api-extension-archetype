@@ -20,7 +20,6 @@
         <bonita.engine.version>${bonitaVersion}</bonita.engine.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <jackson.version>2.9.10</jackson.version>
-        <lombok.version>1.18.12</lombok.version>
 
         <!-- Tests -->
         <junit-jupiter-engine.version>5.6.2</junit-jupiter-engine.version>
@@ -96,14 +95,6 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson.version}</version>
-        </dependency>
-
-        <!-- misc -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <!-- Tests -->
