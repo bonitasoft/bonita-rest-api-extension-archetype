@@ -19,7 +19,7 @@
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
         <!-- Bonita -->
-        <bonita.engine.version>7.10.0</bonita.engine.version>
+        <bonita.version>7.10.0</bonita.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <jackson.version>2.9.10</jackson.version>
 
@@ -45,7 +45,7 @@
         <dependency>
             <groupId>org.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions</artifactId>
-            <version>${bonita.engine.version}</version>
+            <version>${bonita.version}</version>
             <scope>provided</scope>
         </dependency>
 
