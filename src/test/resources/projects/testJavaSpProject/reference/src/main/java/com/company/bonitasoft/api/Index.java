@@ -57,7 +57,7 @@ public class Index extends AbstractIndex {
         Properties props = loadProperties("configuration.properties", context.getResourceProvider());
         String paramValue = props.getProperty(MY_PARAMETER_KEY);
 
-        LOGGER.debug(String.format("Execute rest api call with params:  %s, %s, %s",  userId,  startDate,  paramValue));
+        LOGGER.debug(format("Execute rest api call with params:  %s, %s, %s",  userId,  startDate,  paramValue));
 
         /*
          * TODO: Execute business logic here, your code goes here

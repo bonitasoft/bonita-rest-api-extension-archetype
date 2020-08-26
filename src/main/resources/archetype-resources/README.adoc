@@ -15,6 +15,7 @@
 :sectanchors:
 :linkcss: false
 :imagesdir: ./doc/images
+:short-bonita-version: ${shortBonitaVersion}
 
 image::yourlogo.png[your logo here]
 
@@ -39,7 +40,7 @@ _**TODO**_: What's all the bells and whistles this project can perform?
 _**TODO**_: A quick introduction of the minimal setup you need to get a hello world up &
 running.
 
-For more details on Bonita REST API extension please refer to https://documentation.bonitasoft.com/bonita/${shortBonitaVersion}/rest-api-extensions#[documentation]
+For more details on Bonita REST API extension please refer to https://documentation.bonitasoft.com/bonita/{short-bonita-version}/rest-api-extensions#[documentation]
 
 == Developing
 _**TODO**_: Here's a brief intro about what a developer must do in order to start developing

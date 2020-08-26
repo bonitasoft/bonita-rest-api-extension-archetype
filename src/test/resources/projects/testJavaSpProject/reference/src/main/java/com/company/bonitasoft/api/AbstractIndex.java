@@ -118,7 +118,7 @@ public abstract class AbstractIndex implements RestApiController {
             props.load(resourceProvider.getResourceAsStream(fileName));
             return props;
         } catch (IOException e) {
-            throw new RuntimeException("Failed to load properties for REST API extenstion");
+            throw new RuntimeException("Failed to load properties for REST API extension");
         }
     }
 }

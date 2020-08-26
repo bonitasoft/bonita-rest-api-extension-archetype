@@ -15,9 +15,13 @@ import org.bonitasoft.web.extension.rest.RestAPIContext;
 #else
 import com.bonitasoft.web.extension.rest.RestAPIContext;
 #end
+#if( $urlParameters != "!"  )
 import ${package}.dto.Error;
+#end
 import ${package}.dto.Result;
+#if( $urlParameters != "!"  )
 import ${package}.exception.ValidationException;
+#end
 import org.bonitasoft.web.extension.ResourceProvider;
 import org.bonitasoft.web.extension.rest.RestApiResponse;
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder;
@@ -35,7 +39,9 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+#if( $urlParameters != "!"  )
 import static org.junit.jupiter.api.Assertions.assertThrows;
+#end
 import static org.mockito.Mockito.when;
 
 @RunWith(JUnitPlatform.class)

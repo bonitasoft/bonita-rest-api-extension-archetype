@@ -7,7 +7,9 @@
 package ${package};
 
 import ${package}.dto.Result;
+#if( $urlParameters != "!"  )
 import ${package}.exception.ValidationException;
+#end
 
 #if( ${sp} == 'false' )
 import org.bonitasoft.web.extension.rest.RestAPIContext;
@@ -65,7 +67,7 @@ public class Index extends AbstractIndex {
         Properties props = loadProperties("configuration.properties", context.getResourceProvider());
         String paramValue = props.getProperty(MY_PARAMETER_KEY);
 
-        LOGGER.debug(String.format("Execute rest api call with params:  #foreach($urlParameter in $params)%s, #end%s", #foreach($urlParameter in $params) $urlParameter, #end paramValue));
+        LOGGER.debug(format("Execute rest api call with params:  #foreach($urlParameter in $params)%s, #end%s", #foreach($urlParameter in $params) $urlParameter, #end paramValue));
 
         /*
          * TODO: Execute business logic here, your code goes here
