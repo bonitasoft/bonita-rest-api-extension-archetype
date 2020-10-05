@@ -6,7 +6,7 @@ We are pleased to receive any kind of contribution (issues, pull requests, sugge
 
 To open a pull request on this repository, you must sign the contributor license agreement. 
  
-<a href="https://cla-assistant.io/bonitasoft/bonita-connector-archetype"><img src="https://cla-assistant.io/readme/badge/bonitasoft/bonita-connector-archetype" alt="CLA assistant" /></a>
+<a href="https://cla-assistant.io/bonitasoft/bonita-rest-api-extension-archetype"><img src="https://cla-assistant.io/readme/badge/bonitasoft/bonita-rest-api-extension-archetype" alt="CLA assistant" /></a>
 
 Here are a few things we would appreciate that you do when opening a pull request: 
 
