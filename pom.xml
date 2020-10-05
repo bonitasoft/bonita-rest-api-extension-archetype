@@ -41,7 +41,6 @@
                 <version>${maven-archetype-version}</version>
             </extension>
         </extensions>
-
         <pluginManagement>
             <plugins>
                 <plugin>
