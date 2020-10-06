@@ -27,7 +27,7 @@ mvn archetype:generate \
     -DartifactId=my-rest-api \
     -Dversion=0.0.1-SNAPSHOT \
     -Dlanguage=java \
-    -DbonitaVersion=7.10.0 \
+    -DbonitaVersion=7.12.0 \
     -DapiName=myRestApi \
     -DpathTemplate=my-rest-api \
     -DapiDisplayName="My REST API" \
@@ -40,7 +40,7 @@ mvn archetype:generate \
 
 | Parameter         | Required | Default value                     | Description                                                                            										   |
 | ------------------|-------|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| -DbonitaVersion   | __true__  |                                   | You can choose the version of the dependent bonita artifacts. __Minimum version is 7.0.1.__   								   |
+| -DbonitaVersion   | __true__  |                                   | You can choose the version of the dependent bonita artifacts. __Minimum version is 7.12.0.__   								   |
 | -Dsp              | false | false                             | If set to true, project will use Bonita subscription dependencies. __This implies you have made bonita subscription artifacts available for maven (in your local repository or enterprise repository)__ |
 | -Dlanguage        | __true__  |                                   | You can choose between `groovy`, `java` or `kotlin`.                                        										   |
 | -Dwrapper         | false | true                              | If set to true, project will setup a [maven wrapper](https://github.com/takari/maven-wrapper)                                    |

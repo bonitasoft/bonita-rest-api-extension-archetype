@@ -70,7 +70,7 @@ For more details about apache maven, please refer to the https://maven.apache.or
 
 _**TODO**_: In case there's some step you have to take that publishes this project to a server, this is the right time to state it.
 
-Take the built artifact `ds-rest-api-1.0.0-SNAPSHOT.zip` and upload it to your Bonita plateform (see https://documentation.bonitasoft.com/bonita/7.10/rest-api-extensions#toc7)
+Take the built artifact `ds-rest-api-1.0.0-SNAPSHOT.zip` and upload it to your Bonita platform (see https://documentation.bonitasoft.com/bonita/7.10/rest-api-extensions#toc7)
 
 == Configuration
 
