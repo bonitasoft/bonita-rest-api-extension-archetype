@@ -79,7 +79,7 @@ For more details about apache maven, please refer to the https://maven.apache.or
 
 _**TODO**_: In case there's some step you have to take that publishes this project to a server, this is the right time to state it.
 
-Take the built artifact `${artifactId}-${version}.zip` and upload it to your Bonita plateform (see https://documentation.bonitasoft.com/bonita/${shortBonitaVersion}/rest-api-extensions#toc7)
+Take the built artifact `${artifactId}-${version}.zip` and upload it to your Bonita platform (see https://documentation.bonitasoft.com/bonita/${shortBonitaVersion}/rest-api-extensions#toc7)
 
 == Configuration
 
