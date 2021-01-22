@@ -2,24 +2,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>${groupId}</groupId>
-    <artifactId>${artifactId}</artifactId>
-    <version>${version}</version>
-    <name>${apiDisplayName}</name>
-    <description>${apiDesc}</description>
+    <groupId>com.company.bonitasoft</groupId>
+    <artifactId>ds-rest-api</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Datasource Rest API extension</name>
+    <description>A Rest API extension reading a datasource</description>
     <packaging>jar</packaging>
 
     <properties>
         <!-- Maven -->
-        <java.version>#if( $bonitaVersion.matches('7.(1[3-9]|[2-9][0-9]).*') || $bonitaVersion.matches('[8-99].[0-9]+.*') )
-11#else
-1.8#end</java.version>
+        <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
         <!-- Bonita -->
-        <bonita.version>${bonitaVersion}</bonita.version>
+        <bonita.version>7.13.2</bonita.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <jackson.version>2.11.2</jackson.version>
 
@@ -61,37 +59,14 @@
 
     <dependencies>
         <!-- Bonita -->
-#if( ${sp} == 'false' )
-        <dependency>
-            <groupId>org.bonitasoft.web</groupId>
-            <artifactId>bonita-web-extensions</artifactId>
-            <version>${bonita.version}</version>
-            <scope>provided</scope>
-        </dependency>
-#else
         <dependency>
             <groupId>com.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions-sp</artifactId>
             <version>${bonita.version}</version>
             <scope>provided</scope>
         </dependency>
-#end
 
         <!-- Bonita BDM -->
-#if( ${bdmGroupId} != '!' )
-        <dependency>
-            <groupId>${bdmGroupId}</groupId>
-            <artifactId>bdm-client</artifactId>
-            <version>${bdmVersion}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>${bdmGroupId}</groupId>
-            <artifactId>bdm-dao</artifactId>
-            <version>${bdmVersion}</version>
-            <scope>provided</scope>
-        </dependency>
-#else
         <!--    Uncomment to add BDM dependencies -->
         <!--    <dependency> -->
         <!--        <groupId>[bdm groupId goes here]</groupId> -->
@@ -105,7 +80,6 @@
         <!--        <version>[bdm version goes here]</version> -->
         <!--        <scope>provided</scope> -->
         <!--    </dependency> -->
-#end
 
         <dependency>
             <groupId>org.slf4j</groupId>
