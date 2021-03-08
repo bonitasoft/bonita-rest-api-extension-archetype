@@ -27,7 +27,7 @@ mvn archetype:generate \
     -DartifactId=my-rest-api \
     -Dversion=0.0.1-SNAPSHOT \
     -Dlanguage=java \
-    -DbonitaVersion=7.12.0 \
+    -DbonitaVersion=7.12.1 \
     -DapiName=myRestApi \
     -DpathTemplate=my-rest-api \
     -DapiDisplayName="My REST API" \
