@@ -59,6 +59,7 @@
                     <ignoreEOLStyle>true</ignoreEOLStyle>
                     <!-- build.log files fail build on windows-->
                     <noLog>true</noLog>
+                    <skip>${skipTests}</skip>
                 </configuration>
                 <executions>
                     <execution>
