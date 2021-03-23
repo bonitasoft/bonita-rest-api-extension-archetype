@@ -27,7 +27,7 @@ import com.bonitasoft.web.extension.rest.RestAPIContext
 import java.time.LocalDate;
 
 /**
- * @see http://spockframework.github.io/spock/docs/1.0/index.html
+ * @see http://spockframework.github.io/spock/docs/
  */
 class IndexTest extends Specification {
 
