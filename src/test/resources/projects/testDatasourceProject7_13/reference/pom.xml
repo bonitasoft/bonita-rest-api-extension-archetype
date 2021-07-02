@@ -20,8 +20,8 @@
         <bonita-runtime.version>7.13.0</bonita-runtime.version>
 
         <!-- Test -->
-        <spock-core.version>2.0-M4-groovy-3.0</spock-core.version>
-        <byte-buddy.version>1.10.22</byte-buddy.version>
+        <spock-core.version>2.0-groovy-3.0</spock-core.version>
+        <byte-buddy.version>1.11.5</byte-buddy.version>
         <logback-classic.version>1.2.3</logback-classic.version>
 
         <!-- Maven plugins -->
