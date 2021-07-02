@@ -18,7 +18,7 @@
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
         <!-- Bonita -->
-        <bonita.version>7.10.0</bonita.version>
+        <bonita-runtime.version>7.10.0</bonita-runtime.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <jackson.version>2.11.2</jackson.version>
 
@@ -34,25 +34,35 @@
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
 
     </properties>
-    
+
     <dependencyManagement>
-	    <dependencies>
-	    	<dependency>
-	            <groupId>com.fasterxml.jackson.core</groupId>
-	            <artifactId>jackson-core</artifactId>
-	            <scope>provided</scope>
-        	</dependency>
-	        <dependency>
-	            <groupId>com.fasterxml.jackson.core</groupId>
-	            <artifactId>jackson-annotations</artifactId>
-	            <scope>provided</scope>
-	        </dependency>
-	        <dependency>
-	            <groupId>com.fasterxml.jackson.core</groupId>
-	            <artifactId>jackson-databind</artifactId>
-	            <scope>provided</scope>
-	        </dependency>
-	    </dependencies>
+        <dependencies>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+
+        </dependencies>
     </dependencyManagement>
 
     <dependencies>
@@ -61,7 +71,7 @@
         <dependency>
             <groupId>org.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions</artifactId>
-            <version>${bonita.version}</version>
+            <version>${bonita-runtime.version}</version>
             <scope>provided</scope>
         </dependency>
 

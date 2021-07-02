@@ -17,10 +17,7 @@
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
         <!-- Bonita -->
-        <bonita.version>7.13.2</bonita.version>
-        <slf4j-api.version>1.7.25</slf4j-api.version>
-        <jackson.version>2.11.2</jackson.version>
-
+        <bonita-runtime.version>7.13.2</bonita-runtime.version>
         <!-- Tests -->
         <junit-jupiter-engine.version>5.7.0</junit-jupiter-engine.version>
         <junit-platform.version>1.7.0</junit-platform.version>
@@ -54,6 +51,15 @@
 	            <artifactId>jackson-databind</artifactId>
 	            <scope>provided</scope>
 	        </dependency>
+
+            <dependency>
+                <groupId>org.bonitasoft.runtime</groupId>
+                <artifactId>bonita-runtime-bom</artifactId>
+                <version>${bonita-runtime.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
 	    </dependencies>
     </dependencyManagement>
 
@@ -62,7 +68,12 @@
         <dependency>
             <groupId>com.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions-sp</artifactId>
-            <version>${bonita.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
@@ -84,13 +95,11 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
 
         <!-- Tests -->

@@ -17,7 +17,7 @@
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
         <!-- Bonita -->
-        <bonita.version>7.10.0</bonita.version>
+        <bonita-runtime.version>7.10.0</bonita-runtime.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <groovy.version>2.4.21</groovy.version>
 
@@ -37,12 +37,25 @@
 
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.1.0</version>
+                <scope>provided</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Bonita -->
         <dependency>
             <groupId>org.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions</artifactId>
-            <version>${bonita.version}</version>
+            <version>${bonita-runtime.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -50,6 +63,11 @@
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>${groovy.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
