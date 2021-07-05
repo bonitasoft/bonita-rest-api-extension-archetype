@@ -54,7 +54,7 @@ mvn archetype:generate \
 | -DbdmGroupId      | false | !                                 | Define a BDM groupId name to enable BDM dependencies                                                                             |
 | -DbdmVersion      | false | !                                 | Define a BDM version name to enable BDM dependencies                                                                             |
 
-### Release this project
+## Release this project
 
 A github action is used to perform release :
 
