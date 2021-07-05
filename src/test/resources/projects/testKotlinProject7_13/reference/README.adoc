@@ -10,14 +10,17 @@
 :sectanchors:
 :linkcss: false
 :imagesdir: ./doc/images
+
 :short-bonita-version: 7.13
+:doc-url: https://documentation.bonitasoft.com/bonita/7.13
+:java-version: 11
 
 image::yourlogo.png[your logo here]
 
 = Datasource Rest API extension
 A Rest API extension reading a datasource
 
-The project **datasource** is a Bonita REST API extension for **Bonita 7.13.0** version  **community** written in `kotlin`
+The project **datasource** is a Bonita REST API extension for **Bonita {short-bonita-version}** version  **community** written in `kotlin` language.
 
 _**TODO**_: A brief description of your project, what it is used for and how does life get
 awesome when someone starts to use it.
@@ -34,8 +37,7 @@ _**TODO**_: What's all the bells and whistles this project can perform?
 
 _**TODO**_: A quick introduction of the minimal setup you need to get a hello world up &
 running.
-
-For more details on Bonita REST API extension please refer to https://documentation.bonitasoft.com/bonita/{short-bonita-version}/rest-api-extensions#[documentation]
+For more details on Bonita REST API extension please refer to {doc-url}/rest-api-extension-archetype[documentation]
 
 == Developing
 _**TODO**_: Here's a brief intro about what a developer must do in order to start developing
@@ -44,7 +46,7 @@ the project further:
 Prerequisite:
 
 - a git client
-- a java (jdk8 or higher)
+- a java ( **jdk {java-version}** or higher)
 - maven (optional if you choosed to use https://github.com/takari/maven-wrapper[maven wrapper script] as archetype option)
 
 === Building
@@ -70,7 +72,7 @@ For more details about apache maven, please refer to the https://maven.apache.or
 
 _**TODO**_: In case there's some step you have to take that publishes this project to a server, this is the right time to state it.
 
-Take the built artifact `ds-rest-api-1.0.0-SNAPSHOT.zip` and upload it to your Bonita platform (see https://documentation.bonitasoft.com/bonita/7.13/rest-api-extensions#toc7)
+Take the built artifact `ds-rest-api-1.0.0-SNAPSHOT.zip` and upload it to your Bonita platform (see {doc-url}/rest-api-extension-archetype#_deployment[rest-api-extension deployment])
 
 == Configuration
 
