@@ -1,3 +1,4 @@
+#set( $after713 = $bonitaVersion.matches('7.(1[3-9]|[2-9][0-9]).*') || $bonitaVersion.matches('[8-99].[0-9]+.*') )
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -12,47 +13,75 @@
 
     <properties>
         <!-- Maven -->
-        <kotlin.version>1.3.70</kotlin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
+        <kotlin.version>1.5.20</kotlin.version>
+
         <!-- Bonita -->
-        <bonita.version>${bonitaVersion}</bonita.version>
+        <bonita-runtime.version>${bonitaVersion}</bonita-runtime.version>
+#if ( not ( $after713 ) )
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <jackson.version>2.11.2</jackson.version>
+#end
 
         <!-- Tests -->
-        <junit-jupiter-engine.version>5.7.0</junit-jupiter-engine.version>
-        <junit-platform.version>1.7.0</junit-platform.version>
-        <assertj-core.version>3.19.0</assertj-core.version>
-        <mockk.version>1.10.5</mockk.version>
+        <junit-jupiter-engine.version>5.7.2</junit-jupiter-engine.version>
+        <assertj-core.version>3.20.2</assertj-core.version>
+        <mockk.version>1.12.0</mockk.version>
         <logback-classic.version>1.2.3</logback-classic.version>
 
         <!-- Maven plugins -->
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 
     </properties>
-    
+
     <dependencyManagement>
-	    <dependencies>
-	    	<dependency>
-	            <groupId>com.fasterxml.jackson.core</groupId>
-	            <artifactId>jackson-core</artifactId>
-	            <scope>provided</scope>
-        	</dependency>
-	        <dependency>
-	            <groupId>com.fasterxml.jackson.core</groupId>
-	            <artifactId>jackson-annotations</artifactId>
-	            <scope>provided</scope>
-	        </dependency>
-	        <dependency>
-	            <groupId>com.fasterxml.jackson.core</groupId>
-	            <artifactId>jackson-databind</artifactId>
-	            <scope>provided</scope>
-	        </dependency>
-	    </dependencies>
+        <dependencies>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+#if ( not ( $after713 ) )
+                <version>${jackson.version}</version>
+#end
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+#if ( not ( $after713 ) )
+                <version>${jackson.version}</version>
+#end
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+#if ( not ( $after713 ) )
+                <version>${jackson.version}</version>
+#end
+                <scope>provided</scope>
+            </dependency>
+
+#if( $after713 )
+            <dependency>
+                <groupId>org.bonitasoft.runtime</groupId>
+                <artifactId>bonita-runtime-bom</artifactId>
+                <version>${bonita-runtime.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+#else
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+#end
+
+        </dependencies>
     </dependencyManagement>
 
     <dependencies>
@@ -62,14 +91,18 @@
         <dependency>
             <groupId>org.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions</artifactId>
-            <version>${bonita.version}</version>
+#if ( not ( $after713 ) )
+            <version>${bonita-runtime.version}</version>
+#end
             <scope>provided</scope>
         </dependency>
 #else
         <dependency>
             <groupId>com.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions-sp</artifactId>
-            <version>${bonita.version}</version>
+#if ( not ( $after713 ) )
+            <version>${bonita-runtime.version}</version>
+#end
             <scope>provided</scope>
         </dependency>
 #end
@@ -107,13 +140,17 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+#if ( not ( $after713 ) )
             <version>${slf4j-api.version}</version>
+#end
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
+#if ( not ( $after713 ) )
             <version>${jackson.version}</version>
+#end
         </dependency> 
 
         <!-- Kotlin -->
@@ -133,18 +170,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit-jupiter-engine.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-runner</artifactId>
-            <version>${junit-platform.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-commons</artifactId>
-            <version>${junit-platform.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -212,11 +237,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <enableAssertions>true</enableAssertions>
-                    <forkCount>1</forkCount>
-                    <reuseForks>true</reuseForks>
-                </configuration>
             </plugin>
         </plugins>
     </build>

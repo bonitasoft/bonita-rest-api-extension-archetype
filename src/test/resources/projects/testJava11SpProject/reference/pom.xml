@@ -17,15 +17,11 @@
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
         <!-- Bonita -->
-        <bonita.version>7.13.2</bonita.version>
-        <slf4j-api.version>1.7.25</slf4j-api.version>
-        <jackson.version>2.11.2</jackson.version>
-
+        <bonita-runtime.version>7.13.2</bonita-runtime.version>
         <!-- Tests -->
-        <junit-jupiter-engine.version>5.7.0</junit-jupiter-engine.version>
-        <junit-platform.version>1.7.0</junit-platform.version>
-        <assertj-core.version>3.19.0</assertj-core.version>
-        <mockito-core.version>3.7.7</mockito-core.version>
+        <junit-jupiter-engine.version>5.7.2</junit-jupiter-engine.version>
+        <assertj-core.version>3.20.2</assertj-core.version>
+        <mockito-core.version>3.11.2</mockito-core.version>
         <logback-classic.version>1.2.3</logback-classic.version>
 
         <!-- Maven plugins -->
@@ -33,7 +29,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 
     </properties>
     
@@ -54,6 +50,15 @@
 	            <artifactId>jackson-databind</artifactId>
 	            <scope>provided</scope>
 	        </dependency>
+
+            <dependency>
+                <groupId>org.bonitasoft.runtime</groupId>
+                <artifactId>bonita-runtime-bom</artifactId>
+                <version>${bonita-runtime.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
 	    </dependencies>
     </dependencyManagement>
 
@@ -62,7 +67,12 @@
         <dependency>
             <groupId>com.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions-sp</artifactId>
-            <version>${bonita.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
@@ -84,13 +94,11 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
 
         <!-- Tests -->
@@ -98,18 +106,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit-jupiter-engine.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-runner</artifactId>
-            <version>${junit-platform.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-commons</artifactId>
-            <version>${junit-platform.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -156,18 +152,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <enableAssertions>true</enableAssertions>
-                    <forkCount>1</forkCount>
-                    <reuseForks>true</reuseForks>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.junit.platform</groupId>
-                        <artifactId>junit-platform-runner</artifactId>
-                        <version>${junit-platform.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
