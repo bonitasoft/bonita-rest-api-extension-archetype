@@ -53,4 +53,21 @@ mvn archetype:generate \
 | -DurlParameters   | false | !                                 | Define a list (comma separated value) of url parameters.                                                                         |
 | -DbdmGroupId      | false | !                                 | Define a BDM groupId name to enable BDM dependencies                                                                             |
 | -DbdmVersion      | false | !                                 | Define a BDM version name to enable BDM dependencies                                                                             |
- 
+
+### Release this project
+
+A github action is used to perform release :
+
+[![release build](https://github.com/bonitasoft/bonita-rest-api-extension-archetype/actions/workflows/workflow-create-release.yml/badge.svg)](https://github.com/bonitasoft/bonita-rest-api-extension-archetype/actions/workflows/workflow-create-release.yml)
+
+- This action is triggered when a push is performed on a branch 'release-xxx'
+- It generates the changelog since the last release, creates the github tag and release with the changelog as description, and push the release on our nexus repository.
+
+So, to release a new version of the project, you have to:
+- Create a branch release-[version] on your local git repository
+- Update the version in the pom.xml (remove the -SNAPSHOT)
+- Push the branch
+
+⚠️ Make sure that the release branch is final before to push it. If you have to update something on the release branch after the push, then you must first:
+- Delete the tag and the release on github
+- Remove the artifact from our nexus repository 
