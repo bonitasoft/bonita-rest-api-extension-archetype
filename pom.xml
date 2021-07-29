@@ -1,5 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.bonitasoft.archetypes</groupId>
@@ -30,7 +31,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven-archetype-version>3.1.2</maven-archetype-version>
+        <maven-archetype-version>3.2.0</maven-archetype-version>
     </properties>
 
     <build>
@@ -47,6 +48,12 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-archetype-plugin</artifactId>
                     <version>${maven-archetype-version}</version>
+                    <configuration>
+                        <ignoreEOLStyle>true</ignoreEOLStyle>
+                        <!-- build.log files fail build on windows -->
+                        <noLog>true</noLog>
+                        <skip>${skipTests}</skip>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -55,20 +62,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-archetype-plugin</artifactId>
-                <configuration>
-                    <ignoreEOLStyle>true</ignoreEOLStyle>
-                    <!-- build.log files fail build on windows-->
-                    <noLog>true</noLog>
-                    <skip>${skipTests}</skip>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                        </goals>
-                        <phase>integration-test</phase>
-                    </execution>
-                </executions>
             </plugin>
 
             <plugin>
@@ -86,7 +79,8 @@
     </build>
 
     <profiles>
-        <!-- Deployment profile (required so these plugins are only used when deploying) -->
+        <!-- Deployment profile (required so these plugins are only used 
+            when deploying) -->
         <profile>
             <id>deploy</id>
             <build>
@@ -95,7 +89,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
+                        <version>3.0.1</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -104,7 +98,8 @@
                                     <goal>sign</goal>
                                 </goals>
                                 <configuration>
-                                    <!-- Prevent `gpg` from using pinentry programs -->
+                                    <!-- Prevent `gpg` from using pinentry 
+                                        programs -->
                                     <gpgArguments>
                                         <arg>--pinentry-mode</arg>
                                         <arg>loopback</arg>

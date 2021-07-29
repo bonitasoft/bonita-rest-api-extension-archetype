@@ -16,6 +16,19 @@
                 <include>**/*</include>
             </includes>
         </fileSet>
+        <fileSet>
+            <outputDirectory>META-INF/maven/${groupId}/${artifactId}</outputDirectory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.directory}/maven-archiver</directory>
+            <outputDirectory>META-INF/maven/${groupId}/${artifactId}</outputDirectory>
+            <includes>
+                <include>pom.properties</include>
+            </includes>
+        </fileSet>
     </fileSets>
     <dependencySets>
         <dependencySet>
