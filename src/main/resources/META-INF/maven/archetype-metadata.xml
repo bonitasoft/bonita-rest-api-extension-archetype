@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archetype-descriptor
-        xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
-        name="bonita-rest-api-extension-archetype">
+    xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
+    name="bonita-rest-api-extension-archetype">
     <requiredProperties>
         <requiredProperty key="bonitaVersion">
             <validationRegex>^(((\d+)\.(\d+)\.(\d+)(?:-(\w+(?:\.\w+)*))?)(?:\+(\w+(?:\.\w+)*))?)$</validationRegex>
@@ -17,14 +17,14 @@
         <requiredProperty key="apiName">
             <validationRegex>^[a-zA-Z0-9]+$</validationRegex>
         </requiredProperty>
-        <requiredProperty key="apiDisplayName"/>
+        <requiredProperty key="apiDisplayName" />
         <requiredProperty key="apiDesc">
             <defaultValue>My Rest API extension description</defaultValue>
         </requiredProperty>
         <requiredProperty key="httpVerb">
             <validationRegex>^GET$|^POST$|^PUT$|^PATCH$|^DELETE$|^HEAD$|^OPTIONS$|^TRACE$</validationRegex>
         </requiredProperty>
-        <requiredProperty key="pathTemplate"/>
+        <requiredProperty key="pathTemplate" />
         <requiredProperty key="permissionNames">
             <defaultValue>myRestAPIPermission</defaultValue>
         </requiredProperty>
@@ -44,36 +44,66 @@
     <fileSets>
         <fileSet filtered="true" packaged="true">
             <directory>src/main/groovy</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
         </fileSet>
         <fileSet filtered="true" packaged="true">
             <directory>src/test/groovy</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
         </fileSet>
         <fileSet filtered="true" packaged="true">
             <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
         </fileSet>
         <fileSet filtered="true" packaged="true">
             <directory>src/test/java</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
         </fileSet>
         <fileSet filtered="true" packaged="true">
             <directory>src/main/kotlin</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
         </fileSet>
         <fileSet filtered="true" packaged="true">
             <directory>src/test/kotlin</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
         </fileSet>
         <fileSet filtered="true">
             <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
         </fileSet>
         <fileSet filtered="true">
             <directory>src/test/resources</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
         </fileSet>
         <fileSet>
             <directory>src/assembly</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
         </fileSet>
         <fileSet>
             <directory>doc/</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
         </fileSet>
         <fileSet filtered="true">
-            <directory/>
+            <directory />
             <includes>
                 <include>groovy-pom.xml</include>
                 <include>kotlin-pom.xml</include>
