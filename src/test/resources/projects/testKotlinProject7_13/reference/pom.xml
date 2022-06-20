@@ -16,7 +16,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
-        <kotlin.version>1.5.20</kotlin.version>
+        <kotlin.version>1.6.0</kotlin.version>
 
         <!-- Bonita -->
         <bonita-runtime.version>7.13.0</bonita-runtime.version>
