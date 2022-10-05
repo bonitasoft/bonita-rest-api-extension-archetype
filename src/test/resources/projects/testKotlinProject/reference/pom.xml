@@ -21,7 +21,7 @@
         <!-- Bonita -->
         <bonita-runtime.version>7.10.0</bonita-runtime.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
-        <jackson.version>2.11.2</jackson.version>
+        <jackson.version>2.12.6.1</jackson.version>
 
         <!-- Tests -->
         <junit-jupiter-engine.version>5.7.2</junit-jupiter-engine.version>
