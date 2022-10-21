@@ -27,6 +27,7 @@ import org.bonitasoft.web.extension.rest.RestApiResponse;
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -126,9 +127,9 @@ public abstract class AbstractIndex implements RestApiController {
      * Load a property file into a java.util.Properties
      */
     protected Properties loadProperties(String fileName, ResourceProvider resourceProvider) {
-        try {
+        try (InputStream is = resourceProvider.getResourceAsStream(fileName)){
             Properties props = new Properties();
-            props.load(resourceProvider.getResourceAsStream(fileName));
+            props.load(is);
             return props;
         } catch (IOException e) {
             throw new RuntimeException("Failed to load properties for REST API extension");
