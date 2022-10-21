@@ -107,7 +107,7 @@ open class Index : RestApiController {
      */
     private fun loadProperties(fileName: String, resourceProvider: ResourceProvider): Properties {
         val props = Properties()
-        props.load(resourceProvider.getResourceAsStream(fileName))
+        resourceProvider.getResourceAsStream(fileName).use { props.load(it) }
         return props
     }
 }
