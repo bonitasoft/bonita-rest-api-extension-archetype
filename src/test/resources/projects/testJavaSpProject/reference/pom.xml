@@ -19,7 +19,7 @@
         <!-- Bonita -->
         <bonita-runtime.version>7.11.2</bonita-runtime.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
-        <jackson.version>2.11.2</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
         <!-- Tests -->
         <junit-jupiter-engine.version>5.7.2</junit-jupiter-engine.version>
         <assertj-core.version>3.20.2</assertj-core.version>
