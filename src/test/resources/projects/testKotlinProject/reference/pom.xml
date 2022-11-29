@@ -16,22 +16,22 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
-        <kotlin.version>1.5.20</kotlin.version>
+        <kotlin.version>1.7.22</kotlin.version>
 
         <!-- Bonita -->
         <bonita-runtime.version>7.10.0</bonita-runtime.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
-        <jackson.version>2.11.2</jackson.version>
+        <jackson.version>2.14.1</jackson.version>
 
         <!-- Tests -->
-        <junit-jupiter-engine.version>5.7.2</junit-jupiter-engine.version>
-        <assertj-core.version>3.20.2</assertj-core.version>
-        <mockk.version>1.12.0</mockk.version>
-        <logback-classic.version>1.2.3</logback-classic.version>
+        <junit-jupiter-engine.version>5.9.1</junit-jupiter-engine.version>
+        <assertj-core.version>3.23.1</assertj-core.version>
+        <mockk.version>1.13.2</mockk.version>
+        <logback-classic.version>1.2.11</logback-classic.version>
 
         <!-- Maven plugins -->
-        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <maven-assembly-plugin.version>3.4.2</maven-assembly-plugin.version>
+        <maven-surefire.version>3.0.0-M7</maven-surefire.version>
 
     </properties>
 
@@ -129,7 +129,7 @@
         </dependency>
         <dependency>
             <groupId>io.mockk</groupId>
-            <artifactId>mockk</artifactId>
+            <artifactId>mockk-jvm</artifactId>
             <version>${mockk.version}</version>
             <scope>test</scope>
         </dependency>
@@ -146,6 +146,20 @@
         <defaultGoal>verify</defaultGoal>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven-surefire.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -181,11 +195,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
             </plugin>
         </plugins>
     </build>

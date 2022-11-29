@@ -14,7 +14,7 @@
         <!-- Maven -->
         <java.version>#if( $after713 )
 11#else
-1.8#end</java.version>
+8#end</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
@@ -23,20 +23,19 @@
         <bonita-runtime.version>${bonitaVersion}</bonita-runtime.version>
 #if ( not ( $after713 ) )
         <slf4j-api.version>1.7.25</slf4j-api.version>
-        <jackson.version>2.11.2</jackson.version>
+        <jackson.version>2.14.1</jackson.version>
 #end
         <!-- Tests -->
-        <junit-jupiter-engine.version>5.7.2</junit-jupiter-engine.version>
-        <assertj-core.version>3.20.2</assertj-core.version>
-        <mockito-core.version>3.11.2</mockito-core.version>
-        <logback-classic.version>1.2.3</logback-classic.version>
+        <junit-jupiter-engine.version>5.9.1</junit-jupiter-engine.version>
+        <assertj-core.version>3.23.1</assertj-core.version>
+        <mockito-core.version>4.9.0</mockito-core.version>
+        <logback-classic.version>1.2.11</logback-classic.version>
 
         <!-- Maven plugins -->
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <maven-assembly-plugin.version>3.4.2</maven-assembly-plugin.version>
+        <maven-surefire.version>3.0.0-M7</maven-surefire.version>
 
     </properties>
     
@@ -190,6 +189,25 @@
 
     <build>
         <defaultGoal>verify</defaultGoal>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven-surefire.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -206,11 +224,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
             </plugin>
         </plugins>
     </build>
