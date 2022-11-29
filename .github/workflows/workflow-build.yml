@@ -13,9 +13,12 @@ jobs:
     outputs:
       app_version: ${{steps.get-app-version.outputs.APP_VERSION}}
     steps:
+    - uses: actions/checkout@v3
     - id: get-app-version
       name: Get archetype version
-      run: echo "::set-output name=APP_VERSION::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)"
+      run: |
+        extracted_version=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+        echo "APP_VERSION=$extracted_version" >> $GITHUB_OUTPUT
     - name: Build and test archetype
       run: ./mvnw -B -ntp clean verify
     - name: Upload archetype for tests
@@ -42,7 +45,6 @@ jobs:
         with:
           java-version: 11
           distribution: 'temurin'
-          cache: 'maven'
       - name: Download latest archetype snapshot
         uses: actions/download-artifact@v2
         with:
