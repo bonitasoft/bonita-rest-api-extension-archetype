@@ -51,8 +51,6 @@ mvn archetype:generate \
 | -DpathTemplate    | __true__  |                                   | URL path template. Resulting url: ../API/extension/myRestExtApi 																   |
 | -DpermissionNames | false | myRestAPIPermission               | Define permission list (comma separated value), specify permissions a user need to have in order access this REST API extension  |
 | -DurlParameters   | false | !                                 | Define a list (comma separated value) of url parameters.                                                                         |
-| -DbdmGroupId      | false | !                                 | Define a BDM groupId name to enable BDM dependencies                                                                             |
-| -DbdmVersion      | false | !                                 | Define a BDM version name to enable BDM dependencies                                                                             |
 
 ## Release this project
 

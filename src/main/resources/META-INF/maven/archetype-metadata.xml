@@ -31,12 +31,6 @@
         <requiredProperty key="urlParameters">
             <defaultValue>!</defaultValue>
         </requiredProperty>
-        <requiredProperty key="bdmGroupId">
-            <defaultValue>!</defaultValue>
-        </requiredProperty>
-        <requiredProperty key="bdmVersion">
-            <defaultValue>!</defaultValue>
-        </requiredProperty>
         <requiredProperty key="wrapper">
             <defaultValue>true</defaultValue>
         </requiredProperty>
