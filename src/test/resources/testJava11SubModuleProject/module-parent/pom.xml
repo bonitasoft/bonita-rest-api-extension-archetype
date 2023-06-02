@@ -17,7 +17,7 @@
 		<maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
 		<!-- Bonita -->
-		<bonita-runtime.version>8.0.0</bonita-runtime.version>
+		<bonita-runtime.version>7.15.0</bonita-runtime.version>
 
 		<!-- Maven plugins -->
 		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>

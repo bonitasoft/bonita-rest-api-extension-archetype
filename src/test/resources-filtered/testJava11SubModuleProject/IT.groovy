@@ -34,7 +34,7 @@ def proc = """mvn archetype:generate -B  \
     -DartifactId=${moduleArtifactId} \
     -Dversion=0.0.1-SNAPSHOT \
     -Dlanguage=java \
-    -DbonitaVersion=8.0.0 \
+    -DbonitaVersion=7.15.0 \
     -DapiName=myRestApi \
     -DapiDisplayName=My-REST-API \
     -DpathTemplate=my-rest-api \
@@ -51,11 +51,11 @@ println "Verifying generation result  ..."
 assert proc.exitValue() == 0: "Maven archetype execution exit code should be 0"
 
 def parentPomFile = new File("${parentFolder}/pom.xml")
-assert parentPomFile.text.contains('<module>my-rest-api</module>'): 'Parent pom should declared project as sub module'
+assert parentPomFile.text.contains("<module>${moduleArtifactId}</module>"): 'Parent pom should declare project as sub module'
 
 def modulePomFile = new File("${parentFolder}/${moduleArtifactId}/pom.xml")
 def referencePomFile = new File("${testPath}/reference/pom.xml")
-assert referencePomFile.text == modulePomFile.text: 'Reference pom and project pom should be the same'
+assert referencePomFile.text == modulePomFile.text: 'Reference pom and project pom should have the same content'
 
 println "SUCCESS"
 

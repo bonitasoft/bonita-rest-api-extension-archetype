@@ -20,7 +20,7 @@ jobs:
         extracted_version=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
         echo "APP_VERSION=$extracted_version" >> $GITHUB_OUTPUT
     - name: Build and test archetype
-      run: ./mvnw -B -ntp clean verify
+      run: ./mvnw -B -ntp clean install
     - name: Run Integration tests for archetype sub-modules
       run: ./mvnw -B -ntp groovy:execute -Dsource=target/test-classes/testJava11SubModuleProject/IT.groovy -Dscope=test
     - name: Upload archetype for tests
