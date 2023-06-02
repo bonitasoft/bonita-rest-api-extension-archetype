@@ -1,13 +1,30 @@
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+
 // Run 'mvn install' fisrt and then 'mvn groovy:execute -Dsource=target/test-classes/testJava11SubModuleProject/IT.groovy -Dscope=test' from project root
 
 // Given
-println "Testing sub module generation..."
-
-// When
+def sourcePath = '${project.basedir}/src/test/resources/testJava11SubModuleProject/'
 def testPath = '${project.build.testOutputDirectory}/testJava11SubModuleProject/'
+def sourceParentFolder = "${sourcePath}/module-parent"
 def parentFolder = "${testPath}/module-parent"
 def moduleArtifactId = "my-rest-api"
 
+
+println "[Integration Test] Test generation of sub module ${moduleArtifactId} in folder ${parentFolder}"
+
+// Delete previous run if any
+def moduleFolder = new File("${parentFolder}/${moduleArtifactId}")
+if (moduleFolder.exists()) {
+	Files.deleteIfExists(Paths.get("${parentFolder}/${moduleArtifactId}/pom.xml"))
+	moduleFolder.deleteDir()
+	// Reset the parent pom (whitout sub-module declaration)
+	Files.copy(Paths.get("${sourceParentFolder}/pom.xml"), Paths.get("${parentFolder}/pom.xml"), StandardCopyOption.REPLACE_EXISTING);
+}
+
+// When
+println "Generate sub module ..."
 def sout = new StringBuilder(), serr = new StringBuilder()
 def proc = """mvn archetype:generate -B  \
     -DarchetypeGroupId=org.bonitasoft.archetypes \
@@ -29,11 +46,17 @@ proc.waitForOrKill(10 * 60 * 1000)
 println "out> $sout\nerr> $serr"
 
 // Then
+println "Verifying generation result  ..."
+
+assert proc.exitValue() == 0: "Maven archetype execution exit code should be 0"
+
+def parentPomFile = new File("${parentFolder}/pom.xml")
+assert parentPomFile.text.contains('<module>my-rest-api</module>'): 'Parent pom should declared project as sub module'
 
 def modulePomFile = new File("${parentFolder}/${moduleArtifactId}/pom.xml")
 def referencePomFile = new File("${testPath}/reference/pom.xml")
+assert referencePomFile.text == modulePomFile.text: 'Reference pom and project pom should be the same'
 
-assert referencePomFile.text == modulePomFile.text
-
+println "SUCCESS"
 
 
