@@ -21,8 +21,10 @@ jobs:
         echo "APP_VERSION=$extracted_version" >> $GITHUB_OUTPUT
     - name: Build and test archetype
       run: ./mvnw -B -ntp clean install
-    - name: Run Integration tests for archetype sub-modules
+    - name: Run Integration tests for java archetype sub-modules
       run: ./mvnw -B -ntp groovy:execute -Dsource=target/test-classes/testJava11SubModuleProject/IT.groovy -Dscope=test
+    - name: Run Integration tests for groovy archetype sub-modules
+      run: ./mvnw -B -ntp groovy:execute -Dsource=target/test-classes/testGroovySubModuleProject/IT.groovy -Dscope=test
     - name: Upload archetype for tests
       uses: actions/upload-artifact@v2
       with:
