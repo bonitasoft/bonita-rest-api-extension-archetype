@@ -4,6 +4,7 @@ import java.nio.file.Paths
 import java.util.logging.Logger
 
 import org.apache.maven.model.Model
+import org.apache.maven.model.Parent
 import org.apache.maven.model.io.*
 
 def logger = Logger.getLogger("Archetype post generate")
@@ -12,11 +13,11 @@ Path projectPath = Paths.get(request.outputDirectory, request.artifactId)
 def language = request.properties.get("language")
 def installWrapper = Boolean.valueOf(request.properties.get("wrapper"))
 
-if (language == "groovy") {
+if (isGroovy(language)) {
 	prepareGroovyProject(logger, projectPath)
-} else if (language == "kotlin") {
+} else if (isKotlin(language)) {
 	prepareKotlinProject(logger, projectPath)
-} else if (language == "java") {
+} else if (isJava(language)) {
 	prepareJavaProject(logger, projectPath)
 } else {
 	logger.warning("Language '$language' isn't supported. Only 'java' , 'kotlin' and 'groovy' are supported.")
@@ -25,6 +26,16 @@ if (language == "groovy") {
 
 if (installWrapper) {
 	installMavenWrapper(logger, projectPath)
+}
+
+def isJava(language){
+	return language == "java"
+}
+def isGroovy(language){
+	return language == "groovy"
+}
+def isKotlin(language){
+	return language == "kotlin"
 }
 
 def installMavenWrapper(Logger logger, Path projectPath) {
@@ -103,9 +114,9 @@ def pomReader = new DefaultModelReader()
 def pomWriter = new DefaultModelWriter()
 
 def projectPom = projectPath.resolve("pom.xml").toFile()
-def parent = pomReader.read(parentPom, new HashMap<>());
-logger.info "Parent maven project found : ${parent.groupId}:${parent.artifactId}:${parent.version} at file ${parentPom}"
-pomWriter.write(parentPom, [:], parent);
+def parentModel = pomReader.read(parentPom, new HashMap<>());
+logger.info "Parent maven project found : ${parentModel.groupId}:${parentModel.artifactId}:${parentModel.version} at file ${parentPom}"
+pomWriter.write(parentPom, [:], parentModel);
 
 // Read sub module project pom
 logger.info "Cleaning sub-module pom.xml file: ${projectPom}"
@@ -114,6 +125,12 @@ def project = pomReader.read(projectPom, [:]);
 // Remove useless version and groupId
 project.groupId = null
 project.version = null
+
+def parent = new Parent()
+parent.groupId = parentModel.groupId
+parent.artifactId = parentModel.artifactId
+parent.version = parentModel.version
+project.parent = parent
 
 // Remove classic props
 [
@@ -134,11 +151,16 @@ project.build.pluginManagement = null
 // Remove version for manage assembly plugin
 removeProperty(project, 'maven-assembly-plugin.version')
 project.build.plugins.find { it.artifactId == 'maven-assembly-plugin' }?.version = null
+// Remove version for manage compiler plugin
+project.build.plugins.find { it.artifactId == 'maven-compiler-plugin' }?.version = null
 
 // Remove dependency management for bonita bom (should be in parent)
 def bonitaBom = project.dependencyManagement.dependencies.find { it.artifactId == 'bonita-runtime-bom' }
 if (bonitaBom != null) project.dependencyManagement.dependencies.remove(bonitaBom)
 removeProperty(project, 'bonita-runtime.version')
+if( !project.dependencyManagement.dependencies ) {
+    project.dependencyManagement = null
+}
 
 // Save modified module pom
 pomWriter.write(projectPom, [:], project)
