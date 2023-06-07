@@ -11,7 +11,7 @@
   <name>My-REST-API</name>
   <description>My Rest API extension description</description>
   <properties>
-    <byte-buddy.version>1.12.19</byte-buddy.version>
+    <byte-buddy.version>1.14.5</byte-buddy.version>
     <groovy-eclipse-compiler.version>3.7.0</groovy-eclipse-compiler.version>
     <groovy-eclipse-batch.version>3.0.8-01</groovy-eclipse-batch.version>
     <spock-core.version>2.3-groovy-3.0</spock-core.version>

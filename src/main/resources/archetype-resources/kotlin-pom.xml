@@ -17,7 +17,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
-        <kotlin.version>1.7.22</kotlin.version>
+        <kotlin.version>1.8.21</kotlin.version>
 
         <!-- Bonita -->
         <bonita-runtime.version>${bonitaVersion}</bonita-runtime.version>
@@ -27,14 +27,14 @@
 #end
 
         <!-- Tests -->
-        <junit-jupiter-engine.version>5.9.1</junit-jupiter-engine.version>
-        <assertj-core.version>3.23.1</assertj-core.version>
-        <mockk.version>1.13.2</mockk.version>
+        <junit-jupiter-engine.version>5.9.3</junit-jupiter-engine.version>
+        <assertj-core.version>3.24.2</assertj-core.version>
+        <mockk.version>1.13.5</mockk.version>
         <logback-classic.version>1.2.11</logback-classic.version>
 
         <!-- Maven plugins -->
-        <maven-assembly-plugin.version>3.4.2</maven-assembly-plugin.version>
-        <maven-surefire.version>3.0.0-M7</maven-surefire.version>
+        <maven-assembly-plugin.version>3.6.0</maven-assembly-plugin.version>
+        <maven-surefire.version>3.1.0</maven-surefire.version>
 
     </properties>
 
