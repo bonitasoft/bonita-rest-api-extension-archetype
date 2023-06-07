@@ -105,7 +105,7 @@ def deleteKotlinSources(Path projectPath) {
 }
 
 // Handle potential sub-module nature
-def parentPom = projectPath.resolve("../pom.xml").toFile()
+def parentPom = Paths.get(request.outputDirectory).resolve("pom.xml").toFile()
 if (!parentPom.exists()) {
 	return
 }
@@ -115,8 +115,14 @@ def pomWriter = new DefaultModelWriter()
 
 def projectPom = projectPath.resolve("pom.xml").toFile()
 def parentModel = pomReader.read(parentPom, new HashMap<>());
+if(!parentModel.groupId && parentModel.parent) {
+    parentModel.groupId = parentModel.parent.groupId
+}
+if(!parentModel.version && parentModel.parent) {
+    parentModel.version = parentModel.parent.version
+}
 logger.info "Parent maven project found : ${parentModel.groupId}:${parentModel.artifactId}:${parentModel.version} at file ${parentPom}"
-pomWriter.write(parentPom, [:], parentModel);
+
 
 // Read sub module project pom
 logger.info "Cleaning sub-module pom.xml file: ${projectPom}"
