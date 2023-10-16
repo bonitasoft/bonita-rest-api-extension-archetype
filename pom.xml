@@ -3,7 +3,7 @@
 
 	<groupId>org.bonitasoft.archetypes</groupId>
 	<artifactId>bonita-rest-api-extension-archetype</artifactId>
-	<version>1.6.2-SNAPSHOT</version>
+	<version>1.6.2</version>
 	<packaging>maven-archetype</packaging>
 	<name>Bonita Rest API extension Archetype</name>
 	<description>Maven archetype to bootstrap a Bonita Rest API extension project</description>
