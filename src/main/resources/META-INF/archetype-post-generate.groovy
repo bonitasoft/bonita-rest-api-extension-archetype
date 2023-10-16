@@ -39,7 +39,7 @@ def isKotlin(language){
 }
 
 def installMavenWrapper(Logger logger, Path projectPath) {
-	def wrapperCommand = 'mvn -N io.takari:maven:0.7.7:wrapper'
+	def wrapperCommand = 'mvn wrapper:wrapper'
 	def cmd = System.properties['os.name'].toLowerCase().contains('windows') ? "cmd /c $wrapperCommand" : wrapperCommand
 	logger.info("Installing maven wrapper... ($cmd)")
 	println cmd.execute(null, projectPath.toFile()).text
