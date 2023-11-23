@@ -13,7 +13,7 @@ jobs:
     outputs:
       app_version: ${{steps.get-app-version.outputs.APP_VERSION}}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - id: get-app-version
       name: Get archetype version
       run: |
@@ -47,7 +47,7 @@ jobs:
       - name: Install Java and Maven
         uses: actions/setup-java@v3
         with:
-          java-version: 11
+          java-version: 17
           distribution: 'temurin'
       - name: Download latest archetype snapshot
         uses: actions/download-artifact@v2
