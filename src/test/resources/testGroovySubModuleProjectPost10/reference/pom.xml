@@ -13,8 +13,6 @@
   <properties>
     <byte-buddy.version>1.14.5</byte-buddy.version>
     <maven.compiler.compilerId>groovy-eclipse-compiler</maven.compiler.compilerId>
-    <groovy-eclipse-compiler.version>3.7.0</groovy-eclipse-compiler.version>
-    <groovy-eclipse-batch.version>3.0.8-01</groovy-eclipse-batch.version>
     <spock-core.version>2.3-groovy-3.0</spock-core.version>
     <logback-classic.version>1.2.12</logback-classic.version>
   </properties>
@@ -63,21 +61,6 @@
     <testSourceDirectory>src/test/groovy</testSourceDirectory>
     <defaultGoal>verify</defaultGoal>
     <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-eclipse-compiler</artifactId>
-            <version>${groovy-eclipse-compiler.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-eclipse-batch</artifactId>
-            <version>${groovy-eclipse-batch.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>

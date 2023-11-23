@@ -11,16 +11,16 @@
 :linkcss: false
 :imagesdir: ./doc/images
 
-:short-bonita-version: 7.13
+:short-bonita-version: 10.0
 :doc-url: https://documentation.bonitasoft.com/bonita/{short-bonita-version}
-:java-version: 11
+:java-version: 17
 
 image::yourlogo.png[your logo here]
 
 = Datasource Rest API extension
 A Rest API extension reading a datasource
 
-The project **datasource** is a Bonita REST API extension for **Bonita {short-bonita-version}** version  **community** written in `kotlin` language.
+The project **datasource** is a Bonita REST API extension for **Bonita {short-bonita-version}** version  **community** written in `groovy` language.
 
 _**TODO**_: A brief description of your project, what it is used for and how does life get
 awesome when someone starts to use it.

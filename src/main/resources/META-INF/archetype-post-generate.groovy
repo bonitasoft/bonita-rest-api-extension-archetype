@@ -12,6 +12,7 @@ def logger = Logger.getLogger("Archetype post generate")
 Path projectPath = Paths.get(request.outputDirectory, request.artifactId)
 def language = request.properties.get("language")
 def installWrapper = Boolean.valueOf(request.properties.get("wrapper"))
+def bonitaVersion = request.properties.get('bonitaVersion')
 
 if (isGroovy(language)) {
 	prepareGroovyProject(logger, projectPath)
@@ -159,6 +160,21 @@ removeProperty(project, 'maven-assembly-plugin.version')
 project.build.plugins.find { it.artifactId == 'maven-assembly-plugin' }?.version = null
 // Remove version for manage compiler plugin
 project.build.plugins.find { it.artifactId == 'maven-compiler-plugin' }?.version = null
+
+if(bonitaVersion 
+    && !bonitaVersion.startsWith('7.') 
+    && !bonitaVersion.startsWith('8.')
+    && !bonitaVersion.startsWith('9.')) {
+    // Remove property define in parent
+    removeProperty(project, 'groovy-eclipse-compiler.version')
+    removeProperty(project, 'groovy-eclipse-batch.version')
+    // Remove compiler plugin
+    project.build.plugins.removeIf { it.artifactId == 'maven-compiler-plugin' }
+    // Remove groovy plugin repository already define in parent pom
+    project.pluginRepositories.removeIf { it.id == 'groovy' }
+
+}
+
 
 // Remove dependency management for bonita bom (should be in parent)
 def bonitaBom = project.dependencyManagement.dependencies.find { it.artifactId == 'bonita-runtime-bom' }
