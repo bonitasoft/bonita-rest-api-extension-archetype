@@ -6,7 +6,7 @@
 # bonita-rest-api-extension-archetype
 
 ## Disclaimer
-* Use a JRE/JDK 1.8 or Java 11 for Bonita 7.13+ 
+* Use a JRE/JDK 1.8 or Java 11 for Bonita 7.13+, Java 17 for Bonita 10.0+
 * Compatible with Bonita 7.12+
 
 ## How to build the archetype
