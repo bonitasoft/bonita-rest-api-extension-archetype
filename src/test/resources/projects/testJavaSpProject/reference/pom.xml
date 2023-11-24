@@ -11,15 +11,13 @@
 
     <properties>
         <!-- Maven -->
-        <java.version>8</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
         <!-- Bonita -->
-        <bonita-runtime.version>7.11.2</bonita-runtime.version>
-        <slf4j-api.version>1.7.25</slf4j-api.version>
-        <jackson.version>2.14.1</jackson.version>
+        <bonita-runtime.version>10.0.0</bonita-runtime.version>
         <!-- Tests -->
         <junit-jupiter-engine.version>5.9.3</junit-jupiter-engine.version>
         <assertj-core.version>3.24.2</assertj-core.version>
@@ -39,26 +37,25 @@
 	    	<dependency>
 	            <groupId>com.fasterxml.jackson.core</groupId>
 	            <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
 	            <scope>provided</scope>
         	</dependency>
 	        <dependency>
 	            <groupId>com.fasterxml.jackson.core</groupId>
 	            <artifactId>jackson-annotations</artifactId>
-                <version>${jackson.version}</version>
 	            <scope>provided</scope>
 	        </dependency>
 	        <dependency>
 	            <groupId>com.fasterxml.jackson.core</groupId>
 	            <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
 	            <scope>provided</scope>
 	        </dependency>
 
             <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>3.1.0</version>
+                <groupId>org.bonitasoft.runtime</groupId>
+                <artifactId>bonita-runtime-bom</artifactId>
+                <version>${bonita-runtime.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
 	    </dependencies>
@@ -69,7 +66,6 @@
         <dependency>
             <groupId>com.bonitasoft.web</groupId>
             <artifactId>bonita-web-extensions-sp</artifactId>
-            <version>${bonita-runtime.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -82,13 +78,11 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
 
         <!-- Tests -->
