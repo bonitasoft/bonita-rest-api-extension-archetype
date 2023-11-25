@@ -19,16 +19,16 @@
         <!-- Bonita -->
         <bonita-runtime.version>7.15.0</bonita-runtime.version>
         <!-- Tests -->
-        <junit-jupiter-engine.version>5.9.3</junit-jupiter-engine.version>
+        <junit-jupiter-engine.version>5.10.1</junit-jupiter-engine.version>
         <assertj-core.version>3.24.2</assertj-core.version>
-        <mockito-core.version>5.3.1</mockito-core.version>
-        <logback-classic.version>1.2.11</logback-classic.version>
+        <mockito-core.version>5.7.0</mockito-core.version>
+        <logback-classic.version>1.2.12</logback-classic.version>
 
         <!-- Maven plugins -->
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <maven-assembly-plugin.version>3.6.0</maven-assembly-plugin.version>
-        <maven-surefire.version>3.1.0</maven-surefire.version>
+        <maven-surefire.version>3.2.2</maven-surefire.version>
 
     </properties>
     
