@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.FileNotFoundException;
@@ -23,15 +25,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 class IndexTest {
 
     // Declare mocks here
     // Mocks are used to simulate external dependencies behavior
-    @Mock(lenient = true)
+    @Mock
     private HttpServletRequest httpRequest;
-    @Mock(lenient = true)
+    @Mock
     private ResourceProvider resourceProvider;
-    @Mock(lenient = true)
+    @Mock
     private RestAPIContext context;
 
     // The controller to test
