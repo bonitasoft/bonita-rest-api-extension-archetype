@@ -16,7 +16,7 @@
     <groovy-eclipse-compiler.version>3.7.0</groovy-eclipse-compiler.version>
     <groovy-eclipse-batch.version>3.0.8-01</groovy-eclipse-batch.version>
     <spock-core.version>2.3-groovy-3.0</spock-core.version>
-    <logback-classic.version>1.2.12</logback-classic.version>
+    <logback-classic.version>1.2.13</logback-classic.version>
   </properties>
   <dependencies>
     <dependency>
