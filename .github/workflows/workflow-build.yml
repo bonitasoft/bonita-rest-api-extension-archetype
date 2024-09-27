@@ -26,12 +26,12 @@ jobs:
     - name: Run Integration tests for groovy archetype sub-modules
       run: ./mvnw -B -ntp groovy:execute -Dsource=target/test-classes/testGroovySubModuleProject/IT.groovy -Dscope=test
     - name: Upload archetype for tests
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: latest-snapshot
         path: target/bonita-rest-api-extension-archetype-*
     - name: Upload archetype pom for tests
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: latest-snapshot-pom
         path: pom.xml
@@ -50,11 +50,11 @@ jobs:
           java-version: 17
           distribution: 'temurin'
       - name: Download latest archetype snapshot
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v4
         with:
           name: latest-snapshot
       - name: Download archetype pom
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v4
         with:
           name: latest-snapshot-pom
       - name: Display structure of downloaded files
