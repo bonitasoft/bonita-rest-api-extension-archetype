@@ -88,7 +88,7 @@ class IndexTest {
 
         // Given
 #foreach ($urlParameter in $params)
-        String $urlParameter = "aValue$velocityCount";
+        String $urlParameter = "aValue$foreach.count";
 #end
 
         // When
@@ -108,7 +108,7 @@ class IndexTest {
 
         // Simulate a request with a value for each parameter
 #foreach($urlParameter in $params)
-        when(httpRequest.getParameter("$urlParameter")).thenReturn("aValue$velocityCount");
+        when(httpRequest.getParameter("$urlParameter")).thenReturn("aValue$foreach.count");
 #end
 
         // When "Invoking the REST API"
@@ -128,7 +128,7 @@ class IndexTest {
         // Given "a request without $urlParameter"
         when(httpRequest.getParameter("$urlParameter")).thenReturn(null);
 #foreach($p in $params)#if($p != $urlParameter)
-        when(httpRequest.getParameter("$p")).thenReturn("aValue$velocityCount");
+        when(httpRequest.getParameter("$p")).thenReturn("aValue$foreach.count");
 #end#end
 
         // When "Invoking the REST API"
