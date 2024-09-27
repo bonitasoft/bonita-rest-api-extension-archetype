@@ -52,7 +52,7 @@ class IndexTest extends Specification {
         #if( $nbParams != 0 )// Simulate a request with a value for each parameter
 #end
 #foreach($urlParameter in $params)
-        httpRequest.getParameter("$urlParameter") >> "aValue$velocityCount"
+        httpRequest.getParameter("$urlParameter") >> "aValue$foreach.count"
 #end
 
         when: "Invoking the REST API"
@@ -62,7 +62,7 @@ class IndexTest extends Specification {
         def jsonResponse = new JsonSlurper().parseText(apiResponse.response)
         // Validate returned response
         apiResponse.httpStatus == 200
-#foreach($urlParameter in $params)        jsonResponse.$urlParameter == "aValue$velocityCount"
+#foreach($urlParameter in $params)        jsonResponse.$urlParameter == "aValue$foreach.count"
 #end
         jsonResponse.myParameterKey == "testValue"
         jsonResponse.currentDate == LocalDate.now().toString()
@@ -76,7 +76,7 @@ class IndexTest extends Specification {
         #if( $nbParams != 0 )// Other parameters return a valid value
 #end
 #foreach($p in $params)#if($p != $urlParameter)
-        httpRequest.getParameter("$p") >> "aValue$velocityCount"
+        httpRequest.getParameter("$p") >> "aValue$foreach.count"
 #end#end
 
         when: "Invoking the REST API"

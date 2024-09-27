@@ -48,7 +48,7 @@ class IndexTest {
 #if( $nbParams != 0 )        // Simulate a request with a value for each parameter #end
 
 #foreach($urlParameter in $params)
-        every { httpRequest.getParameter("$urlParameter") } returns "aValue$velocityCount";
+        every { httpRequest.getParameter("$urlParameter") } returns "aValue$foreach.count";
 #end
 
         // When
@@ -59,7 +59,7 @@ class IndexTest {
         // Validate returned response
         assertThat(apiResponse.httpStatus).isEqualTo(200)
 #foreach($urlParameter in $params)
-        assertThat(jsonResponse["$urlParameter"]).isEqualTo("aValue$velocityCount")
+        assertThat(jsonResponse["$urlParameter"]).isEqualTo("aValue$foreach.count")
 #end
         assertThat(jsonResponse["myParameterKey"]).isEqualTo("testValue")
         assertThat(jsonResponse["currentDate"]).isEqualTo(LocalDate.now().toString())
@@ -73,7 +73,7 @@ class IndexTest {
 #if( $nbParams != 0 )        // Other parameters return a valid value #end
 
 #foreach($p in $params)#if($p != $urlParameter)
-        every { httpRequest.getParameter("$p") } returns "aValue$velocityCount";
+        every { httpRequest.getParameter("$p") } returns "aValue$foreach.count";
 #end#end
 
         // When
