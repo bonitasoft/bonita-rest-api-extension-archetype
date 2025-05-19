@@ -25,7 +25,7 @@
 	</licenses>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven-archetype-version>3.3.1</maven-archetype-version>
+		<maven-archetype-version>3.4.0</maven-archetype-version>
 	</properties>
 	<build>
 		<testResources>
