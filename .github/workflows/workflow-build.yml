@@ -9,7 +9,7 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       app_version: ${{steps.get-app-version.outputs.APP_VERSION}}
     steps:
