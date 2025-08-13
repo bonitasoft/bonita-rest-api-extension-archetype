@@ -75,14 +75,12 @@
 				<artifactId>maven-archetype-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.7.0</version>
+				<groupId>org.sonatype.central</groupId>
+				<artifactId>central-publishing-maven-plugin</artifactId>
+				<version>0.8.0</version>
 				<extensions>true</extensions>
 				<configuration>
-					<serverId>ossrh</serverId>
-					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+					<autoPublish>false</autoPublish>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -119,13 +117,6 @@
 			</build>
 		</profile>
 	</profiles>
-	<distributionManagement>
-		<!-- Central Repository -->
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
 	<scm>
 		<developerConnection>scm:git:git@github.com:bonitasoft/bonita-rest-api-extension-archetype.git</developerConnection>
 		<connection>scm:git:git@github.com:bonitasoft/bonita-rest-api-extension-archetype.git</connection>

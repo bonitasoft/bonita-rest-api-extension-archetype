@@ -68,4 +68,4 @@ So, to release a new version of the project, you have to:
 
 ⚠️ Make sure that the release branch is final before to push it. If you have to update something on the release branch after the push, then you must first:
 - Delete the tag and the release on github
-- Remove the artifact from our nexus repository 
+- Remove the artifact from our central portal repository 
