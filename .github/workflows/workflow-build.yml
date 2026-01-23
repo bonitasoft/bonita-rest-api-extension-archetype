@@ -13,7 +13,7 @@ jobs:
     outputs:
       app_version: ${{steps.get-app-version.outputs.APP_VERSION}}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - id: get-app-version
       name: Get archetype version
       run: |
