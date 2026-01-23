@@ -26,12 +26,12 @@ jobs:
     - name: Run Integration tests for groovy archetype sub-modules
       run: ./mvnw -B -ntp groovy:execute -Dsource=target/test-classes/testGroovySubModuleProject/IT.groovy -Dscope=test
     - name: Upload archetype for tests
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: latest-snapshot
         path: target/bonita-rest-api-extension-archetype-*
     - name: Upload archetype pom for tests
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
         name: latest-snapshot-pom
         path: pom.xml
