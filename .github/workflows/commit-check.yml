@@ -19,6 +19,8 @@ jobs:
         with:
           fetch-depth: 0  # Required for merge-base checks
       - uses: commit-check/commit-check-action@v2
+        env:
+          CCHK_IGNORE_AUTHORS: "dependabot[bot]"
         with:
           message: true
           branch: false
