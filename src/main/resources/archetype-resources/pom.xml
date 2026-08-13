@@ -30,7 +30,6 @@
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <maven-assembly-plugin.version>3.8.0</maven-assembly-plugin.version>
         <maven-surefire.version>3.5.6</maven-surefire.version>
-
     </properties>
 
     <dependencyManagement>
@@ -50,7 +49,6 @@
                 <artifactId>jackson-databind</artifactId>
                 <scope>provided</scope>
             </dependency>
-
             <dependency>
                 <groupId>org.bonitasoft.runtime</groupId>
                 <artifactId>bonita-runtime-bom</artifactId>
@@ -58,7 +56,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -83,7 +80,6 @@
             <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -119,11 +115,11 @@
             <version>${logback-classic.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
         <defaultGoal>verify</defaultGoal>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -143,6 +139,7 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>

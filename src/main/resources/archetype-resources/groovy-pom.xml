@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>${groupId}</groupId>
     <artifactId>${artifactId}</artifactId>
     <version>${version}</version>
-
     <name>${apiDisplayName}</name>
     <description>${apiDesc}</description>
 
@@ -29,12 +29,10 @@
         <maven-assembly-plugin.version>3.8.0</maven-assembly-plugin.version>
         <maven-surefire.version>3.5.6</maven-surefire.version>
         <gmavenplus-plugin.version>5.1.0</gmavenplus-plugin.version>
-
     </properties>
 
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>org.bonitasoft.runtime</groupId>
                 <artifactId>bonita-runtime-bom</artifactId>
@@ -42,7 +40,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -54,7 +51,6 @@
             <artifactId>bonita-web-extensions</artifactId>
             <scope>provided</scope>
         </dependency>
-
 #else
         <dependency>
             <groupId>com.bonitasoft.web</groupId>
@@ -62,6 +58,7 @@
             <scope>provided</scope>
         </dependency>
 #end
+
         <dependency>
             <groupId>org.apache.groovy</groupId>
             <artifactId>groovy</artifactId>
@@ -72,7 +69,10 @@
             <artifactId>groovy-json</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- You may add more Groovy modules if required, see https://groovy-lang.org/documentation.html#groovymoduleguides -->
+
+        <!-- You may add more Groovy modules if required -->
+        <!-- see https://groovy-lang.org/documentation.html#groovymoduleguides -->
+
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
@@ -104,7 +104,6 @@
             <version>${logback-classic.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -154,4 +153,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
