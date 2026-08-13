@@ -1,6 +1,6 @@
 package com.company.bonitasoft.api;
 
-import com.bonitasoft.web.extension.rest.RestAPIContext;
+import org.bonitasoft.web.extension.rest.RestAPIContext;
 import com.company.bonitasoft.api.dto.Error;
 import com.company.bonitasoft.api.dto.Result;
 import com.company.bonitasoft.api.exception.ValidationException;

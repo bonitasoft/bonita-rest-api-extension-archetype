@@ -20,8 +20,8 @@
 		<bonita-runtime.version>12.0-SNAPSHOT</bonita-runtime.version>
 
 		<!-- Maven plugins -->
+		<maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
 		<maven.compiler.release>${java.version}</maven.compiler.release>
-		<gmavenplus-plugin.version>5.1.0</gmavenplus-plugin.version>
 		<maven-assembly-plugin.version>3.8.0</maven-assembly-plugin.version>
 		<maven-surefire.version>3.5.6</maven-surefire.version>
 
@@ -30,12 +30,29 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
 				<groupId>org.bonitasoft.runtime</groupId>
 				<artifactId>bonita-runtime-bom</artifactId>
 				<version>${bonita-runtime.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -43,9 +60,8 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.codehaus.gmavenplus</groupId>
-					<artifactId>gmavenplus-plugin</artifactId>
-					<version>${gmavenplus-plugin.version}</version>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>

@@ -3,7 +3,7 @@ package com.company.bonitasoft.api;
 import com.company.bonitasoft.api.dto.Result;
 import com.company.bonitasoft.api.exception.ValidationException;
 
-import com.bonitasoft.web.extension.rest.RestAPIContext;
+import org.bonitasoft.web.extension.rest.RestAPIContext;
 import java.util.Properties;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;

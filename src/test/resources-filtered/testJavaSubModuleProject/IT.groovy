@@ -2,11 +2,11 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 
-// Run 'mvn install' first and then 'mvn groovy:execute -Dsource=target/test-classes/testGroovySubModuleProject/IT.groovy -Dscope=test' from project root
+// Run 'mvn install' first and then 'mvn groovy:execute -Dsource=target/test-classes/testJavaSubModuleProject/IT.groovy -Dscope=test' from project root
 
 // Given
-def sourcePath = '${project.basedir}/src/test/resources/testGroovySubModuleProject/'
-def testPath = '${project.build.testOutputDirectory}/testGroovySubModuleProject/'
+def sourcePath = '${project.basedir}/src/test/resources/testJavaSubModuleProject/'
+def testPath = '${project.build.testOutputDirectory}/testJavaSubModuleProject/'
 def sourceParentFolder = "${sourcePath}/module-parent"
 def parentFolder = "${testPath}/module-parent"
 def moduleArtifactId = "my-rest-api"
@@ -33,7 +33,7 @@ def proc = """mvn archetype:generate -B  \
     -DgroupId=org.company.api \
     -DartifactId=${moduleArtifactId} \
     -Dversion=0.0.1-SNAPSHOT \
-    -Dlanguage=groovy \
+    -Dlanguage=java \
     -DbonitaVersion=12.0-SNAPSHOT \
     -DapiName=myRestApi \
     -DapiDisplayName=My-REST-API \
