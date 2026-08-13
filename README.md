@@ -6,8 +6,8 @@
 # bonita-rest-api-extension-archetype
 
 ## Disclaimer
-* Use a JRE/JDK 1.8 or Java 11 for Bonita 7.13+, Java 17 for Bonita 10.0+
-* Compatible with Bonita 7.12+
+* Compatible with Bonita 12.0+ (Jakarta EE). Requires a JDK 17 or higher.
+* For Bonita 7.12 to 11.x, use the archetype **1.7.x** (maintained on the [`support/1.7.x`](https://github.com/bonitasoft/bonita-rest-api-extension-archetype/tree/support/1.7.x) branch)
 
 ## How to build the archetype
 
@@ -16,6 +16,8 @@ git clone https://github.com/bonitasoft/bonita-rest-api-extension-archetype.git
 cd bonita-rest-api-extension-archetype
 ./mvnw clean install
 ```
+
+ℹ️ Until Bonita 12.0 is released on Maven Central, the integration tests build the generated projects against the `12.0-SNAPSHOT` Bonita runtime: this requires access to the Bonitasoft Artifactory snapshot repositories in your Maven `settings.xml`. Use `./mvnw clean install -DskipTests` otherwise.
 
 ## How to use the archetype
 
@@ -27,7 +29,7 @@ mvn archetype:generate \
     -DartifactId=my-rest-api \
     -Dversion=0.0.1-SNAPSHOT \
     -Dlanguage=java \
-    -DbonitaVersion=7.12.1 \
+    -DbonitaVersion=12.0.0 \
     -DapiName=myRestApi \
     -DpathTemplate=my-rest-api \
     -DapiDisplayName="My REST API" \
@@ -40,7 +42,7 @@ mvn archetype:generate \
 
 | Parameter         | Required | Default value                     | Description                                                                            										   |
 | ------------------|-------|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| -DbonitaVersion   | __true__  |                                   | You can choose the version of the dependent bonita artifacts. __Minimum version is 7.12.1.__   								   |
+| -DbonitaVersion   | __true__  |                                   | You can choose the version of the dependent bonita artifacts. __Minimum version is 12.0.0__ (use archetype 1.7.x for older versions).   								   |
 | -Dsp              | false | false                             | If set to true, project will use Bonita subscription dependencies. __This implies you have made bonita subscription artifacts available for maven (in your local repository or enterprise repository)__ |
 | -Dlanguage        | __true__  |                                   | You can choose between `groovy`, `java` or `kotlin`.                                        										   |
 | -Dwrapper         | false | true                              | If set to true, project will setup a [maven wrapper](https://github.com/takari/maven-wrapper)                                    |
@@ -61,7 +63,7 @@ The GitHub Action [Release](https://github.com/bonitasoft/bonita-rest-api-extens
 
 So, to release a new version of the project, you have to:
 - Open the [Release workflow](https://github.com/bonitasoft/bonita-rest-api-extension-archetype/actions/workflows/release.yml) and click *Run workflow*
-- Fill in the version to release (e.g. `1.7.3`) and the next development version (e.g. `1.7.4-SNAPSHOT`)
+- Fill in the version to release (e.g. `2.0.0`) and the next development version (e.g. `2.0.1-SNAPSHOT`)
 - Leave the `branch` input to `master`, unless you want to release from another branch
 
 ⚠️ The release is performed on the branch given by the `branch` input, not on the branch selected in the *Run workflow* dropdown (which only selects the version of the workflow file to run): that branch is the one checked out and built, tagged with the released version, and updated with the next development version.
