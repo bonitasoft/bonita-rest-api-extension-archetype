@@ -13,6 +13,13 @@ Path projectPath = Paths.get(request.outputDirectory, request.artifactId)
 def language = request.properties.get("language")
 def installWrapper = Boolean.valueOf(request.properties.get("wrapper"))
 
+// The bonitaVersion validationRegex is only enforced in interactive mode, so guard batch mode too
+def bonitaVersion = request.properties.get('bonitaVersion')
+def major = bonitaVersion.split('\\.')[0]
+if (!major.isInteger() || major.toInteger() < 12) {
+	throw new IllegalArgumentException("bonitaVersion '$bonitaVersion' is not supported: this archetype requires Bonita 12.0 or above (Jakarta EE). Use archetype version 1.7.x for older Bonita versions.")
+}
+
 if (isGroovy(language)) {
 	prepareGroovyProject(logger, projectPath)
 } else if (isKotlin(language)) {
