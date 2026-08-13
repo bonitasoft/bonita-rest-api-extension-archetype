@@ -13,6 +13,8 @@ updates:
   # Maintain dependencies for maven
   - package-ecosystem: "maven"
     directory: "/"
+    exclude-paths:
+      - "src/test/resources/**"
     schedule:
       interval: "weekly"
     commit-message:
