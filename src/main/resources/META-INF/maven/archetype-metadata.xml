@@ -6,7 +6,8 @@
     name="bonita-rest-api-extension-archetype">
     <requiredProperties>
         <requiredProperty key="bonitaVersion">
-            <validationRegex>^(((\d+)\.(\d+)\.(\d+)(?:-(\w+(?:\.\w+)*))?)(?:\+(\w+(?:\.\w+)*))?)$</validationRegex>
+            <!-- Bonita 12.0 or above (Jakarta EE). Use archetype 1.7.x for older Bonita versions. -->
+            <validationRegex>^(1[2-9]|[2-9]\d|\d{3,})\.\d+(\.\d+)?(-\w+(\.\w+)*)?(\+\w+(\.\w+)*)?$</validationRegex>
         </requiredProperty>
         <requiredProperty key="sp">
             <defaultValue>false</defaultValue>

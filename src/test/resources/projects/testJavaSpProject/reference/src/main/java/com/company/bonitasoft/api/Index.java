@@ -5,7 +5,7 @@ import com.company.bonitasoft.api.exception.ValidationException;
 
 import com.bonitasoft.web.extension.rest.RestAPIContext;
 import java.util.Properties;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

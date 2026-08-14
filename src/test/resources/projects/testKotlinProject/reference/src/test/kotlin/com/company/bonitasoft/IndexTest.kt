@@ -5,7 +5,7 @@ import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import javax.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletRequest
 import org.bonitasoft.web.extension.ResourceProvider
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
 import org.bonitasoft.web.extension.rest.RestAPIContext

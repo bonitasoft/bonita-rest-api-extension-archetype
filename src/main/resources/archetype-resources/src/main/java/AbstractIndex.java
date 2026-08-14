@@ -26,13 +26,13 @@ import org.bonitasoft.web.extension.ResourceProvider;
 import org.bonitasoft.web.extension.rest.RestApiResponse;
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.io.InputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
-import static javax.servlet.http.HttpServletResponse.SC_OK;
+import static jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
+import static jakarta.servlet.http.HttpServletResponse.SC_OK;
 
 /**
  * Parent Controller class to hide technical parts

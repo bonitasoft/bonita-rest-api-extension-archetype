@@ -12,7 +12,7 @@ package $package;
 
 import groovy.json.JsonSlurper
 
-import javax.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletRequest
 
 import org.bonitasoft.web.extension.ResourceProvider
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder

@@ -12,9 +12,9 @@ import org.bonitasoft.web.extension.rest.RestApiResponse
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
 import java.time.LocalDate
 import java.util.Properties
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST
-import javax.servlet.http.HttpServletResponse.SC_OK
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST
+import jakarta.servlet.http.HttpServletResponse.SC_OK
 
 /**
  * Controller class

@@ -4,6 +4,10 @@
 #if( $urlParameters != "!"  )
 #set( $params = $urlParameters.split(",") )
 #end
+#set( $nbParams = 0 )
+#foreach($p in $params)
+#set( $nbParams = $nbParams+1)
+#end
 package ${package}
 
 import io.mockk.every
@@ -11,7 +15,7 @@ import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import javax.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletRequest
 import org.bonitasoft.web.extension.ResourceProvider
 import org.bonitasoft.web.extension.rest.RestApiResponseBuilder
 #if( ${sp} == 'false' )

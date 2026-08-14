@@ -2,7 +2,7 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 
-// Run 'mvn install' fisrt and then 'mvn groovy:execute -Dsource=target/test-classes/testGroovySubModuleProject/IT.groovy -Dscope=test' from project root
+// Run 'mvn install' first and then 'mvn groovy:execute -Dsource=target/test-classes/testGroovySubModuleProject/IT.groovy -Dscope=test' from project root
 
 // Given
 def sourcePath = '${project.basedir}/src/test/resources/testGroovySubModuleProject/'
@@ -24,6 +24,7 @@ if (moduleFolder.exists()) {
 }
 
 // When
+// TODO Bonita 12.0 GA: switch -DbonitaVersion to 12.0.0
 println "Generate sub module ..."
 def sout = new StringBuilder(), serr = new StringBuilder()
 def proc = """mvn archetype:generate -B  \
@@ -34,7 +35,7 @@ def proc = """mvn archetype:generate -B  \
     -DartifactId=${moduleArtifactId} \
     -Dversion=0.0.1-SNAPSHOT \
     -Dlanguage=groovy \
-    -DbonitaVersion=7.15.0 \
+    -DbonitaVersion=12.0-SNAPSHOT \
     -DapiName=myRestApi \
     -DapiDisplayName=My-REST-API \
     -DpathTemplate=my-rest-api \
