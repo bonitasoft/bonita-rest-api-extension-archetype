@@ -3,7 +3,6 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.logging.Logger
 
-import org.apache.maven.model.Model
 import org.apache.maven.model.Parent
 import org.apache.maven.model.io.*
 
@@ -13,7 +12,7 @@ Path projectPath = Paths.get(request.outputDirectory, request.artifactId)
 def language = request.properties.get("language")
 def installWrapper = Boolean.valueOf(request.properties.get("wrapper"))
 
-// The bonitaVersion validationRegex is only enforced in interactive mode, so guard batch mode too
+// The bonitaVersion validationRegex is only enforced in interactive mode, so guard the major version in batch mode too
 def bonitaVersion = request.properties.get('bonitaVersion')
 def major = bonitaVersion.split('\\.')[0]
 if (!major.isInteger() || major.toInteger() < 12) {
@@ -187,6 +186,5 @@ if (mvnWrapper.exists()) mvnWrapper.deleteDir()
 
 
 static def removeProperty(def project, def propName) {
-	def prop = project.properties.find { it.key == propName }
-	if (prop != null) project.properties.remove(propName)
+	project.properties.remove(propName)
 }

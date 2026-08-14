@@ -24,6 +24,7 @@ if (moduleFolder.exists()) {
 }
 
 // When
+// TODO Bonita 12.0 GA: switch -DbonitaVersion to 12.0.0
 println "Generate sub module ..."
 def sout = new StringBuilder(), serr = new StringBuilder()
 def proc = """mvn archetype:generate -B  \

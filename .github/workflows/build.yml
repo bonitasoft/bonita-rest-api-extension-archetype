@@ -27,7 +27,7 @@ jobs:
           distribution: temurin
           cache: maven
 
-      # Required to resolve Bonita runtime snapshots until Bonita 12.0 is released on Maven Central
+      # TODO Bonita 12.0 GA: remove this step once Bonita 12.0 is released on Maven Central (only needed to resolve runtime snapshots)
       - name: Setup Maven settings
         uses: bonitasoft/maven-settings-action@v1
         with:
@@ -91,7 +91,7 @@ jobs:
           java-version: 17
           distribution: temurin
 
-      # Required to resolve Bonita runtime snapshots until Bonita 12.0 is released on Maven Central
+      # TODO Bonita 12.0 GA: remove this step once Bonita 12.0 is released on Maven Central (only needed to resolve runtime snapshots)
       - name: Setup Maven settings
         uses: bonitasoft/maven-settings-action@v1
         with:
@@ -110,6 +110,7 @@ jobs:
           mvn -B -ntp install:install-file -Dfile=bonita-rest-api-extension-archetype-${{needs.build.outputs.app_version}}.jar -DpomFile=pom.xml
           rm pom.xml
 
+      # TODO Bonita 12.0 GA: switch -DbonitaVersion to 12.0.0
       - name: Generate project and build it
         shell: bash
         run: >-

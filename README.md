@@ -1,6 +1,6 @@
-[![Actions Status](https://github.com/bonitasoft/bonita-rest-api-extension-archetype/workflows/Build/badge.svg)](https://github.com/bonitasoft/bonita-rest-api-extension-archetype/actions?query=workflow%3ABuild)
+[![Actions Status](https://github.com/bonitasoft/bonita-rest-api-extension-archetype/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/bonitasoft/bonita-rest-api-extension-archetype/actions/workflows/build.yml)
 [![GitHub release](https://img.shields.io/github/v/release/bonitasoft/bonita-rest-api-extension-archetype?color=blue&label=Release&include_prereleases)](https://github.com/bonitasoft/bonita-rest-api-extension-archetype/releases)
-[![Maven Central](https://img.shields.io/maven-central/v/org.bonitasoft.archetypes/bonita-rest-api-extension-archetype.svg?label=Maven%20Central&color=orange)](https://search.maven.org/search?q=g:%22org.bonitasoft.archetypes%22%20AND%20a:%22bonita-rest-api-extension-archetype%22)
+[![Maven Central](https://img.shields.io/maven-central/v/org.bonitasoft.archetypes/bonita-rest-api-extension-archetype?label=Maven%20Central&color=orange)](https://central.sonatype.com/artifact/org.bonitasoft.archetypes/bonita-rest-api-extension-archetype)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-yellow.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
 # bonita-rest-api-extension-archetype
@@ -11,17 +11,18 @@
 
 ## How to build the archetype
 
-```
+```bash
 git clone https://github.com/bonitasoft/bonita-rest-api-extension-archetype.git
 cd bonita-rest-api-extension-archetype
 ./mvnw clean install
 ```
 
+<!-- TODO Bonita 12.0 GA: remove this note (grep 'TODO Bonita 12.0 GA' for all the sites to update) -->
 ℹ️ Until Bonita 12.0 is released on Maven Central, the integration tests build the generated projects against the `12.0-SNAPSHOT` Bonita runtime: this requires access to the Bonitasoft Artifactory snapshot repositories in your Maven `settings.xml`. Use `./mvnw clean install -DskipTests` otherwise.
 
 ## How to use the archetype
 
-```
+```bash
 mvn archetype:generate \
     -DarchetypeGroupId=org.bonitasoft.archetypes \
     -DarchetypeArtifactId=bonita-rest-api-extension-archetype \
@@ -37,7 +38,7 @@ mvn archetype:generate \
     -DhttpVerb=GET
 ```
 
-### Optionnal archetype parameters
+### Optional archetype parameters
 
 
 | Parameter         | Required | Default value                     | Description                                                                            										   |

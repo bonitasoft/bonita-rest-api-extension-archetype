@@ -24,4 +24,5 @@ Ensure that your contribution is correctly tested:
  - Any update on the archetype must be tested through the integration test suite (*src/test/resources/projects*), run by `./mvnw install`
  - Any update on the sub-module generation (*archetype-post-generate.groovy*) must be tested through the sub-module integration tests: `./mvnw groovy:execute -Dsource=target/test-classes/testJavaSubModuleProject/IT.groovy -Dscope=test` (same for *testGroovySubModuleProject*)
 
+<!-- TODO Bonita 12.0 GA: remove this note (grep 'TODO Bonita 12.0 GA' for all the sites to update) -->
 Note: until Bonita 12.0 is released on Maven Central, the integration tests build the generated projects against the `12.0-SNAPSHOT` Bonita runtime, which requires access to the Bonitasoft Artifactory snapshot repositories in your Maven `settings.xml` (CI gets it through `bonitasoft/maven-settings-action`). Use `-DskipTests` to skip them.
