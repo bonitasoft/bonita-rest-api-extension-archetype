@@ -14,9 +14,9 @@ def installWrapper = Boolean.valueOf(request.properties.get("wrapper"))
 
 // The bonitaVersion validationRegex is only enforced in interactive mode, so guard the major version in batch mode too
 def bonitaVersion = request.properties.get('bonitaVersion')
-def major = bonitaVersion.split('\\.')[0]
-if (!major.isInteger() || major.toInteger() < 12) {
-	throw new IllegalArgumentException("bonitaVersion '$bonitaVersion' is not supported: this archetype requires Bonita 12.0 or above (Jakarta EE). Use archetype version 1.7.x for older Bonita versions.")
+def major = bonitaVersion?.split('\\.')?.first()
+if (!major?.isInteger() || major.toInteger() < 12) {
+	throw new IllegalArgumentException("bonitaVersion '$bonitaVersion' is not supported: this archetype requires Bonita 12.0 or above (Jakarta EE). Use archetype version 1.7.x for older Bonita versions. The partially generated project '$projectPath' can be deleted.")
 }
 
 if (isGroovy(language)) {
