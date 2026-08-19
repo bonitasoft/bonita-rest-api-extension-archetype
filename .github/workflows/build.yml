@@ -48,6 +48,9 @@ jobs:
       - name: Run Integration tests for groovy archetype sub-modules
         run: ./mvnw -B -ntp groovy:execute -Dsource=target/test-classes/testGroovySubModuleProject/IT.groovy -Dscope=test
 
+      - name: Run Integration tests for kotlin archetype sub-modules
+        run: ./mvnw -B -ntp groovy:execute -Dsource=target/test-classes/testKotlinSubModuleProject/IT.groovy -Dscope=test
+
       - name: Run Integration test for unsupported Bonita version rejection
         run: ./mvnw -B -ntp groovy:execute -Dsource=target/test-classes/testInvalidBonitaVersion/IT.groovy -Dscope=test
 

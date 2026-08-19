@@ -12,6 +12,7 @@
     <properties>
         <!-- Maven -->
         <java.version>17</java.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
@@ -25,7 +26,6 @@
         <logback-classic.version>1.6.2</logback-classic.version>
 
         <!-- Maven plugins -->
-        <maven.compiler.release>${java.version}</maven.compiler.release>
         <maven-assembly-plugin.version>3.8.0</maven-assembly-plugin.version>
         <maven-surefire.version>3.5.6</maven-surefire.version>
         <gmavenplus-plugin.version>5.1.0</gmavenplus-plugin.version>

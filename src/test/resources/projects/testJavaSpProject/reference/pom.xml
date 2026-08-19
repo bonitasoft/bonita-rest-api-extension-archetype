@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -12,6 +13,7 @@
     <properties>
         <!-- Maven -->
         <java.version>17</java.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
@@ -27,7 +29,6 @@
 
         <!-- Maven plugins -->
         <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
-        <maven.compiler.release>${java.version}</maven.compiler.release>
         <maven-assembly-plugin.version>3.8.0</maven-assembly-plugin.version>
         <maven-surefire.version>3.5.6</maven-surefire.version>
     </properties>
