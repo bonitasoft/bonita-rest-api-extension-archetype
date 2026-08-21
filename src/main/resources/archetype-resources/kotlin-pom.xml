@@ -12,13 +12,14 @@
 
     <properties>
         <!-- Maven -->
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.build.timestamp.format>yyyy.MM.dd-hh.mm</maven.build.timestamp.format>
 
         <!-- Kotlin -->
         <kotlin.version>2.4.10</kotlin.version>
-        <kotlin.compiler.jvmTarget>17</kotlin.compiler.jvmTarget>
+        <kotlin.compiler.jvmTarget>${java.version}</kotlin.compiler.jvmTarget>
 
         <!-- Bonita -->
         <bonita-runtime.version>${bonitaVersion}</bonita-runtime.version>

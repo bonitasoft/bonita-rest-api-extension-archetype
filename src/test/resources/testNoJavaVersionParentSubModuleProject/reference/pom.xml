@@ -12,6 +12,7 @@
   <description>My Rest API extension description</description>
   <properties>
     <kotlin.version>2.4.10</kotlin.version>
+    <java.version>17</java.version>
     <kotlin.compiler.jvmTarget>${java.version}</kotlin.compiler.jvmTarget>
     <assertj-core.version>3.27.7</assertj-core.version>
     <mockk.version>1.14.11</mockk.version>
