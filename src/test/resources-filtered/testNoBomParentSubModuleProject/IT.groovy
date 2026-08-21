@@ -2,28 +2,28 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 
-// Run 'mvn install' first and then 'mvn groovy:execute -Dsource=target/test-classes/testJavaSubModuleProject/IT.groovy -Dscope=test' from project root
+// Run 'mvn install' first and then 'mvn groovy:execute -Dsource=target/test-classes/testNoBomParentSubModuleProject/IT.groovy -Dscope=test' from project root
 
 // Given
-def sourcePath = '${project.basedir}/src/test/resources/testJavaSubModuleProject/'
-def testPath = '${project.build.testOutputDirectory}/testJavaSubModuleProject/'
+def sourcePath = '${project.basedir}/src/test/resources/testNoBomParentSubModuleProject/'
+def testPath = '${project.build.testOutputDirectory}/testNoBomParentSubModuleProject/'
 def sourceParentFolder = "${sourcePath}/module-parent"
 def parentFolder = "${testPath}/module-parent"
 def moduleArtifactId = "my-rest-api"
 
 
-println "[Integration Test] Test generation of sub module ${moduleArtifactId} in folder ${parentFolder}"
+println "[Integration Test] Test generation of sub module ${moduleArtifactId} under a parent that does not manage bonita-runtime-bom, in folder ${parentFolder}"
 
 // Delete previous run if any
 def moduleFolder = new File("${parentFolder}/${moduleArtifactId}")
 if (moduleFolder.exists()) {
 	moduleFolder.deleteDir()
-	// Reset the parent pom (whitout sub-module declaration)
+	// Reset the parent pom (without sub-module declaration)
 	Files.copy(Paths.get("${sourceParentFolder}/pom.xml"), Paths.get("${parentFolder}/pom.xml"), StandardCopyOption.REPLACE_EXISTING);
 }
 
 // When
-// TODO Bonita 12.0 GA: switch -DbonitaVersion to 12.0.0
+// TODO Bonita 12.0 GA: switch -DbonitaVersion to 12.0.0 and regenerate the reference pom (it embeds the bonita-runtime.version)
 println "Generate sub module ..."
 def sout = new StringBuilder(), serr = new StringBuilder()
 def proc = """mvn archetype:generate -B  \
@@ -41,8 +41,12 @@ def proc = """mvn archetype:generate -B  \
     -DurlParameters=p,c \
     -DhttpVerb=GET
 """.execute(null, new File(parentFolder))
-proc.consumeProcessOutput(sout, serr)
+def soutThread = proc.consumeProcessOutputStream(sout)
+def serrThread = proc.consumeProcessErrorStream(serr)
 proc.waitForOrKill(10 * 60 * 1000)
+// Join the output pump threads so the content assertions below read fully drained buffers
+soutThread.join(60 * 1000)
+serrThread.join(60 * 1000)
 println "out> $sout\nerr> $serr"
 
 // Then
@@ -53,10 +57,21 @@ assert proc.exitValue() == 0: "Maven archetype execution exit code should be 0"
 def parentPomFile = new File("${parentFolder}/pom.xml")
 assert parentPomFile.text.contains("<module>${moduleArtifactId}</module>"): 'Parent pom should declare project as sub module'
 
+def output = sout.toString() + serr.toString()
+assert output.contains("does not manage the Bonita runtime"): 'Generation output should warn that the parent does not manage bonita-runtime-bom'
+
 def modulePomFile = new File("${parentFolder}/${moduleArtifactId}/pom.xml")
 def referencePomFile = new File("${testPath}/reference/pom.xml")
 assert referencePomFile.text == modulePomFile.text: 'Reference pom and project pom should have the same content'
 
+// The kept bonita-runtime-bom import and version property must make the module build as-is
+println "Building generated sub module ..."
+def bout = new StringBuilder(), berr = new StringBuilder()
+def buildProc = "mvn -B -ntp verify".execute(null, moduleFolder)
+buildProc.consumeProcessOutput(bout, berr)
+buildProc.waitForOrKill(10 * 60 * 1000)
+println "out> $bout\nerr> $berr"
+
+assert buildProc.exitValue() == 0: "Generated sub module build exit code should be 0"
+
 println "SUCCESS"
-
-
