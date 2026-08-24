@@ -8,12 +8,12 @@ if (Boolean.parseBoolean(skipTests)) {
 }
 
 def testClassesDir = new File('${project.build.testOutputDirectory}')
-def itScripts = testClassesDir.listFiles()
+def itScripts = (testClassesDir.listFiles() ?: [])
         .findAll { it.isDirectory() && new File(it, 'IT.groovy').isFile() }
         .sort { it.name }
         .collect { new File(it, 'IT.groovy') }
 
-assert itScripts: "No IT.groovy script found under ${testClassesDir}"
+assert itScripts: "No IT.groovy script found under ${testClassesDir}: run 'mvn install' first"
 println "[Integration Test] Running ${itScripts.size()} script integration tests: ${itScripts.collect { it.parentFile.name }.join(', ')}"
 
 def failedSuites = []

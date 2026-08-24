@@ -143,12 +143,16 @@ project.parent = parent
 
 // Only clean up the module when an ancestor manages the Bonita runtime: either it imports
 // bonita-runtime-bom itself, or it inherits from org.bonitasoft:bonita-project (Bonita
-// project shape — possibly several levels up, e.g. in the Studio 'extensions' module).
+// project shape - possibly several levels up, e.g. in the Studio 'extensions' module).
 // Otherwise keep everything so that the module builds as-is, and log a warning. The runtime
 // version is not checked: pre-12 Bonita parent projects are not supported.
 def parentManagesBonitaRuntime = false
 def parentManagesJavaVersion = false
 def parentManagesCompilerRelease = false
+def managedPluginIds = [] as Set
+// The plugins managed by the published org.bonitasoft:bonita-project parent
+def bonitaProjectManagedPluginIds = ['maven-compiler-plugin', 'maven-surefire-plugin',
+                                     'maven-failsafe-plugin', 'maven-assembly-plugin', 'gmavenplus-plugin']
 def ancestorPom = parentPom
 def ancestorModel = parentModel
 for (int depth = 0; depth < 10; depth++) {
@@ -162,23 +166,38 @@ for (int depth = 0; depth < 10; depth++) {
     if (ancestorModel.properties.containsKey('java.version') || isBonitaProjectChild) {
         parentManagesJavaVersion = true
     }
-    if (isBonitaProjectChild || ancestorModel.properties.keySet().any {
-        it in ['maven.compiler.release', 'maven.compiler.source', 'maven.compiler.target']
-    }) {
+    if (isBonitaProjectChild || ancestorModel.properties.containsKey('maven.compiler.release')) {
         parentManagesCompilerRelease = true
     }
     if (importsBonitaBom || isBonitaProjectChild) {
         parentManagesBonitaRuntime = true
     }
-    // Keep walking: the compiler properties may be defined above the pom importing the bom
-    if (parentManagesBonitaRuntime && parentManagesJavaVersion && parentManagesCompilerRelease) break
-    if (ancestorModel.parent == null) break
+    // Collect the plugins whose version is pinned by an ancestor
+    ((ancestorModel.build?.pluginManagement?.plugins ?: []) + (ancestorModel.build?.plugins ?: [])).each {
+        if (it.version) {
+            managedPluginIds << it.artifactId
+        }
+    }
+    if (isBonitaProjectChild) {
+        managedPluginIds.addAll(bonitaProjectManagedPluginIds)
+    }
+    // Keep walking the whole local chain: compiler properties and plugin versions may be
+    // managed above the pom importing the bom
+    if (ancestorModel.parent == null) {
+        break
+    }
     // An explicitly empty relativePath means the parent must not be looked up locally
     def relativePath = ancestorModel.parent.relativePath
-    if (!relativePath) break
+    if (!relativePath) {
+        break
+    }
     def nextPom = new File(ancestorPom.parentFile, relativePath)
-    if (nextPom.isDirectory()) nextPom = new File(nextPom, 'pom.xml')
-    if (!nextPom.isFile()) break
+    if (nextPom.isDirectory()) {
+        nextPom = new File(nextPom, 'pom.xml')
+    }
+    if (!nextPom.isFile()) {
+        break
+    }
     def nextModel
     try {
         nextModel = pomReader.read(nextPom, [:])
@@ -190,7 +209,9 @@ for (int depth = 0; depth < 10; depth++) {
     // (version not compared, it is often a placeholder like ${revision})
     def declaredParent = ancestorModel.parent
     def nextGroupId = nextModel.groupId ?: nextModel.parent?.groupId
-    if (nextGroupId != declaredParent.groupId || nextModel.artifactId != declaredParent.artifactId) break
+    if (nextGroupId != declaredParent.groupId || nextModel.artifactId != declaredParent.artifactId) {
+        break
+    }
     ancestorPom = nextPom
     ancestorModel = nextModel
 }
@@ -200,9 +221,7 @@ if (parentManagesBonitaRuntime) {
     [
             'project.build.sourceEncoding',
             'project.reporting.outputEncoding',
-            'maven.build.timestamp.format',
-            'maven-compiler-plugin.version',
-            'maven-surefire.version'
+            'maven.build.timestamp.format'
     ].each {
         removeProperty(project, it)
     }
@@ -217,19 +236,44 @@ if (parentManagesBonitaRuntime) {
         removeProperty(project, 'maven.compiler.release')
     }
 
-    // Remove pluginManagement section
-    project.build.pluginManagement = null
+    // Remove the version pin of each plugin an ancestor manages, and the version properties
+    // no remaining plugin references; keep the other pins so that the module builds as-is
+    def versionPropertyRefs = [] as Set
 
-    // Remove version for manage assembly plugin
-    removeProperty(project, 'maven-assembly-plugin.version')
-    project.build.plugins.find { it.artifactId == 'maven-assembly-plugin' }?.version = null
-    // Remove version for plugins managed by the Bonita project parent pom
-    removeProperty(project, 'gmavenplus-plugin.version')
-    project.build.plugins.find { it.artifactId == 'gmavenplus-plugin' }?.version = null
+    // Null the inline version of the managed plugins, noting the properties they referenced
+    project.build.plugins.each {
+        if (it.artifactId in managedPluginIds && it.version) {
+            versionPropertyRefs << versionPropertyRef(it.version)
+            it.version = null
+        }
+    }
+
+    // Remove the managed plugins from pluginManagement, and the whole section once empty
+    if (project.build.pluginManagement != null) {
+        project.build.pluginManagement.plugins.each {
+            if (it.artifactId in managedPluginIds && it.version) {
+                versionPropertyRefs << versionPropertyRef(it.version)
+            }
+        }
+        project.build.pluginManagement.plugins.removeAll { it.artifactId in managedPluginIds }
+        if (!project.build.pluginManagement.plugins) {
+            project.build.pluginManagement = null
+        }
+    }
+
+    // Remove the version properties that no remaining plugin references (null = literal version)
+    def remainingPluginVersions = (project.build.plugins + (project.build.pluginManagement?.plugins ?: []))*.version
+    versionPropertyRefs.findAll { it != null }.each {
+        if (!remainingPluginVersions.contains('${' + it + '}')) {
+            removeProperty(project, it)
+        }
+    }
 
     // Remove dependency management for bonita bom (in parent)
     def bonitaBom = project.dependencyManagement.dependencies.find { it.artifactId == 'bonita-runtime-bom' }
-    if (bonitaBom != null) project.dependencyManagement.dependencies.remove(bonitaBom)
+    if (bonitaBom != null) {
+        project.dependencyManagement.dependencies.remove(bonitaBom)
+    }
     removeProperty(project, 'bonita-runtime.version')
     if (!project.dependencyManagement.dependencies) {
         project.dependencyManagement = null
@@ -249,9 +293,20 @@ pomWriter.write(projectPom, [:], project)
 Files.deleteIfExists(projectPath.resolve("mvnw"))
 Files.deleteIfExists(projectPath.resolve("mvnw.cmd"))
 def mvnWrapper = projectPath.resolve(".mvn").toFile()
-if (mvnWrapper.exists()) mvnWrapper.deleteDir()
+if (mvnWrapper.exists()) {
+    mvnWrapper.deleteDir()
+}
 
 
 static def removeProperty(def project, def propName) {
     project.properties.remove(propName)
+}
+
+// Return the property name referenced by a '${property}' version, or null for a literal version
+static def versionPropertyRef(def version) {
+    def matcher = version =~ /^\$\{(.+)}$/
+    if (matcher.matches()) {
+        return matcher.group(1)
+    }
+    return null
 }
