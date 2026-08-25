@@ -248,14 +248,16 @@ if (parentManagesBonitaRuntime) {
         }
     }
 
-    // Remove the managed plugins from pluginManagement, and the whole section once empty
+    // Same in pluginManagement, dropping the entries left with nothing to declare and the
+    // whole section once empty; an entry that also configures the plugin is kept as-is
     if (project.build.pluginManagement != null) {
         project.build.pluginManagement.plugins.each {
             if (it.artifactId in managedPluginIds && it.version) {
                 versionPropertyRefs << versionPropertyRef(it.version)
+                it.version = null
             }
         }
-        project.build.pluginManagement.plugins.removeAll { it.artifactId in managedPluginIds }
+        project.build.pluginManagement.plugins.removeAll { it.artifactId in managedPluginIds && isEmptyPluginEntry(it) }
         if (!project.build.pluginManagement.plugins) {
             project.build.pluginManagement = null
         }
@@ -304,6 +306,12 @@ if (mvnWrapper.exists()) {
 
 static def removeProperty(def project, def propName) {
     project.properties.remove(propName)
+}
+
+// True for a plugin entry declaring nothing but its coordinates, once its version pin is gone
+static def isEmptyPluginEntry(def plugin) {
+    plugin.version == null && plugin.configuration == null && !plugin.executions \
+            && !plugin.dependencies && plugin.getExtensions() == null && plugin.getInherited() == null
 }
 
 // Return every version a plugin entry references: its own pin and its plugin-level dependencies'
