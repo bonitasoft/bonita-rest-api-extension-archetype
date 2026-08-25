@@ -40,10 +40,9 @@
     <build>
         <pluginManagement>
             <plugins>
-                <!-- Pinned here on purpose, so that the generated kotlin module drops its own pin.
-                     The version is a literal and kotlin.version is deliberately NOT declared here:
-                     were it, the module would inherit it and 'mvn validate' below would still pass
-                     with the property wrongly removed from the module, masking the regression -->
+                <!-- Pinned on purpose, so that the generated module drops its own pin. Declaring
+                     kotlin.version here would let the module inherit it, and the suite's
+                     'mvn validate' step would pass with the property wrongly removed -->
                 <plugin>
                     <groupId>org.jetbrains.kotlin</groupId>
                     <artifactId>kotlin-maven-plugin</artifactId>
