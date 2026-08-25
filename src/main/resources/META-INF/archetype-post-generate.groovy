@@ -237,7 +237,7 @@ if (parentManagesBonitaRuntime) {
     }
 
     // Remove the version pin of each plugin an ancestor manages, and the version properties
-    // no remaining plugin references; keep the other pins so that the module builds as-is
+    // nothing references any more; keep the other pins so that the module builds as-is
     def versionPropertyRefs = [] as Set
 
     // Null the inline version of the managed plugins, noting the properties they referenced
@@ -248,23 +248,29 @@ if (parentManagesBonitaRuntime) {
         }
     }
 
-    // Remove the managed plugins from pluginManagement, and the whole section once empty
+    // Same in pluginManagement, dropping the entries left with nothing to declare and the
+    // whole section once empty; an entry that also configures the plugin is kept as-is
     if (project.build.pluginManagement != null) {
         project.build.pluginManagement.plugins.each {
             if (it.artifactId in managedPluginIds && it.version) {
                 versionPropertyRefs << versionPropertyRef(it.version)
+                it.version = null
             }
         }
-        project.build.pluginManagement.plugins.removeAll { it.artifactId in managedPluginIds }
+        project.build.pluginManagement.plugins.removeAll { it.artifactId in managedPluginIds && isEmptyPluginEntry(it) }
         if (!project.build.pluginManagement.plugins) {
             project.build.pluginManagement = null
         }
     }
 
-    // Remove the version properties that no remaining plugin references (null = literal version)
-    def remainingPluginVersions = (project.build.plugins + (project.build.pluginManagement?.plugins ?: []))*.version
+    // Remove the version properties nothing else references (null = literal version). Dependency
+    // versions count: a property may be shared by a plugin and a dependency, i.e. `${kotlin.version}`
+    def remainingVersions = versionRefsOf(project.build.plugins) \
+            + versionRefsOf(project.build.pluginManagement?.plugins) \
+            + (project.dependencies ?: [])*.version \
+            + (project.dependencyManagement?.dependencies ?: [])*.version
     versionPropertyRefs.findAll { it != null }.each {
-        if (!remainingPluginVersions.contains('${' + it + '}')) {
+        if (!remainingVersions.contains('${' + it + '}')) {
             removeProperty(project, it)
         }
     }
@@ -300,6 +306,17 @@ if (mvnWrapper.exists()) {
 
 static def removeProperty(def project, def propName) {
     project.properties.remove(propName)
+}
+
+// True for a plugin entry declaring nothing but its coordinates, once its version pin is gone
+static def isEmptyPluginEntry(def plugin) {
+    plugin.version == null && plugin.configuration == null && !plugin.executions \
+            && !plugin.dependencies && plugin.getExtensions() == null && plugin.getInherited() == null
+}
+
+// Return every version a plugin entry references: its own pin and its plugin-level dependencies'
+static def versionRefsOf(def plugins) {
+    (plugins ?: []).collectMany { [it.version] + (it.dependencies ?: [])*.version }
 }
 
 // Return the property name referenced by a '${property}' version, or null for a literal version
