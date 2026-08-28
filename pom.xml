@@ -79,9 +79,6 @@
 				<artifactId>central-publishing-maven-plugin</artifactId>
 				<version>0.11.0</version>
 				<extensions>true</extensions>
-				<configuration>
-					<autoPublish>false</autoPublish>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
