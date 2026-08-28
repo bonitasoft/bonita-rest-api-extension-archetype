@@ -23,7 +23,6 @@ if (moduleFolder.exists()) {
 }
 
 // When
-// TODO Bonita 12.0 GA: switch -DbonitaVersion to 12.0.0 and regenerate the reference pom (it embeds the bonita-runtime.version)
 println "Generate sub module ..."
 def sout = new StringBuilder(), serr = new StringBuilder()
 def proc = """mvn archetype:generate -B  \
@@ -34,7 +33,7 @@ def proc = """mvn archetype:generate -B  \
     -DartifactId=${moduleArtifactId} \
     -Dversion=0.0.1-SNAPSHOT \
     -Dlanguage=java \
-    -DbonitaVersion=12.0-SNAPSHOT \
+    -DbonitaVersion=12.0.0 \
     -DapiName=myRestApi \
     -DapiDisplayName=My-REST-API \
     -DpathTemplate=my-rest-api \
