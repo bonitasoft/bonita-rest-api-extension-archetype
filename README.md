@@ -18,7 +18,7 @@ cd bonita-rest-api-extension-archetype
 ```
 
 <!-- TODO Bonita 12.0 GA: remove this note (grep 'TODO Bonita 12.0 GA' for all the sites to update) -->
-ℹ️ Until Bonita 12.0 is released on Maven Central, the integration tests build the generated projects against the `12.0-SNAPSHOT` Bonita runtime: this requires access to the Bonitasoft Artifactory snapshot repositories in your Maven `settings.xml`. Use `./mvnw clean install -DskipTests` otherwise.
+ℹ️ Until Bonita 12.0 is released on Maven Central, the integration tests build the generated projects against the `12.0-SNAPSHOT` Bonita runtime: this requires access to the snapshot repositories of the Bonita Artifact Repository in your Maven `settings.xml`. Use `./mvnw clean install -DskipTests` otherwise.
 
 ## How to use the archetype
 
